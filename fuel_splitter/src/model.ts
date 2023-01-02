@@ -15,9 +15,9 @@ export interface FuelBill {
 }
 
 export interface TripInfo {
-  isBrendanInvolved: boolean;
-  isLoryInvolved: boolean;
-  isDavidInvolved: boolean;
-  isParcoInvolved: boolean;
+  isBrendanIn: boolean;
+  isLoryIn: boolean;
+  isDavidIn: boolean;
+  isParcoIn: boolean;
   totalKM: number;
 }
