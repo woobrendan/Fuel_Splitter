@@ -43,16 +43,34 @@ const fuelBill = createSlice({
     ) {
       const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
         action.payload;
+
       let count: number = 0;
       const involvment = [isBrendanIn, isDavidIn, isLoryIn, isParcoIn];
+
       for (let check of involvment) {
         if (check) count++;
       }
 
       const costPer: number = totalKM / count;
+
       if (isBrendanIn) {
         state.Brendan.totalTrips = state.Brendan.totalTrips + 1;
         state.Brendan.totalKM = state.Brendan.totalKM + costPer;
+      }
+
+      if (isLoryIn) {
+        state.Lory.totalTrips = state.Lory.totalTrips + 1;
+        state.Lory.totalKM = state.Lory.totalKM + costPer;
+      }
+
+      if (isParcoIn) {
+        state.Parco.totalTrips = state.Parco.totalTrips + 1;
+        state.Parco.totalKM = state.Parco.totalKM + costPer;
+      }
+
+      if (isDavidIn) {
+        state.David.totalTrips = state.David.totalTrips + 1;
+        state.David.totalKM = state.David.totalKM + costPer;
       }
     },
   },
