@@ -1,19 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FuelBill } from "../model";
 
 // export interface TripInfo {
-//   isBrendanInvolved: boolean;
-//   isLoryInvolved: boolean;
-//   isDavidInvolved: boolean;
-//   isParcoInvolved: boolean;
+//   isBrendanIn: boolean;
+//   isLoryIn: boolean;
+//   isDavidIn: boolean;
+//   isParcoIn: boolean;
 //   totalKM: number;
 // }
 
 // const TripInfo = {
-//   isBrendanInvolved: true,
-//   isLoryInvolved: true,
-//   isDavidInvolved: false,
-//   isParcoInvolved: true,
+//   isBrendanIn: true,
+//   isLoryIn: true,
+//   isDavidIn: false,
+//   isParcoIn: true,
 //   totalKM: 15,
 // };
 
@@ -31,7 +31,30 @@ const fuelBill = createSlice({
   name: "fuelBill",
   initialState,
   reducers: {
-    addNewTrip(state, action: PayloadAction<FuelBill>) {},
+    addNewTrip(
+      state,
+      action: PayloadAction<{
+        isBrendanIn: boolean;
+        isLoryIn: boolean;
+        isDavidIn: boolean;
+        isParcoIn: boolean;
+        totalKM: number;
+      }>,
+    ) {
+      const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
+        action.payload;
+      let count: number = 0;
+      const involvment = [isBrendanIn, isDavidIn, isLoryIn, isParcoIn];
+      for (let check of involvment) {
+        if (check) count++;
+      }
+
+      const costPer: number = totalKM / count;
+      if (isBrendanIn) {
+        state.Brendan.totalTrips = state.Brendan.totalTrips + 1;
+        state.Brendan.totalKM = state.Brendan.totalKM + costPer;
+      }
+    },
   },
 });
 
