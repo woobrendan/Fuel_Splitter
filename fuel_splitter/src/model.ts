@@ -8,8 +8,8 @@ export interface FuelBill {
   totalPrice: number;
   totalKM: number;
   costPerLitre: number;
-  person1Info: IndividualInfo;
-  person2Info: IndividualInfo;
-  person3Info?: IndividualInfo;
-  person4Info?: IndividualInfo;
+  Brendan: IndividualInfo;
+  Lory: IndividualInfo;
+  David: IndividualInfo;
+  Parco: IndividualInfo;
 }
