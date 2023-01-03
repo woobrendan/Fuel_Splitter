@@ -13,3 +13,11 @@ export interface FuelBill {
   David: IndividualInfo;
   Parco: IndividualInfo;
 }
+
+export interface TripInfo {
+  isBrendanInvolved: boolean;
+  isLoryInvolved: boolean;
+  isDavidInvolved: boolean;
+  isParcoInvolved: boolean;
+  totalKM: number;
+}
