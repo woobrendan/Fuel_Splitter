@@ -7,6 +7,19 @@ function createData(trip: number, totalKm: number, involved: string[]) {
 
 const TravelRow: React.FC = () => {
   const rows = [createData(1, 12, ["Brendan", "Lory"])];
+
+  const getNames = (nameArr: string[]) => {
+    let names: string = "";
+    if (nameArr.length === 1) return nameArr[0];
+    for (let i = 0; i < nameArr.length; i++) {
+      if (i === nameArr.length - 1) {
+        names += names[i];
+      } else {
+        names += `${names[i]}, `;
+      }
+    }
+    return names;
+  };
   return (
     <TableBody>
       {rows.map((row, index) => (
