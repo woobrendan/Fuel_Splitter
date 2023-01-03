@@ -20,6 +20,7 @@ const TravelRow: React.FC = () => {
     }
     return names;
   };
+
   return (
     <TableBody>
       {rows.map((row, index) => (
@@ -31,7 +32,7 @@ const TravelRow: React.FC = () => {
             {row.trip}
           </TableCell>
           <TableCell align="right">{row.totalKm}</TableCell>
-          <TableCell align="right">{}</TableCell>
+          <TableCell align="right">{getNames(row.involved)}</TableCell>
         </TableRow>
       ))}
     </TableBody>
