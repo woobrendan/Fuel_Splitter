@@ -1,14 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FuelBill } from "../model";
 
-const initialState = {} as FuelBill;
+// export interface TripInfo {
+//   isBrendanInvolved: boolean;
+//   isLoryInvolved: boolean;
+//   isDavidInvolved: boolean;
+//   isParcoInvolved: boolean;
+//   totalKM: number;
+// }
 
-const historySlice = createSlice({
-  name: "history",
-  initialState,
-  reducers: {},
+const fuelBill = createSlice({
+  name: "fuelBill",
+  initialState: {} as FuelBill,
+  reducers: {
+    addNewTrip(state, action: PayloadAction<FuelBill>) {},
+  },
 });
 
-export const historyActions = historySlice.actions;
+export const historyActions = fuelBill.actions;
 
-export default historySlice;
+export default fuelBill;
