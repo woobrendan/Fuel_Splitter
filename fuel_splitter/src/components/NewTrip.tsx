@@ -31,7 +31,16 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         <FormControlLabel control={<Checkbox />} label="David" />
         <FormControlLabel control={<Checkbox />} label="Parco" />
       </FormGroup>
-      <input placeholder="Enter Total KM's travelled" type="input" />
+      <label>Total KM's travelled</label>
+      <input
+        placeholder="Enter Total KM's travelled"
+        type="input"
+        value={tripInfo.totalKM}
+        onChange={(e: React.FormEvent) => {
+          const target = e.target as HTMLTextAreaElement;
+          setTripInfo((prev) => ({ ...prev, totalKM: Number(target.value) }));
+        }}
+      />
       <Button variant="contained" color="success">
         Submit
       </Button>
@@ -40,3 +49,5 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
 };
 
 export default NewTrip;
+
+// {...prev, totalKM: e.target.value}
