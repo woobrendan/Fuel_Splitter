@@ -1,10 +1,22 @@
 import { FormGroup, FormControlLabel, Checkbox, Button } from "@mui/material";
+import { useState } from "react";
+import { TripInfo } from "../model";
 
 interface Props {
   handleAdd: (e: React.FormEvent) => void;
 }
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
+  const [tripInfo, setTripInfo] = useState<TripInfo>({
+    isBrendanIn: false,
+    isLoryIn: false,
+    isDavidIn: false,
+    isParcoIn: false,
+    totalKM: 0,
+  });
+
+  const onCheck = (event: React.ChangeEvent): void => {};
+
   return (
     <form
       className="newTrip__container"
@@ -19,6 +31,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         <FormControlLabel control={<Checkbox />} label="David" />
         <FormControlLabel control={<Checkbox />} label="Parco" />
       </FormGroup>
+      <input placeholder="Enter Total KM's travelled" type="input" />
       <Button variant="contained" color="success">
         Submit
       </Button>
