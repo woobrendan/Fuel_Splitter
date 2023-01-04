@@ -25,6 +25,7 @@ const initialState: FuelBill = {
   Lory: { totalKM: 0, totalTrips: 0, billPortion: 0 },
   David: { totalKM: 0, totalTrips: 0, billPortion: 0 },
   Parco: { totalKM: 0, totalTrips: 0, billPortion: 0 },
+  tripLogs: [],
 };
 
 const fuelBill = createSlice({
@@ -44,17 +45,19 @@ const fuelBill = createSlice({
       const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
         action.payload;
 
+      //check how many people are involved, then divide to find portion of km
       let count: number = 0;
       const involvment = [isBrendanIn, isDavidIn, isLoryIn, isParcoIn];
 
-      //check how many people are involved, then divide to find portion of km
       for (let check of involvment) {
         if (check) count++;
       }
 
       const costPer: number = totalKM / count;
 
+      // Add new trip KMs total. add Trip to logs
       state.totalKM += totalKM;
+      state.tripLogs = [...state.tripLogs, action.payload];
 
       //check each individual to see if theyre involved, and adjust trip numbers accordingly
       if (isBrendanIn) {
