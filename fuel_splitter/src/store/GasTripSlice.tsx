@@ -47,30 +47,45 @@ const fuelBill = createSlice({
       let count: number = 0;
       const involvment = [isBrendanIn, isDavidIn, isLoryIn, isParcoIn];
 
+      //check how many people are involved, then divide to find portion of km
       for (let check of involvment) {
         if (check) count++;
       }
 
       const costPer: number = totalKM / count;
 
+      state.totalKM = totalKM;
+
       if (isBrendanIn) {
+        state.Brendan.totalKM =
+          Math.round((state.Brendan.totalKM + costPer) * 100) / 100;
         state.Brendan.totalTrips = state.Brendan.totalTrips + 1;
-        state.Brendan.totalKM = state.Brendan.totalKM + costPer;
+        state.Brendan.billPortion =
+          Math.round((state.Brendan.totalKM / state.totalKM) * 100) / 100;
       }
 
       if (isLoryIn) {
         state.Lory.totalTrips = state.Lory.totalTrips + 1;
-        state.Lory.totalKM = state.Lory.totalKM + costPer;
+        state.Lory.totalKM =
+          Math.round((state.Lory.totalKM + costPer) * 100) / 100;
+        state.Lory.billPortion =
+          Math.round((state.Lory.totalKM / state.totalKM) * 100) / 100;
       }
 
       if (isParcoIn) {
         state.Parco.totalTrips = state.Parco.totalTrips + 1;
-        state.Parco.totalKM = state.Parco.totalKM + costPer;
+        state.Parco.totalKM =
+          Math.round((state.Parco.totalKM + costPer) * 100) / 100;
+        state.Parco.billPortion =
+          Math.round((state.Parco.totalKM / state.totalKM) * 100) / 100;
       }
 
       if (isDavidIn) {
         state.David.totalTrips = state.David.totalTrips + 1;
-        state.David.totalKM = state.David.totalKM + costPer;
+        state.David.totalKM =
+          Math.round((state.David.totalKM + costPer) * 100) / 100;
+        state.David.billPortion =
+          Math.round((state.David.totalKM / state.totalKM) * 100) / 100;
       }
     },
   },
