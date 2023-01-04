@@ -1,4 +1,4 @@
-import { Action, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FuelBill } from "../model";
 
 // export interface TripInfo {
@@ -76,6 +76,6 @@ const fuelBill = createSlice({
   },
 });
 
-export const historyActions = fuelBill.actions;
+export const fuelBillActions = fuelBill.actions;
 
 export default fuelBill;
