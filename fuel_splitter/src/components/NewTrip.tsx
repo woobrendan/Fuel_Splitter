@@ -26,7 +26,6 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
 
     // refactor later to note brute force
     const indiv: string = event.target.value;
-    console.log(indiv);
     switch (indiv) {
       case "Brendan":
         setTripInfo((prev) => ({
@@ -62,6 +61,13 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       className="newTrip__container"
       onSubmit={(e) => {
         handleAdd(e, tripInfo);
+        setTripInfo(() => ({
+          isBrendanIn: false,
+          isLoryIn: false,
+          isDavidIn: false,
+          isParcoIn: false,
+          totalKM: 0,
+        }));
       }}
     >
       <h1>Add New Trip Info</h1>
@@ -78,15 +84,33 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           label="Brendan"
         />
         <FormControlLabel
-          control={<Checkbox onChange={onCheck} value="Lory" />}
+          control={
+            <Checkbox
+              checked={tripInfo.isLoryIn}
+              onChange={onCheck}
+              value="Lory"
+            />
+          }
           label="Lory"
         />
         <FormControlLabel
-          control={<Checkbox onChange={onCheck} value="David" />}
+          control={
+            <Checkbox
+              checked={tripInfo.isDavidIn}
+              onChange={onCheck}
+              value="David"
+            />
+          }
           label="David"
         />
         <FormControlLabel
-          control={<Checkbox onChange={onCheck} value="Parco" />}
+          control={
+            <Checkbox
+              checked={tripInfo.isParcoIn}
+              onChange={onCheck}
+              value="Parco"
+            />
+          }
           label="Parco"
         />
       </FormGroup>
