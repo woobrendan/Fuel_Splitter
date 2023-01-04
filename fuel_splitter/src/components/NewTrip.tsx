@@ -78,15 +78,15 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           label="Brendan"
         />
         <FormControlLabel
-          control={<Checkbox onChange={onCheck} />}
+          control={<Checkbox onChange={onCheck} value="Lory" />}
           label="Lory"
         />
         <FormControlLabel
-          control={<Checkbox checked={false} />}
+          control={<Checkbox onChange={onCheck} value="David" />}
           label="David"
         />
         <FormControlLabel
-          control={<Checkbox checked={false} />}
+          control={<Checkbox onChange={onCheck} value="Parco" />}
           label="Parco"
         />
       </FormGroup>
