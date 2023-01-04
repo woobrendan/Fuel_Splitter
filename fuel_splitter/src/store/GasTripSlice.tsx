@@ -54,22 +54,19 @@ const fuelBill = createSlice({
 
       const costPer: number = totalKM / count;
 
-      state.totalKM = totalKM;
+      state.totalKM += totalKM;
 
+      //check each individual to see if theyre involved, and adjust trip numbers accordingly
       if (isBrendanIn) {
         state.Brendan.totalKM =
           Math.round((state.Brendan.totalKM + costPer) * 100) / 100;
         state.Brendan.totalTrips = state.Brendan.totalTrips + 1;
-        state.Brendan.billPortion =
-          Math.round((state.Brendan.totalKM / state.totalKM) * 100) / 100;
       }
 
       if (isLoryIn) {
         state.Lory.totalTrips = state.Lory.totalTrips + 1;
         state.Lory.totalKM =
           Math.round((state.Lory.totalKM + costPer) * 100) / 100;
-        state.Lory.billPortion =
-          Math.round((state.Lory.totalKM / state.totalKM) * 100) / 100;
       }
 
       if (isParcoIn) {
@@ -84,9 +81,16 @@ const fuelBill = createSlice({
         state.David.totalTrips = state.David.totalTrips + 1;
         state.David.totalKM =
           Math.round((state.David.totalKM + costPer) * 100) / 100;
-        state.David.billPortion =
-          Math.round((state.David.totalKM / state.totalKM) * 100) / 100;
       }
+      // recalculate each person bill portion after a new trip has been added
+      state.David.billPortion =
+        Math.round((state.David.totalKM / state.totalKM) * 100) / 100;
+      state.Brendan.billPortion =
+        Math.round((state.Brendan.totalKM / state.totalKM) * 100) / 100;
+      state.Lory.billPortion =
+        Math.round((state.Lory.totalKM / state.totalKM) * 100) / 100;
+      state.Parco.billPortion =
+        Math.round((state.Parco.totalKM / state.totalKM) * 100) / 100;
     },
   },
 });
