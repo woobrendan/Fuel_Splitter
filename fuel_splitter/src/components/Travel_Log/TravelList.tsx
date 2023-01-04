@@ -14,7 +14,7 @@ const TravelList: React.FC = () => {
   const tripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
   const mappedRows = tripLogs.map((log, index) => (
-    <TravelRow tripLog={log} key={index} />
+    <TravelRow tripLog={log} key={index} tripNum={index + 1} />
   ));
 
   return (
