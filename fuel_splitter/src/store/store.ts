@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import historySlice from "./historySlice";
+import fuelBill from "./GasTripSlice";
 
 const store = configureStore({
   reducer: {
     fuelHistory: historySlice.reducer,
+    fuelBill: fuelBill.reducer,
   },
 });
 
