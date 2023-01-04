@@ -7,14 +7,24 @@
   padding: 3%;
   align-items: center;
 
+  h2 {
+    text-decoration: underline;
+    margin-bottom: 0;
+  }
+
+  .MuiFormGroup-root {
+    display: flex;
+    flex-direction: row;
+  }
+
   .newTrip__input {
     display: flex;
     flex-direction: column;
     width: 50%;
+    margin: 5%;
   }
 
   button {
-    margin-top: 5%;
     width: 25%;
   }
 }
