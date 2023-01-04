@@ -15,7 +15,47 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     totalKM: 0,
   });
 
-  const onCheck = (event: React.ChangeEvent): void => {};
+  const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // type Person = keyof TripInfo
+    // const indiv: Person = `is${event.target.value}In`
+    // // const person: string = `is${event.target.value}In`
+    // setTripInfo((prev: TripInfo) => ({
+    //   ...prev,
+    //   [`is${event.target.value}In`]: !Boolean(prev[indiv]),
+    // }));
+
+    // refactor later to note brute force
+    const indiv: string = event.target.value;
+    console.log(indiv);
+    switch (indiv) {
+      case "Brendan":
+        setTripInfo((prev) => ({
+          ...prev,
+          isBrendanIn: !prev.isBrendanIn,
+        }));
+        break;
+      case "Lory":
+        setTripInfo((prev) => ({
+          ...prev,
+          isLoryIn: !prev.isLoryIn,
+        }));
+        break;
+      case "David":
+        setTripInfo((prev) => ({
+          ...prev,
+          isDavidIn: !prev.isDavidIn,
+        }));
+        break;
+      case "Parco":
+        setTripInfo((prev) => ({
+          ...prev,
+          isParcoIn: !prev.isParcoIn,
+        }));
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <form
@@ -25,14 +65,33 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       }}
     >
       <h1>Add New Trip Info</h1>
+      <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
-        <FormControlLabel control={<Checkbox />} label="Brendan" />
-        <FormControlLabel control={<Checkbox />} label="Lory" />
-        <FormControlLabel control={<Checkbox />} label="David" />
-        <FormControlLabel control={<Checkbox />} label="Parco" />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={tripInfo.isBrendanIn}
+              onChange={onCheck}
+              value="Brendan"
+            />
+          }
+          label="Brendan"
+        />
+        <FormControlLabel
+          control={<Checkbox onChange={onCheck} />}
+          label="Lory"
+        />
+        <FormControlLabel
+          control={<Checkbox checked={false} />}
+          label="David"
+        />
+        <FormControlLabel
+          control={<Checkbox checked={false} />}
+          label="Parco"
+        />
       </FormGroup>
       <div className="newTrip__input">
-        <label>Total KM's travelled</label>
+        <label>Total KM's travelled:</label>
         <input
           placeholder="Enter Total KM's travelled"
           type="input"
