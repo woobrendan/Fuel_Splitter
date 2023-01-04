@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TripInfo } from "../model";
 
 interface Props {
-  handleAdd: (e: React.FormEvent) => void;
+  handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
 }
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
@@ -61,7 +61,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     <form
       className="newTrip__container"
       onSubmit={(e) => {
-        handleAdd(e);
+        handleAdd(e, tripInfo);
       }}
     >
       <h1>Add New Trip Info</h1>
@@ -102,7 +102,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           }}
         />
       </div>
-      <Button variant="contained" color="success">
+      <Button variant="contained" color="success" type="submit">
         Submit
       </Button>
     </form>
