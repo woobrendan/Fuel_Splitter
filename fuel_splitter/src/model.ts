@@ -12,6 +12,7 @@ export interface FuelBill {
   Lory: IndividualInfo;
   David: IndividualInfo;
   Parco: IndividualInfo;
+  tripLogs: TripInfo[];
 }
 
 export interface TripInfo {
