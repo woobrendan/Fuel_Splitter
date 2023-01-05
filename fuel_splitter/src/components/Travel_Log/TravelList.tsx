@@ -6,6 +6,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  TableBody,
 } from "@mui/material";
 import { useAppSelector } from "../../store/hooks";
 import TravelRow from "./TravelRow";
@@ -24,11 +25,11 @@ const TravelList: React.FC = () => {
           <TableHead className="result-table-head">
             <TableRow>
               <TableCell>Trip #</TableCell>
-              <TableCell>Total KM's</TableCell>
-              <TableCell>Involved</TableCell>
+              <TableCell align="right">Total KM's</TableCell>
+              <TableCell align="right">Involved</TableCell>
             </TableRow>
           </TableHead>
-          {/* <TravelRow />  LOOP THRU ALL ROWS */}
+          <TableBody>{mappedRows}</TableBody>
         </Table>
       </TableContainer>
     </div>
