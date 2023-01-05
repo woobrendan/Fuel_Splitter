@@ -2,10 +2,6 @@ import { TableBody, TableRow, TableCell } from "@mui/material";
 import React from "react";
 import { TripInfo } from "../../model";
 
-function createData(trip: number, totalKm: number, involved: string[]) {
-  return { trip, totalKm, involved };
-}
-
 interface Props {
   tripLog: TripInfo;
   tripNum: number;
@@ -17,6 +13,12 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
 
   const getNamesInvolved = () => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripLog;
+    let names: string[] = [];
+    if (isBrendanIn) names.push("Brendan");
+    if (isLoryIn) names.push("Lory");
+    if (isDavidIn) names.push("David");
+    if (isParcoIn) names.push("Parco");
+    return names;
   };
 
   const getNames = (nameArr: string[]) => {
@@ -38,7 +40,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
         <TableCell component="th" scope="row">
           {tripNum}
         </TableCell>
-        <TableCell align="right">{tripLog.totalKm}</TableCell>
+        <TableCell align="right">{tripLog.totalKM}</TableCell>
         {/* <TableCell align="right">{getNames(row.involved)}</TableCell> */}
       </TableRow>
     </TableBody>
