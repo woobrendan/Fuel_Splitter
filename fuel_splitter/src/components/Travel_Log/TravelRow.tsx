@@ -36,15 +36,13 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
   };
 
   return (
-    <TableBody>
-      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-        <TableCell component="th" scope="row">
-          {tripNum}
-        </TableCell>
-        <TableCell align="right">{tripLog.totalKM}</TableCell>
-        <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
-      </TableRow>
-    </TableBody>
+    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+      <TableCell component="th" scope="row">
+        {tripNum}
+      </TableCell>
+      <TableCell align="right">{tripLog.totalKM}</TableCell>
+      <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
+    </TableRow>
   );
 };
 
