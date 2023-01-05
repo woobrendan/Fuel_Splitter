@@ -1,5 +1,6 @@
 import { TableBody, TableRow, TableCell } from "@mui/material";
 import React from "react";
+import { isNamespaceExport } from "typescript";
 import { TripInfo } from "../../model";
 
 interface Props {
@@ -26,9 +27,9 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
     if (nameArr.length === 1) return nameArr[0];
     for (let i = 0; i < nameArr.length; i++) {
       if (i === nameArr.length - 1) {
-        names += names[i];
+        names += nameArr[i];
       } else {
-        names += `${names[i]}, `;
+        names += `${nameArr[i]}, `;
       }
     }
     return names;
@@ -41,7 +42,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
           {tripNum}
         </TableCell>
         <TableCell align="right">{tripLog.totalKM}</TableCell>
-        {/* <TableCell align="right">{getNames(row.involved)}</TableCell> */}
+        <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
       </TableRow>
     </TableBody>
   );
