@@ -1,12 +1,23 @@
 import { TableBody, TableRow, TableCell } from "@mui/material";
 import React from "react";
+import { TripInfo } from "../../model";
 
 function createData(trip: number, totalKm: number, involved: string[]) {
   return { trip, totalKm, involved };
 }
 
-const TravelRow: React.FC = () => {
-  const rows = [createData(1, 12, ["Brendan", "Lory"])];
+interface Props {
+  tripLog: TripInfo;
+  tripNum: number;
+}
+
+const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
+  // const rows = [createData(1, 12, ["Brendan", "Lory"])];
+  // const row = [createData(tripNum, tripLog.totalKM, [])]
+
+  const getNamesInvolved = () => {
+    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripLog;
+  };
 
   const getNames = (nameArr: string[]) => {
     let names: string = "";
@@ -23,18 +34,13 @@ const TravelRow: React.FC = () => {
 
   return (
     <TableBody>
-      {rows.map((row, index) => (
-        <TableRow
-          key={index}
-          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-        >
-          <TableCell component="th" scope="row">
-            {row.trip}
-          </TableCell>
-          <TableCell align="right">{row.totalKm}</TableCell>
-          <TableCell align="right">{getNames(row.involved)}</TableCell>
-        </TableRow>
-      ))}
+      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+        <TableCell component="th" scope="row">
+          {tripNum}
+        </TableCell>
+        <TableCell align="right">{tripLog.totalKm}</TableCell>
+        {/* <TableCell align="right">{getNames(row.involved)}</TableCell> */}
+      </TableRow>
     </TableBody>
   );
 };
