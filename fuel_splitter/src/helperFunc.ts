@@ -6,4 +6,26 @@ const getToday = (): string => {
   return `${mm}-${dd}-${year}`;
 };
 
-export { getToday };
+const dateToString = (date: string): string => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const dateArr = date.split("-");
+  const monthNum: number = Number(dateArr[0]) - 1;
+  const day: number = Number(dateArr[1]);
+  const monthName: string = months[monthNum];
+  return `${monthName} ${day}, ${Number(dateArr[2])}`;
+};
+
+export { getToday, dateToString };
