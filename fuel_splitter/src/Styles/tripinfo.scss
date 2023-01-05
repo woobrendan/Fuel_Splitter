@@ -1,3 +1,9 @@
+#single_trip_container {
+  display: flex;
+  justify-content: space-around;
+  gap: 3%;
+}
+
 .newTrip__container {
   display: flex;
   flex-direction: column;
@@ -6,6 +12,11 @@
   border-radius: 15%;
   padding: 3%;
   align-items: center;
+
+  .TableRowColumn {
+    white-space: normal;
+    word-wrap: break-word;
+  }
 
   h2 {
     text-decoration: underline;
