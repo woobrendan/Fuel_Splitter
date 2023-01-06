@@ -22,10 +22,10 @@ const dateToString = (date: string): string => {
     "December",
   ];
   const dateArr = date.split("-");
-  const monthNum: number = Number(dateArr[0]) - 1;
-  const day: number = Number(dateArr[1]);
+  const monthNum: number = Number(dateArr[1]) - 1;
+  const day: number = Number(dateArr[2]);
   const monthName: string = months[monthNum];
-  return `${monthName} ${day}, ${Number(dateArr[2])}`;
+  return `${monthName} ${day}, ${Number(dateArr[0])}`;
 };
 
 export { getToday, dateToString };
