@@ -1,22 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FuelBill } from "../model";
 
-// export interface TripInfo {
-//   isBrendanIn: boolean;
-//   isLoryIn: boolean;
-//   isDavidIn: boolean;
-//   isParcoIn: boolean;
-//   totalKM: number;
-// }
-
-// const TripInfo = {
-//   isBrendanIn: true,
-//   isLoryIn: true,
-//   isDavidIn: false,
-//   isParcoIn: true,
-//   totalKM: 15,
-// };
-
 const initialState: FuelBill = {
   totalPrice: 0,
   totalKM: 0,
@@ -40,6 +24,7 @@ const fuelBill = createSlice({
         isDavidIn: boolean;
         isParcoIn: boolean;
         totalKM: number;
+        date: Date;
       }>,
     ) {
       const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
