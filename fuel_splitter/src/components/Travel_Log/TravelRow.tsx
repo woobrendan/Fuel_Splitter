@@ -1,5 +1,4 @@
 import { TableRow, TableCell } from "@mui/material";
-import React from "react";
 import { dateToString } from "../../helperFunc";
 import { TripInfo } from "../../model";
 
@@ -9,8 +8,10 @@ interface Props {
 }
 
 const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
+  const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn, date, totalKM } =
+    tripLog;
+
   const getNamesInvolved = () => {
-    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripLog;
     let names: string[] = [];
     if (isBrendanIn) names.push("Brendan");
     if (isLoryIn) names.push("Lory");
@@ -19,8 +20,8 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
     return names;
   };
 
-  const convertDateToString = (day: Date): string => {
-    const newDate: string = day.toISOString().split("T")[0];
+  const convertDateToString = (day: Date | null): string => {
+    const newDate: string = day!.toISOString().split("T")[0];
     return dateToString(newDate);
   };
 
@@ -42,8 +43,8 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
       <TableCell component="th" scope="row">
         {tripNum}
       </TableCell>
-      <TableCell align="right">{convertDateToString(tripLog.date)}</TableCell>
-      <TableCell align="right">{tripLog.totalKM}</TableCell>
+      <TableCell align="right">{convertDateToString(date)}</TableCell>
+      <TableCell align="right">{totalKM}</TableCell>
       <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
     </TableRow>
   );
