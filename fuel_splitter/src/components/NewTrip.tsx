@@ -17,7 +17,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     date: new Date(),
   });
 
-  const getDate = (dateVal: Date): void => {
+  const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
       ...prev,
       date: dateVal,
@@ -33,7 +33,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     //   [`is${event.target.value}In`]: !Boolean(prev[indiv]),
     // }));
 
-    // refactor later to note brute force
+    // refactor later to not be brute force
     const indiv: string = event.target.value;
     switch (indiv) {
       case "Brendan":
@@ -145,5 +145,3 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
 };
 
 export default NewTrip;
-
-// {...prev, totalKM: e.target.value}
