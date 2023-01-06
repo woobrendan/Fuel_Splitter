@@ -25,6 +25,7 @@ const TravelList: React.FC = () => {
           <TableHead className="result-table-head">
             <TableRow>
               <TableCell>Trip #</TableCell>
+              <TableCell align="right">Date</TableCell>
               <TableCell align="right">Total KM's</TableCell>
               <TableCell align="right">Involved</TableCell>
             </TableRow>
