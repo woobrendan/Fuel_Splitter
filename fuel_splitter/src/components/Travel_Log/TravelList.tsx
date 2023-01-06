@@ -14,10 +14,6 @@ import TravelRow from "./TravelRow";
 const TravelList: React.FC = () => {
   const tripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
-  const mappedRows = tripLogs.map((log, index) => (
-    <TravelRow tripLog={log} key={index} tripNum={index + 1} />
-  ));
-
   return (
     <div id="travelList__container">
       <TableContainer component={Paper}>
@@ -30,7 +26,11 @@ const TravelList: React.FC = () => {
               <TableCell align="right">Involved</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{mappedRows}</TableBody>
+          <TableBody>
+            {tripLogs.map((log, index) => (
+              <TravelRow tripLog={log} key={index} tripNum={index + 1} />
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </div>
