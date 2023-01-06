@@ -18,7 +18,7 @@ const TravelList: React.FC = () => {
     <div id="travelList__container">
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
-          <TableHead className="result-table-head">
+          <TableHead>
             <TableRow>
               <TableCell>Trip #</TableCell>
               <TableCell align="right">Date</TableCell>
