@@ -4,6 +4,21 @@
   gap: 3%;
 }
 
+#travelList__container {
+  .MuiTableHead-root {
+    background-color: #2ab1eb;
+
+    th {
+      color: yellow;
+    }
+  }
+
+  .TableRowColumn {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+
 .newTrip__container {
   display: flex;
   flex-direction: column;
@@ -12,11 +27,6 @@
   border-radius: 15%;
   padding: 3%;
   align-items: center;
-
-  .TableRowColumn {
-    white-space: normal;
-    word-wrap: break-word;
-  }
 
   h2 {
     text-decoration: underline;
