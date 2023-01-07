@@ -21,5 +21,5 @@ export interface TripInfo {
   isDavidIn: boolean;
   isParcoIn: boolean;
   totalKM: number;
-  date: Date;
+  date: Date | null;
 }
