@@ -1,6 +1,7 @@
 import { FormGroup, FormControlLabel, Checkbox, Button } from "@mui/material";
 import { useState } from "react";
 import { TripInfo } from "../model";
+import DatePicker from "./DatePicker";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -13,7 +14,15 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     isDavidIn: false,
     isParcoIn: false,
     totalKM: 0,
+    date: new Date(),
   });
+
+  const getDate = (dateVal: Date): void => {
+    setTripInfo((prev) => ({
+      ...prev,
+      date: dateVal,
+    }));
+  };
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
     // type Person = keyof TripInfo
@@ -67,6 +76,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           isDavidIn: false,
           isParcoIn: false,
           totalKM: 0,
+          date: new Date(),
         }));
       }}
     >
@@ -126,6 +136,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           }}
         />
       </div>
+      <DatePicker />
       <Button variant="contained" color="success" type="submit">
         Submit
       </Button>
