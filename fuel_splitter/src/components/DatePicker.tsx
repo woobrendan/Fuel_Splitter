@@ -4,7 +4,11 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
-const DatePicker: React.FC = () => {
+interface Props {
+  getDate: (dateVal: Date) => void;
+}
+
+const DatePicker: React.FC<Props> = () => {
   const [date, setDate] = useState<Date | null>(new Date());
 
   const handleChange = (newValue: Date | null) => {
