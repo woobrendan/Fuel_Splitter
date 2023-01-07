@@ -24,7 +24,7 @@ const fuelBill = createSlice({
         isDavidIn: boolean;
         isParcoIn: boolean;
         totalKM: number;
-        date: Date;
+        date: Date | null;
       }>,
     ) {
       const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
