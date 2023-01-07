@@ -81,6 +81,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       }}
     >
       <h1>Add New Trip Info</h1>
+      <DatePicker getDate={getDate} />
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
         <FormControlLabel
@@ -136,7 +137,6 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           }}
         />
       </div>
-      <DatePicker />
       <Button variant="contained" color="success" type="submit">
         Submit
       </Button>
