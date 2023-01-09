@@ -5,6 +5,7 @@ import { TripInfo } from "../model";
 import { fuelBillActions } from "../store/GasTripSlice";
 import TravelList from "./Travel_Log/TravelList";
 import GasPay from "./GasPay";
+import { GasBill } from "../model";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,6 +13,11 @@ const SingleTripInfo: React.FC = () => {
     e.preventDefault();
     //dispatch gas trip action
     dispatch(fuelBillActions.addNewTrip(trip));
+  };
+
+  const finalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
+    e.preventDefault();
+    dispatch(fuelBillActions.addGasBill(gasBill));
   };
 
   const oneBill = useAppSelector((state) => state.fuelBill);
@@ -23,7 +29,7 @@ const SingleTripInfo: React.FC = () => {
         <TravelList />
         <NewTrip handleAdd={handleAdd} />
       </section>
-      <GasPay />
+      <GasPay finalSubmit={finalSubmit} />
     </div>
   );
 };
