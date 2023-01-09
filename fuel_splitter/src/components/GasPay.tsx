@@ -2,14 +2,14 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 
 interface GasBill {
-  gasCost: number;
-  costPerL: number;
+  gasCost: string | number;
+  costPerL: string | number;
 }
 
 const GasPay: React.FC = () => {
   const [gasBill, setGasBill] = useState<GasBill>({
-    gasCost: 0,
-    costPerL: 0,
+    gasCost: "",
+    costPerL: "",
   });
 
   return (
@@ -17,15 +17,24 @@ const GasPay: React.FC = () => {
       <div className="single_trip__submitAll__input">
         <label>Cost per Litre:</label>
         <input
-          type="input"
+          type="number"
+          placeholder="Enter Cost Per Litre"
           value={gasBill.costPerL}
-          // onChange={(e) => setGasCost(Number(e.target.value))}
+          onChange={(e: React.FormEvent) => {
+            const target = e.target as HTMLTextAreaElement;
+            setGasBill((prev) => ({
+              ...prev,
+              costPerL: Number(target.value),
+            }));
+          }}
         />
       </div>
       <div className="single_trip__submitAll__input">
         <label>Total Gas Paid:</label>
         <input
-          type="input"
+          type="number"
+          step="0.01"
+          placeholder="Enter Gas Paid"
           value={gasBill.gasCost}
           onChange={(e: React.FormEvent) => {
             const target = e.target as HTMLTextAreaElement;
