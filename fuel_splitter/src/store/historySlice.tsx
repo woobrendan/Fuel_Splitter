@@ -11,7 +11,10 @@ const historySlice = createSlice({
   name: "history",
   initialState,
   reducers: {
-    addToHistory(state, action: PayloadAction<any>) {},
+    addToHistory(state, action: PayloadAction<FuelBill>) {
+      console.log("payload", action.payload);
+      state.history = [...state.history, action.payload];
+    },
     removeFromHistory(state, action: PayloadAction<any>) {},
   },
 });
