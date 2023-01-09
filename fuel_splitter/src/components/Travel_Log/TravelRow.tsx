@@ -40,12 +40,12 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
 
   return (
     <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-      <TableCell component="th" scope="row">
+      <TableCell component="th" scope="row" align="center">
         {tripNum}
       </TableCell>
-      <TableCell align="right">{convertDateToString(date)}</TableCell>
-      <TableCell align="right">{totalKM}</TableCell>
+      <TableCell align="center">{totalKM}</TableCell>
       <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
+      <TableCell align="right">{convertDateToString(date)}</TableCell>
     </TableRow>
   );
 };
