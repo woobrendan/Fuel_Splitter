@@ -6,22 +6,23 @@ import { fuelBillActions } from "../store/GasTripSlice";
 import TravelList from "./Travel_Log/TravelList";
 import GasPay from "./GasPay";
 import { GasBill } from "../model";
+import { historyActions } from "../store/historySlice";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
+  const oneBill = useAppSelector((state) => state.fuelBill);
+
   const handleAdd = (e: React.FormEvent, trip: TripInfo) => {
     e.preventDefault();
-    //dispatch gas trip action
     dispatch(fuelBillActions.addNewTrip(trip));
   };
 
   const finalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
     e.preventDefault();
     dispatch(fuelBillActions.addGasBill(gasBill));
+    dispatch(historyActions.addToHistory(oneBill));
+    dispatch(fuelBillActions.resetGasTrip());
   };
-
-  const oneBill = useAppSelector((state) => state.fuelBill);
-  console.log("oneTrip", oneBill);
 
   return (
     <div id="single_trip__container">
