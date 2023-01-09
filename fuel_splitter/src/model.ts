@@ -23,3 +23,8 @@ export interface TripInfo {
   totalKM: number;
   date: Date | null;
 }
+
+export interface GasBill {
+  gasCost: number;
+  costPerL: number;
+}
