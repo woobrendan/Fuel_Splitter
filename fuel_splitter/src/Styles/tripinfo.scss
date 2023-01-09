@@ -1,7 +1,14 @@
 #single_trip__container {
   display: flex;
-  justify-content: space-around;
-  gap: 3%;
+  flex-direction: column;
+  align-items: center;
+
+  .single_trip__tripInfo {
+    display: flex;
+    justify-content: space-between;
+    gap: 3%;
+    width: 100%;
+  }
 }
 
 #travelList__container {
