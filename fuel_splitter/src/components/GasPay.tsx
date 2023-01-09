@@ -1,19 +1,22 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { GasBill } from "../model";
 
-interface GasBill {
-  gasCost: string | number;
-  costPerL: string | number;
+interface Prop {
+  finalSubmit: (e: React.FormEvent, gasBill: GasBill) => void;
 }
 
-const GasPay: React.FC = () => {
+const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
   const [gasBill, setGasBill] = useState<GasBill>({
-    gasCost: "",
-    costPerL: "",
+    gasCost: 0,
+    costPerL: 0,
   });
 
   return (
-    <form className="single_trip__submitAll">
+    <form
+      className="single_trip__submitAll"
+      onSubmit={(e) => finalSubmit(e, gasBill)}
+    >
       <div className="single_trip__submitAll__input">
         <label>Cost per Litre:</label>
         <input
