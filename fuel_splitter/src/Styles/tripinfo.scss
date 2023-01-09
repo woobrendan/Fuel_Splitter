@@ -9,6 +9,22 @@
     gap: 3%;
     width: 100%;
   }
+
+  .single_trip__submitAll {
+    margin-top: 4%;
+    display: flex;
+    justify-content: space-around;
+
+    .single_trip__submitAll__input {
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      background-color: #2ab1eb;
+      color: yellow;
+    }
+  }
 }
 
 #travelList__container {
