@@ -4,6 +4,7 @@ import "../Styles/tripinfo.scss";
 import { TripInfo } from "../model";
 import { fuelBillActions } from "../store/GasTripSlice";
 import TravelList from "./Travel_Log/TravelList";
+import GasPay from "./GasPay";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,8 +19,11 @@ const SingleTripInfo: React.FC = () => {
 
   return (
     <div id="single_trip__container">
-      <TravelList />
-      <NewTrip handleAdd={handleAdd} />
+      <section className="single_trip__tripInfo">
+        <TravelList />
+        <NewTrip handleAdd={handleAdd} />
+      </section>
+      <GasPay />
     </div>
   );
 };
