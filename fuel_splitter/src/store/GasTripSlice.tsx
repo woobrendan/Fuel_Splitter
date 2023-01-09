@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FuelBill } from "../model";
+import { FuelBill, TripInfo, GasBill } from "../model";
 
 const initialState: FuelBill = {
   totalPrice: 0,
@@ -16,17 +16,7 @@ const fuelBill = createSlice({
   name: "fuelBill",
   initialState,
   reducers: {
-    addNewTrip(
-      state,
-      action: PayloadAction<{
-        isBrendanIn: boolean;
-        isLoryIn: boolean;
-        isDavidIn: boolean;
-        isParcoIn: boolean;
-        totalKM: number;
-        date: Date | null;
-      }>,
-    ) {
+    addNewTrip(state, action: PayloadAction<TripInfo>) {
       const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
         action.payload;
 
@@ -79,6 +69,19 @@ const fuelBill = createSlice({
         Math.round((state.Lory.totalKM / state.totalKM) * 100) / 100;
       state.Parco.billPortion =
         Math.round((state.Parco.totalKM / state.totalKM) * 100) / 100;
+    },
+    addGasBill(state, action: PayloadAction<GasBill>) {
+      state.costPerLitre = action.payload.costPerL;
+      state.totalPrice = action.payload.gasCost;
+      const copy = {
+        ...state,
+        Brendan: { ...state.Brendan },
+        Lory: { ...state.Lory },
+        David: { ...state.David },
+        Parco: { ...state.Parco },
+        tripLogs: [...state.tripLogs],
+      };
+      console.log("state", copy);
     },
   },
 });
