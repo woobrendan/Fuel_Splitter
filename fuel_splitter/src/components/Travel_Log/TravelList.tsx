@@ -21,9 +21,9 @@ const TravelList: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell>Trip #</TableCell>
-              <TableCell align="right">Date</TableCell>
               <TableCell align="right">Total KM's</TableCell>
               <TableCell align="right">Involved</TableCell>
+              <TableCell align="right">Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
