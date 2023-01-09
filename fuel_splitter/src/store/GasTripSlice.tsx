@@ -73,15 +73,9 @@ const fuelBill = createSlice({
     addGasBill(state, action: PayloadAction<GasBill>) {
       state.costPerLitre = action.payload.costPerL;
       state.totalPrice = action.payload.gasCost;
-      const copy = {
-        ...state,
-        Brendan: { ...state.Brendan },
-        Lory: { ...state.Lory },
-        David: { ...state.David },
-        Parco: { ...state.Parco },
-        tripLogs: [...state.tripLogs],
-      };
-      console.log("state", copy);
+    },
+    resetGasTrip(state) {
+      state = initialState;
     },
   },
 });
