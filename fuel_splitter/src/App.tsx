@@ -1,6 +1,7 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import SingleTripInfo from "./components/SingleTripInfo";
 import GasHistory from "./components/History/GasHistory";
+import "./Styles/app.scss";
 
 const App: React.FC = () => {
   return (
