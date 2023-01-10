@@ -1,7 +1,8 @@
 import SingleHistory from "./SingleHistory";
 import { useAppSelector } from "../../store/hooks";
+import { FuelBill } from "../../model";
 
-const temp = {
+const temp: FuelBill = {
   totalPrice: 15.99,
   totalKM: 25,
   costPerLitre: 1.45,
@@ -16,7 +17,7 @@ const temp = {
       isDavidIn: false,
       isParcoIn: false,
       totalKM: 20,
-      date: Date.now(),
+      date: new Date(),
     },
     {
       isBrendanIn: false,
@@ -24,7 +25,7 @@ const temp = {
       isDavidIn: true,
       isParcoIn: true,
       totalKM: 5,
-      date: Date.now(),
+      date: new Date(),
     },
   ],
 };
@@ -34,9 +35,10 @@ const GasHistory: React.FC = () => {
 
   return (
     <section className="history">
-      {history.map((bill, index) => (
+      {/* {history.map((bill, index) => (
         <SingleHistory bill={bill} key={index} />
-      ))}
+      ))} */}
+      <SingleHistory bill={temp} />
     </section>
   );
 };
