@@ -1,4 +1,5 @@
-interface IndividualInfo {
+export interface IndividualInfo {
+  name?: string;
   totalKM: number;
   totalTrips: number;
   billPortion: number;
@@ -8,10 +9,10 @@ export interface FuelBill {
   totalPrice: number;
   totalKM: number;
   costPerLitre: number;
-  Brendan: IndividualInfo;
-  Lory: IndividualInfo;
-  David: IndividualInfo;
-  Parco: IndividualInfo;
+  brendan: IndividualInfo;
+  lory: IndividualInfo;
+  david: IndividualInfo;
+  parco: IndividualInfo;
   tripLogs: TripInfo[];
 }
 
