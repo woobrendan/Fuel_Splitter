@@ -6,10 +6,10 @@ const temp: FuelBill = {
   totalPrice: 15.99,
   totalKM: 25,
   costPerLitre: 1.45,
-  Brendan: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
-  Lory: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
-  David: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
-  Parco: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
+  brendan: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
+  lory: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
+  david: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
+  parco: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
   tripLogs: [
     {
       isBrendanIn: true,
