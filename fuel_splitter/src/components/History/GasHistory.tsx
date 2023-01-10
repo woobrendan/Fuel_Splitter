@@ -1,19 +1,42 @@
-import TravelList from "./Travel_Log/TravelList";
-import { useAppSelector } from "../store/hooks";
-// totalPrice: 0,
-// totalKM: 0,
-// costPerLitre: 0,
-// Brendan: { totalKM: 0, totalTrips: 0, billPortion: 0 },
-// Lory: { totalKM: 0, totalTrips: 0, billPortion: 0 },
-// David: { totalKM: 0, totalTrips: 0, billPortion: 0 },
-// Parco: { totalKM: 0, totalTrips: 0, billPortion: 0 },
-// tripLogs: [],
+import SingleHistory from "./SingleHistory";
+import { useAppSelector } from "../../store/hooks";
+
+const temp = {
+  totalPrice: 15.99,
+  totalKM: 25,
+  costPerLitre: 1.45,
+  Brendan: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
+  Lory: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
+  David: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
+  Parco: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
+  tripLogs: [
+    {
+      isBrendanIn: true,
+      isLoryIn: true,
+      isDavidIn: false,
+      isParcoIn: false,
+      totalKM: 20,
+      date: Date.now(),
+    },
+    {
+      isBrendanIn: false,
+      isLoryIn: false,
+      isDavidIn: true,
+      isParcoIn: true,
+      totalKM: 5,
+      date: Date.now(),
+    },
+  ],
+};
 
 const GasHistory: React.FC = () => {
-  const history = useAppSelector((state) => state.fuelHistory);
+  const history = useAppSelector((state) => state.fuelHistory.history);
+
   return (
     <section className="history">
-      <TravelList />
+      {history.map((bill, index) => (
+        <SingleHistory bill={bill} key={index} />
+      ))}
     </section>
   );
 };
