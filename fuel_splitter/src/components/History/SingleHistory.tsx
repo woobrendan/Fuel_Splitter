@@ -1,5 +1,6 @@
 import { FuelBill } from "../../model";
 import TravelList from "../Travel_Log/TravelList";
+import TripDetails from "./TripDetails";
 
 interface Props {
   bill: FuelBill;
@@ -7,8 +8,9 @@ interface Props {
 
 const SingleHistory: React.FC<Props> = ({ bill }) => {
   return (
-    <div className="history_single">
-      <TravelList />
+    <div className="history__single">
+      <TravelList tripLogs={bill.tripLogs} />
+      <TripDetails bill={bill} />
     </div>
   );
 };
