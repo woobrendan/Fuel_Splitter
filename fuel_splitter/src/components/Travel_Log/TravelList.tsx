@@ -10,9 +10,16 @@ import {
 } from "@mui/material";
 import { useAppSelector } from "../../store/hooks";
 import TravelRow from "./TravelRow";
+import { TripInfo } from "../../model";
 
-const TravelList: React.FC = () => {
-  const tripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
+interface Props {
+  tripLogs?: TripInfo[];
+}
+
+const TravelList: React.FC<Props> = ({ tripLogs }) => {
+  const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
+
+  const getArr = tripLogs ? tripLogs : stateTripLogs;
 
   return (
     <div id="travelList__container">
@@ -27,7 +34,7 @@ const TravelList: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tripLogs.map((log, index) => (
+            {getArr.map((log: TripInfo, index: number) => (
               <TravelRow tripLog={log} key={index} tripNum={index + 1} />
             ))}
           </TableBody>
