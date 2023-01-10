@@ -7,15 +7,17 @@ interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
 }
 
+const initialState = {
+  isBrendanIn: false,
+  isLoryIn: false,
+  isDavidIn: false,
+  isParcoIn: false,
+  totalKM: 0,
+  date: new Date(),
+};
+
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
-  const [tripInfo, setTripInfo] = useState<TripInfo>({
-    isBrendanIn: false,
-    isLoryIn: false,
-    isDavidIn: false,
-    isParcoIn: false,
-    totalKM: 0,
-    date: new Date(),
-  });
+  const [tripInfo, setTripInfo] = useState<TripInfo>(initialState);
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
@@ -70,14 +72,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       className="newTrip__container"
       onSubmit={(e) => {
         handleAdd(e, tripInfo);
-        setTripInfo(() => ({
-          isBrendanIn: false,
-          isLoryIn: false,
-          isDavidIn: false,
-          isParcoIn: false,
-          totalKM: 0,
-          date: new Date(),
-        }));
+        setTripInfo(() => initialState);
       }}
     >
       <h1>Add New Trip Info</h1>
