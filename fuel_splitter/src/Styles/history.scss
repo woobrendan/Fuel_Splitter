@@ -3,17 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgb(242 246 37 / 50%);
     padding: 2%;
 
-    .history__single__summary {
-      display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-    }
-
-    .history__single__tripDetails {
-      // margin: 2% 2% 0 0;
+    &:nth-child(odd) {
+      background: rgb(242 246 37 / 50%);
 
       .MuiTableHead-root {
         background-color: #2ab1eb;
@@ -22,6 +15,24 @@
           color: yellow;
         }
       }
+    }
+
+    &:nth-child(even) {
+      background: rgb(82 202 242 / 50%);
+
+      .MuiTableHead-root {
+        background-color: yellow;
+
+        th {
+          color: #2ab1eb;
+        }
+      }
+    }
+
+    .history__single__summary {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
     }
   }
 }
