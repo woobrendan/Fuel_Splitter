@@ -1,9 +1,17 @@
 #history {
   .history__single {
-    display: flex;
-    justify-content: space-evenly;
+    // display: flex;
+    // justify-content: space-evenly;
+    background: rgb(242 246 37 / 50%);
+
+    .history__single__summary {
+      display: flex;
+      justify-content: space-evenly;
+    }
 
     .history__single__tripDetails {
+      margin: 2% 2% 0 0;
+
       .MuiTableHead-root {
         background-color: #2ab1eb;
 
