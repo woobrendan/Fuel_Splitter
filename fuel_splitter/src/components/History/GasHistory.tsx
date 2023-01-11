@@ -9,7 +9,7 @@ const GasHistory: React.FC = () => {
   return (
     <section id="history">
       {tempHistory.map((bill, index) => (
-        <SingleHistory bill={bill} key={index} />
+        <SingleHistory bill={bill} key={index} tripNum={index + 1} />
       ))}
     </section>
   );
