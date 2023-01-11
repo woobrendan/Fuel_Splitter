@@ -7,11 +7,7 @@ import {
   Paper,
   TableBody,
 } from "@mui/material";
-import { FuelBill, IndividualInfo } from "../../model";
-
-// totalPrice: 15.99,
-//   totalKM: 25,
-//   costPerLitre: 1.45,
+import { FuelBill } from "../../model";
 
 interface Props {
   bill: FuelBill;
@@ -44,7 +40,9 @@ const TripDetails: React.FC<Props> = ({ bill }) => {
                 </TableCell>
                 <TableCell align="right">{trip.totalKM}</TableCell>
                 <TableCell align="right">{trip.totalTrips}</TableCell>
-                <TableCell align="right">{trip.billPortion * 100}%</TableCell>
+                <TableCell align="right">
+                  {(trip.billPortion * 100).toFixed()}%
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -60,7 +58,7 @@ const TripDetails: React.FC<Props> = ({ bill }) => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row" align="left" colSpan={2}>
-                {bill.totalPrice}
+                ${bill.totalPrice}
               </TableCell>
               <TableCell align="right">{bill.totalKM}</TableCell>
               <TableCell align="right">{bill.costPerLitre}</TableCell>
