@@ -8,18 +8,18 @@ const getToday = (): string => {
 
 const dateToString = (date: string): string => {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
     "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const dateArr = date.split("-");
   const monthNum: number = Number(dateArr[1]) - 1;
