@@ -1,6 +1,7 @@
 import { FuelBill } from "../../model";
 import TravelList from "../Travel_Log/TravelList";
 import TripDetails from "./TripDetails";
+import "../../Styles/history.scss";
 
 interface Props {
   bill: FuelBill;
