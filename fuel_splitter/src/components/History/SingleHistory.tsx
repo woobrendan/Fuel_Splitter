@@ -1,18 +1,21 @@
 import { FuelBill } from "../../model";
 import TravelList from "../Travel_Log/TravelList";
 import TripDetails from "./TripDetails";
-import "../../Styles/history.scss";
 
 interface Props {
   bill: FuelBill;
+  tripNum: number;
 }
 
-const SingleHistory: React.FC<Props> = ({ bill }) => {
+const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
   return (
-    <div className="history__single">
-      <TravelList tripLogs={bill.tripLogs} />
-      <TripDetails bill={bill} />
-    </div>
+    <section className="history__single">
+      <h2>Trip Summary #{tripNum}</h2>
+      <div className="history__single__summary">
+        <TravelList tripLogs={bill.tripLogs} />
+        <TripDetails bill={bill} />
+      </div>
+    </section>
   );
 };
 
