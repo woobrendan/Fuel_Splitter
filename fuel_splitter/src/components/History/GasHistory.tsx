@@ -6,10 +6,15 @@ const temp: FuelBill = {
   totalPrice: 15.99,
   totalKM: 25,
   costPerLitre: 1.45,
-  brendan: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
-  lory: { totalKM: 10, totalTrips: 1, billPortion: 0.4 },
-  david: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
-  parco: { totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
+  brendan: { name: "Brendan", totalKM: 10, totalTrips: 1, billPortion: 0.4 },
+  lory: {
+    name: "Lory",
+    totalKM: 10,
+    totalTrips: 1,
+    billPortion: 0.4,
+  },
+  david: { name: "David", totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
+  parco: { name: "Parco", totalKM: 2.5, totalTrips: 1, billPortion: 0.1 },
   tripLogs: [
     {
       isBrendanIn: true,
@@ -34,7 +39,7 @@ const GasHistory: React.FC = () => {
   const history = useAppSelector((state) => state.fuelHistory.history);
 
   return (
-    <section className="history">
+    <section id="history">
       {/* {history.map((bill, index) => (
         <SingleHistory bill={bill} key={index} />
       ))} */}
