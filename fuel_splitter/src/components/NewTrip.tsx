@@ -132,7 +132,12 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           }}
         />
       </div>
-      <Button variant="contained" color="success" type="submit">
+      <Button
+        variant="contained"
+        color="success"
+        type="submit"
+        className="submit_button"
+      >
         Submit
       </Button>
     </form>
