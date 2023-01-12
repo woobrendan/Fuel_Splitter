@@ -20,15 +20,12 @@ const SingleTripInfo: React.FC = () => {
 
   const finalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
     e.preventDefault();
+    const { gasCost, costPerL } = gasBill;
+    const copy = { ...oneBill, totalPrice: gasCost, costPerLitre: costPerL };
     dispatch(fuelBillActions.addGasBill(gasBill));
-    const { totalPrice, costPerLitre } = oneBill;
-    if (totalPrice && costPerLitre) {
-      dispatch(historyActions.addToHistory(oneBill));
-      dispatch(fuelBillActions.resetGasTrip());
-      navigate("/history");
-    } else {
-      console.log("Error: Total Gas Paid & Cost Per L must be complete");
-    }
+    dispatch(historyActions.addToHistory(copy));
+    dispatch(fuelBillActions.resetGasTrip());
+    navigate("/history");
   };
 
   return (
