@@ -12,7 +12,7 @@ const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
     <section className="history__single">
       <h2>Trip Summary #{tripNum}</h2>
       <div className="history__single__summary">
-        <TravelList tripLogs={bill.tripLogs} />
+        <TravelList tripLogs={bill.tripLogs} historyComp={true} />
         <TripDetails bill={bill} />
       </div>
     </section>
