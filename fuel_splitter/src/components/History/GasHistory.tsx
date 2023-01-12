@@ -8,9 +8,11 @@ const GasHistory: React.FC = () => {
 
   return (
     <section id="history">
-      {tempHistory.map((bill, index) => (
-        <SingleHistory bill={bill} key={index} tripNum={index + 1} />
-      ))}
+      {tempHistory
+        .map((bill, index) => (
+          <SingleHistory bill={bill} key={index} tripNum={index + 1} />
+        ))
+        .sort((a, b) => Number(b.key) - Number(a.key))}
     </section>
   );
 };
