@@ -1,15 +1,16 @@
 import NewTrip from "./NewTrip";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import "../Styles/tripinfo.scss";
-import { TripInfo } from "../model";
+import { TripInfo, GasBill } from "../model";
 import { fuelBillActions } from "../store/GasTripSlice";
 import TravelList from "./Travel_Log/TravelList";
 import GasPay from "./GasPay";
-import { GasBill } from "../model";
 import { historyActions } from "../store/historySlice";
+import { useNavigate } from "react-router";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const oneBill = useAppSelector((state) => state.fuelBill);
 
   const handleAdd = (e: React.FormEvent, trip: TripInfo) => {
@@ -22,6 +23,7 @@ const SingleTripInfo: React.FC = () => {
     dispatch(fuelBillActions.addGasBill(gasBill));
     dispatch(historyActions.addToHistory(oneBill));
     dispatch(fuelBillActions.resetGasTrip());
+    navigate("/history");
   };
 
   return (
