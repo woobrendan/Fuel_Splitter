@@ -18,11 +18,17 @@
     justify-content: space-around;
     width: 55%;
 
+    span {
+      font-size: 12px;
+      color: red;
+    }
+
     .single_trip__submitAll__input {
       display: flex;
       flex-direction: column;
     }
   }
+
   .submit_button {
     background-color: #2ab1eb;
     color: yellow;
