@@ -14,12 +14,13 @@ import { TripInfo } from "../../model";
 
 interface Props {
   tripLogs?: TripInfo[];
+  historyComp?: boolean;
 }
 
-const TravelList: React.FC<Props> = ({ tripLogs }) => {
+const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
-  const getArr = tripLogs ? tripLogs : stateTripLogs;
+  const getArr = historyComp ? tripLogs : stateTripLogs;
 
   return (
     <div id="travelList__container">
@@ -34,7 +35,7 @@ const TravelList: React.FC<Props> = ({ tripLogs }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {getArr.map((log: TripInfo, index: number) => (
+            {getArr!.map((log: TripInfo, index: number) => (
               <TravelRow tripLog={log} key={index} tripNum={index + 1} />
             ))}
           </TableBody>
