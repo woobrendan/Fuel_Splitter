@@ -12,10 +12,24 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     costPerL: 0,
   });
 
+  const [error, setError] = useState<Boolean>(false);
+  const { gasCost, costPerL } = gasBill;
+
+  const handleFinalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
+    e.preventDefault();
+    console.log("gascost", gasCost);
+    if (!gasCost || !costPerL) {
+      setError(true);
+    } else {
+      setError(false);
+      finalSubmit(e, gasBill);
+    }
+  };
+
   return (
     <form
       className="single_trip__submitAll"
-      onSubmit={(e) => finalSubmit(e, gasBill)}
+      onSubmit={(e) => handleFinalSubmit(e, gasBill)}
     >
       <div className="single_trip__submitAll__input">
         <label>Cost per Litre:</label>
@@ -31,6 +45,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
             }));
           }}
         />
+        {error && <span>Section must be complete</span>}
       </div>
       <div className="single_trip__submitAll__input">
         <label>Total Gas Paid:</label>
@@ -48,12 +63,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           }}
         />
       </div>
-      <Button
-        variant="contained"
-        color="success"
-        type="submit"
-        className="submit_button"
-      >
+      <Button variant="contained" type="submit" className="submit_button">
         Submit All
       </Button>
     </form>
