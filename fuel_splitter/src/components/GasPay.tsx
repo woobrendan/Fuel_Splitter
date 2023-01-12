@@ -48,7 +48,12 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           }}
         />
       </div>
-      <Button variant="contained" color="success" type="submit">
+      <Button
+        variant="contained"
+        color="success"
+        type="submit"
+        className="submit_button"
+      >
         Submit All
       </Button>
     </form>
