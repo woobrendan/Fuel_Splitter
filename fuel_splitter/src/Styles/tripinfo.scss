@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgb(82 202 242 / 50%);
+  padding: 4%;
 
   .single_trip__tripInfo {
     display: flex;
@@ -20,11 +22,10 @@
       display: flex;
       flex-direction: column;
     }
-
-    button {
-      background-color: #2ab1eb;
-      color: yellow;
-    }
+  }
+  .submit_button {
+    background-color: #2ab1eb;
+    color: yellow;
   }
 }
 
@@ -32,10 +33,16 @@
   display: flex;
   flex-direction: column;
   width: 40%;
-  border: 2px solid black;
+  border: 2px solid #0ab0f7b5;
   border-radius: 15%;
   padding: 3%;
   align-items: center;
+  background: rgb(255 255 0 / 85%);
+  color: #2ab1eb;
+
+  .MuiSvgIcon-root {
+    color: #2ab1eb;
+  }
 
   h2 {
     text-decoration: underline;
