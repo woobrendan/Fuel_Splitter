@@ -26,9 +26,18 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
 
   const handleFinalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
     e.preventDefault();
-    console.log("gascost", gasCost);
+
     if (!gasCost) {
       setError((prev) => ({ ...prev, gasCostError: true }));
+      if (!costPerL) {
+        setError((prev) => ({ ...prev, costPerLError: true }));
+        return;
+      } else {
+        setError((prev) => ({ ...prev, costPerLError: false }));
+        return;
+      }
+    } else {
+      setError((prev) => ({ ...prev, gasCostError: false }));
     }
 
     if (!costPerL) {
