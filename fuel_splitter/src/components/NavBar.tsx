@@ -7,7 +7,7 @@ const NavBar: React.FC = () => {
   return (
     <div className="nav-bar">
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ bgcolor: "#FF0000" }}>
+        <AppBar position="static">
           <Toolbar>
             <div className="navbar-links">
               <h1>Fuel Splitter</h1>
