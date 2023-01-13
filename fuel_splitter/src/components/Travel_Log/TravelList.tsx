@@ -40,13 +40,10 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {getArr() ? (
+            {getArr() &&
               getArr()!.map((log: TripInfo, index: number) => (
                 <TravelRow tripLog={log} key={index} tripNum={index + 1} />
-              ))
-            ) : (
-              <></>
-            )}
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
