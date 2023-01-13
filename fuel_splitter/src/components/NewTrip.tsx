@@ -24,14 +24,22 @@ const initialState = {
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [tripInfo, setTripInfo] = useState<TripInfo>(initialState);
   const [error, setError] = useState<ErrorHandle>({
-    hasCheck: true,
-    hasDistance: true,
+    hasCheck: false,
+    hasDistance: false,
   });
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
       ...prev,
       date: dateVal,
+    }));
+  };
+
+  const onChangeHandler = (e: React.FormEvent, name: string) => {
+    const target = e.target as HTMLTextAreaElement;
+    setTripInfo((prev) => ({
+      ...prev,
+      [name]: Number(target.value),
     }));
   };
 
