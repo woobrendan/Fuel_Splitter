@@ -1,0 +1,16 @@
+.nav-bar {
+  .navbar-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      // font-family: 'Raleway', sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+    }
+  }
+}
