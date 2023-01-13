@@ -7,6 +7,11 @@ interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
 }
 
+interface ErrorHandle {
+  hasCheck: boolean;
+  hasDistance: boolean;
+}
+
 const initialState = {
   isBrendanIn: false,
   isLoryIn: false,
@@ -18,7 +23,10 @@ const initialState = {
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [tripInfo, setTripInfo] = useState<TripInfo>(initialState);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<ErrorHandle>({
+    hasCheck: true,
+    hasDistance: true,
+  });
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
