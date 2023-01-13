@@ -18,12 +18,22 @@ const initialState = {
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [tripInfo, setTripInfo] = useState<TripInfo>(initialState);
+  const [error, setError] = useState<boolean>(false);
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
       ...prev,
       date: dateVal,
     }));
+  };
+
+  const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
+    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
+
+    if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
+    }
+    handleAdd(e, trip);
+    setTripInfo(() => initialState);
   };
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -71,8 +81,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     <form
       className="newTrip__container"
       onSubmit={(e) => {
-        handleAdd(e, tripInfo);
-        setTripInfo(() => initialState);
+        handleSubmit(e, tripInfo);
       }}
     >
       <h1>Add New Trip Info</h1>
