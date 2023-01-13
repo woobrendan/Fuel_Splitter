@@ -20,7 +20,12 @@ interface Props {
 const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
-  const getArr = historyComp ? tripLogs : stateTripLogs;
+  const getArr = () => {
+    if (historyComp) return tripLogs;
+    else {
+      return stateTripLogs ? stateTripLogs : null;
+    }
+  };
 
   return (
     <div id="travelList__container">
@@ -35,9 +40,13 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {getArr!.map((log: TripInfo, index: number) => (
-              <TravelRow tripLog={log} key={index} tripNum={index + 1} />
-            ))}
+            {getArr() ? (
+              getArr()!.map((log: TripInfo, index: number) => (
+                <TravelRow tripLog={log} key={index} tripNum={index + 1} />
+              ))
+            ) : (
+              <></>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
