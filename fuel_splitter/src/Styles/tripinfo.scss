@@ -71,6 +71,12 @@
     flex-direction: column;
     width: 50%;
     margin: 5%;
+
+    span {
+      margin-top: 3%;
+      color: red;
+      font-size: 15px;
+    }
   }
 
   button {
