@@ -35,21 +35,20 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     }));
   };
 
-  const onChangeHandler = (e: React.FormEvent, name: string) => {
-    const target = e.target as HTMLTextAreaElement;
-    setTripInfo((prev) => ({
-      ...prev,
-      [name]: Number(target.value),
-    }));
-  };
-
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
 
+    e.preventDefault();
+
+    if (!tripInfo.totalKM) {
+      setError((prev) => ({ ...prev, hasDistance: true }));
+    } else {
+      handleAdd(e, trip);
+      setTripInfo(() => initialState);
+    }
+
     if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
     }
-    handleAdd(e, trip);
-    setTripInfo(() => initialState);
   };
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -156,6 +155,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             setTripInfo((prev) => ({ ...prev, totalKM: Number(target.value) }));
           }}
         />
+        {error.hasDistance && <span>Section must be filled in</span>}
       </div>
       <Button
         variant="contained"
