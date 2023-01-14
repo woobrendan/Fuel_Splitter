@@ -39,15 +39,15 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
 
     e.preventDefault();
+    if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
+      setError((prev) => ({ ...prev, hasCheck: true }));
+    }
 
     if (!tripInfo.totalKM) {
       setError((prev) => ({ ...prev, hasDistance: true }));
     } else {
       handleAdd(e, trip);
       setTripInfo(() => initialState);
-    }
-
-    if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
     }
   };
 
@@ -144,6 +144,9 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           label="Parco"
         />
       </FormGroup>
+      {error.hasCheck && (
+        <span className="error">At least one box must be checked</span>
+      )}
       <div className="newTrip__input">
         <label>Total KM's travelled:</label>
         <input
@@ -155,7 +158,9 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             setTripInfo((prev) => ({ ...prev, totalKM: Number(target.value) }));
           }}
         />
-        {error.hasDistance && <span>Section must be filled in</span>}
+        {error.hasDistance && (
+          <span className="error">Section must be filled in</span>
+        )}
       </div>
       <Button
         variant="contained"
