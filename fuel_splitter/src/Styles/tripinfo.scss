@@ -46,6 +46,12 @@
   background: rgb(255 255 0 / 85%);
   color: #2ab1eb;
 
+  .error {
+    margin-top: 3%;
+    color: red;
+    font-size: 15px;
+  }
+
   .MuiSvgIcon-root {
     color: #2ab1eb;
   }
@@ -71,12 +77,6 @@
     flex-direction: column;
     width: 50%;
     margin: 5%;
-
-    span {
-      margin-top: 3%;
-      color: red;
-      font-size: 15px;
-    }
   }
 
   button {
