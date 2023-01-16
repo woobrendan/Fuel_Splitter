@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { GasBill } from "../../model";
+import { useAppSelector } from "../../store/hooks";
 
 interface Prop {
   finalSubmit: (e: React.FormEvent, gasBill: GasBill) => void;
@@ -9,9 +10,11 @@ interface Prop {
 interface BillError {
   gasCostError: boolean;
   costPerLError: boolean;
+  hasTrips: boolean;
 }
 
 const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
+  const oneBill = useAppSelector((state) => state.fuelBill);
   const [gasBill, setGasBill] = useState<GasBill>({
     gasCost: 0,
     costPerL: 0,
@@ -20,6 +23,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
   const [error, setError] = useState<BillError>({
     gasCostError: false,
     costPerLError: false,
+    hasTrips: false,
   });
   const { gasCost, costPerL } = gasBill;
   const { gasCostError, costPerLError } = error;
@@ -43,7 +47,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     if (!costPerL) {
       setError((prev) => ({ ...prev, costPerLError: true }));
     } else {
-      setError({ costPerLError: false, gasCostError: false });
+      setError({ costPerLError: false, gasCostError: false, hasTrips: false });
       finalSubmit(e, gasBill);
     }
   };
