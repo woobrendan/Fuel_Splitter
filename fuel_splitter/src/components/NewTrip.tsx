@@ -41,11 +41,22 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     e.preventDefault();
     if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
       setError((prev) => ({ ...prev, hasCheck: true }));
+
+      if (!tripInfo.totalKM) {
+        setError((prev) => ({ ...prev, hasDistance: true }));
+        return;
+      } else {
+        setError((prev) => ({ ...prev, hasDistance: false }));
+        return;
+      }
+    } else {
+      setError((prev) => ({ ...prev, hasCheck: false }));
     }
 
     if (!tripInfo.totalKM) {
       setError((prev) => ({ ...prev, hasDistance: true }));
     } else {
+      setError(() => ({ hasCheck: false, hasDistance: false }));
       handleAdd(e, trip);
       setTripInfo(() => initialState);
     }
