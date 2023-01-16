@@ -26,7 +26,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     hasTrips: false,
   });
   const { gasCost, costPerL } = gasBill;
-  const { gasCostError, costPerLError } = error;
+  const { gasCostError, costPerLError, hasTrips } = error;
 
   const handleFinalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     } else {
       setError((prev) => ({ ...prev, costPerLError: false }));
 
-      if (oneBill.tripLogs.length === 0) {
+      if (oneBill.tripLogs.length < 1) {
         setError((prev) => ({ ...prev, hasTrips: true }));
       } else {
         setError({
@@ -63,47 +63,50 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
   };
 
   return (
-    <form
-      className="single_trip__submitAll"
-      onSubmit={(e) => handleFinalSubmit(e, gasBill)}
-    >
-      <div className="single_trip__submitAll__input">
-        <label>Cost per Litre:</label>
-        <input
-          type="number"
-          placeholder="Enter Cost Per Litre"
-          value={gasBill.costPerL}
-          onChange={(e: React.FormEvent) => {
-            const target = e.target as HTMLTextAreaElement;
-            setGasBill((prev) => ({
-              ...prev,
-              costPerL: Number(target.value),
-            }));
-          }}
-        />
-        {costPerLError && <span>Section must be complete</span>}
-      </div>
-      <div className="single_trip__submitAll__input">
-        <label>Total Gas Paid:</label>
-        <input
-          type="number"
-          step="0.01"
-          placeholder="Enter Gas Paid"
-          value={gasBill.gasCost}
-          onChange={(e: React.FormEvent) => {
-            const target = e.target as HTMLTextAreaElement;
-            setGasBill((prev) => ({
-              ...prev,
-              gasCost: Number(target.value),
-            }));
-          }}
-        />
-        {gasCostError && <span>Section must be complete</span>}
-      </div>
-      <Button variant="contained" type="submit" className="submit_button">
-        Submit All
-      </Button>
-    </form>
+    <div className="single_trip__submitAll">
+      {hasTrips && <span>Must have at least one Trip</span>}
+      <form
+        className="single_trip__submitAll__form"
+        onSubmit={(e) => handleFinalSubmit(e, gasBill)}
+      >
+        <div className="single_trip__submitAll__input">
+          <label>Cost per Litre:</label>
+          <input
+            type="number"
+            placeholder="Enter Cost Per Litre"
+            value={gasBill.costPerL}
+            onChange={(e: React.FormEvent) => {
+              const target = e.target as HTMLTextAreaElement;
+              setGasBill((prev) => ({
+                ...prev,
+                costPerL: Number(target.value),
+              }));
+            }}
+          />
+          {costPerLError && <span>Section must be complete</span>}
+        </div>
+        <div className="single_trip__submitAll__input">
+          <label>Total Gas Paid:</label>
+          <input
+            type="number"
+            step="0.01"
+            placeholder="Enter Gas Paid"
+            value={gasBill.gasCost}
+            onChange={(e: React.FormEvent) => {
+              const target = e.target as HTMLTextAreaElement;
+              setGasBill((prev) => ({
+                ...prev,
+                gasCost: Number(target.value),
+              }));
+            }}
+          />
+          {gasCostError && <span>Section must be complete</span>}
+        </div>
+        <Button variant="contained" type="submit" className="submit_button">
+          Submit All
+        </Button>
+      </form>
+    </div>
   );
 };
 
