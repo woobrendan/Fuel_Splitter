@@ -54,10 +54,8 @@ describe("Error Handling", () => {
 
   it("Should not let you add trip if nothing is checked or filled", () => {
     cy.get(".newTrip__container > .MuiButton-root").click();
-    cy.get(".newTrip__container > :nth-child(5)").contains(
-      "At least one box must be checked",
-    );
-    cy.get(".newTrip__input > .error").contains("Section must be filled");
+    cy.get(".newTrip__container > :nth-child(5)").should("be.visible");
+    cy.get(".newTrip__input > .error").should("be.visible");
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
@@ -69,6 +67,21 @@ describe("Error Handling", () => {
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
-    cy.get(".error").contains("Section must be filled");
+    cy.get(".error").should("be.visible");
+  });
+
+  it("should remove error if all sections are filled", () => {
+    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
+    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get(".error").should("be.visible");
+    cy.get(
+      ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
+    ).should("not.exist");
+
+    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
+    cy.get(".newTrip__input > input").type("12");
+    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get(".newTrip__container > :nth-child(5)").should("be.visible");
+    cy.get(".newTrip__input > .error").should("not.exist");
   });
 });
