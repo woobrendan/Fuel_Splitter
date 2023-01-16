@@ -13,19 +13,31 @@
   }
 
   .single_trip__submitAll {
-    margin-top: 4%;
     display: flex;
-    justify-content: space-around;
-    width: 55%;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 4%;
 
     span {
-      font-size: 12px;
+      font-size: 16px;
       color: red;
+      align-self: center;
+      padding-bottom: 2%;
     }
 
-    .single_trip__submitAll__input {
+    .single_trip__submitAll__form {
       display: flex;
-      flex-direction: column;
+      justify-content: space-around;
+      // width: 55%;
+
+      span {
+        font-size: 12px;
+      }
+
+      .single_trip__submitAll__input {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 
