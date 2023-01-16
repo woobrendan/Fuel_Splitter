@@ -38,4 +38,16 @@ describe("Adding New Trip", () => {
       ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
     ).should("be.checked");
   });
+
+  it("Should add new trip to table", () => {
+    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
+    cy.get(".newTrip__input > input").type("12");
+    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get(
+      ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
+    ).should("exist");
+    cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
+      "Brendan",
+    );
+  });
 });
