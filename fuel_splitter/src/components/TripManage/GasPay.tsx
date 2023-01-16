@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { GasBill } from "../model";
+import { GasBill } from "../../model";
 
 interface Prop {
   finalSubmit: (e: React.FormEvent, gasBill: GasBill) => void;
