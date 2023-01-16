@@ -4,7 +4,7 @@ import "../Styles/tripinfo.scss";
 import { TripInfo, GasBill } from "../model";
 import { fuelBillActions } from "../store/GasTripSlice";
 import TravelList from "./Travel_Log/TravelList";
-import GasPay from "./GasPay";
+import GasPay from "./TripManage/GasPay";
 import { historyActions } from "../store/historySlice";
 import { useNavigate } from "react-router";
 
