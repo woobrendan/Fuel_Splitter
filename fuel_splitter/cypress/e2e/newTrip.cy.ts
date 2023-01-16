@@ -3,17 +3,11 @@ describe("Adding New Trip", () => {
     cy.visit("http://localhost:3000/");
   });
 
-  it("Should have a table", () => {
+  it("Should have a table without rows, and have container to add new trip", () => {
     cy.get(".css-1ygcj2i-MuiTableCell-root");
-  });
-
-  it("Should have a table without rows", () => {
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
-  });
-
-  it("Should have container to add new trip", () => {
     cy.get(".newTrip__container");
   });
 
@@ -46,8 +40,35 @@ describe("Adding New Trip", () => {
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("exist");
+    cy.get("td.MuiTableCell-alignCenter").contains("12");
     cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
       "Brendan",
     );
+  });
+});
+
+describe("Error Handling", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000/");
+  });
+
+  it("Should not let you add trip if nothing is checked or filled", () => {
+    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get(".newTrip__container > :nth-child(5)").contains(
+      "At least one box must be checked",
+    );
+    cy.get(".newTrip__input > .error").contains("Section must be filled");
+    cy.get(
+      ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
+    ).should("not.exist");
+  });
+
+  it("should only have one error if checked", () => {
+    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
+    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get(
+      ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
+    ).should("not.exist");
+    cy.get(".error").contains("Section must be filled");
   });
 });
