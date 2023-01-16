@@ -47,8 +47,18 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     if (!costPerL) {
       setError((prev) => ({ ...prev, costPerLError: true }));
     } else {
-      setError({ costPerLError: false, gasCostError: false, hasTrips: false });
-      finalSubmit(e, gasBill);
+      setError((prev) => ({ ...prev, costPerLError: false }));
+
+      if (oneBill.tripLogs.length === 0) {
+        setError((prev) => ({ ...prev, hasTrips: true }));
+      } else {
+        setError({
+          costPerLError: false,
+          gasCostError: false,
+          hasTrips: false,
+        });
+        finalSubmit(e, gasBill);
+      }
     }
   };
 
