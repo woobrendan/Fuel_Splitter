@@ -4,7 +4,7 @@ import { GasBill } from "../../model";
 import { useAppSelector } from "../../store/hooks";
 
 interface Prop {
-  finalSubmit: (e: React.FormEvent, gasBill: GasBill) => void;
+  finalSubmit: (gasBill: GasBill) => void;
 }
 
 interface BillError {
@@ -57,7 +57,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           gasCostError: false,
           hasTrips: false,
         });
-        finalSubmit(e, gasBill);
+        finalSubmit(gasBill);
       }
     }
   };
