@@ -18,8 +18,7 @@ const SingleTripInfo: React.FC = () => {
     dispatch(fuelBillActions.addNewTrip(trip));
   };
 
-  const finalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
-    e.preventDefault();
+  const finalSubmit = (gasBill: GasBill) => {
     const { gasCost, costPerL } = gasBill;
     const copy = { ...oneBill, totalPrice: gasCost, costPerLitre: costPerL };
     dispatch(fuelBillActions.addGasBill(gasBill));
