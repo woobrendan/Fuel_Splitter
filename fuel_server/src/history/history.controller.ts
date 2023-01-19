@@ -7,6 +7,6 @@ export class HistoryController {
 
   @Post('new')
   addNewTrip() {
-    return this.historyService.addToHistory;
+    return this.historyService.addToHistory();
   }
 }

@@ -7,6 +7,6 @@ export class BillController {
 
   @Post('newTrip')
   addNewTrip() {
-    return this.billService.addNewTrip;
+    return this.billService.addNewTrip();
   }
 }
