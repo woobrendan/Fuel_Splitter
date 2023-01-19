@@ -1,14 +1,13 @@
 version: '3.8'
 services:
-  dev-db:
-    image: postgres:13
+  mongodb_container:
+    image: mongo:latest
     ports:
       - 5434:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: nest
-    networks:
-      - freecodecamp
-networks:
-  freecodecamp:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongodb_data_container:/data/db
+volumes:
+  mongodb_data_container
