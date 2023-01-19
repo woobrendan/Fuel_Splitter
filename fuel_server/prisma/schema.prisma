@@ -6,6 +6,20 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+// model FuelBill {
+// }
+
+// export interface FuelBill {
+//   totalPrice: number;
+//   totalKM: number;
+//   costPerLitre: number;
+//   brendan: IndividualInfo;
+//   lory: IndividualInfo;
+//   david: IndividualInfo;
+//   parco: IndividualInfo;
+//   tripLogs: TripInfo[];
+// }
