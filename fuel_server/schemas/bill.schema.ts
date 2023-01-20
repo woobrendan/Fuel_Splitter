@@ -6,7 +6,7 @@ export type BillDocument = HydratedDocument<Bill>;
 
 @Schema()
 export class Bill {
-  @Prop({ required: true })
+  @Prop()
   totalPrice: number;
 
   @Prop()
