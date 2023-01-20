@@ -30,3 +30,5 @@ export class Bill {
   @Prop()
   parco: IndividualInfo;
 }
+
+export const BillSchema = SchemaFactory.createForClass(Bill);
