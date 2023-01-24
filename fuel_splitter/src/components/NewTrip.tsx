@@ -42,38 +42,12 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
 
     e.preventDefault();
-    // if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
-    //   setError((prev) => ({ ...prev, hasCheck: true }));
 
-    //   if (!tripInfo.totalKM) {
-    //     setError((prev) => ({ ...prev, hasDistance: true }));
-    //     return;
-    //   } else {
-    //     setError((prev) => ({ ...prev, hasDistance: false }));
-    //     return;
-    //   }
-    // } else {
-    //   setError((prev) => ({ ...prev, hasCheck: false }));
-    // }
-
-    // if (!tripInfo.totalKM) {
-    //   setError((prev) => ({ ...prev, hasDistance: true }));
-    // } else {
-    //   setError(() => ({
-    //     hasCheck: false,
-    //     hasDistance: false,
-    //     hasDescription: false,
-    //   }));
-    //   handleAdd(e, trip);
-    //   setTripInfo(() => initialState);
-    // }
     const errorCopy: ErrorHandle = { ...error };
 
-    if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
-      errorCopy.hasCheck = true;
-    } else {
-      errorCopy.hasCheck = false;
-    }
+    !isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn
+      ? (errorCopy.hasCheck = true)
+      : (errorCopy.hasCheck = false);
 
     !tripInfo.totalKM
       ? (errorCopy.hasDistance = true)
@@ -226,6 +200,9 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
               setTripInfo((prev) => ({ ...prev, description: target.value }));
             }}
           />
+          {error.hasDescription && (
+            <span className="error">Section must be filled in</span>
+          )}
         </div>
       </section>
       <Button
