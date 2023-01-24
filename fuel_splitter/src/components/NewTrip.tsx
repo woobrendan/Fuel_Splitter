@@ -10,6 +10,7 @@ interface Props {
 interface ErrorHandle {
   hasCheck: boolean;
   hasDistance: boolean;
+  hasDescription: boolean;
 }
 
 const initialState = {
@@ -27,6 +28,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [error, setError] = useState<ErrorHandle>({
     hasCheck: false,
     hasDistance: false,
+    hasDescription: false,
   });
 
   const getDate = (dateVal: Date | null): void => {
@@ -40,24 +42,60 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
 
     e.preventDefault();
-    if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
-      setError((prev) => ({ ...prev, hasCheck: true }));
+    // if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
+    //   setError((prev) => ({ ...prev, hasCheck: true }));
 
-      if (!tripInfo.totalKM) {
-        setError((prev) => ({ ...prev, hasDistance: true }));
-        return;
-      } else {
-        setError((prev) => ({ ...prev, hasDistance: false }));
-        return;
-      }
+    //   if (!tripInfo.totalKM) {
+    //     setError((prev) => ({ ...prev, hasDistance: true }));
+    //     return;
+    //   } else {
+    //     setError((prev) => ({ ...prev, hasDistance: false }));
+    //     return;
+    //   }
+    // } else {
+    //   setError((prev) => ({ ...prev, hasCheck: false }));
+    // }
+
+    // if (!tripInfo.totalKM) {
+    //   setError((prev) => ({ ...prev, hasDistance: true }));
+    // } else {
+    //   setError(() => ({
+    //     hasCheck: false,
+    //     hasDistance: false,
+    //     hasDescription: false,
+    //   }));
+    //   handleAdd(e, trip);
+    //   setTripInfo(() => initialState);
+    // }
+    const errorCopy: ErrorHandle = { ...error };
+
+    if (!isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn) {
+      errorCopy.hasCheck = true;
     } else {
-      setError((prev) => ({ ...prev, hasCheck: false }));
+      errorCopy.hasCheck = false;
     }
 
-    if (!tripInfo.totalKM) {
-      setError((prev) => ({ ...prev, hasDistance: true }));
+    !tripInfo.totalKM
+      ? (errorCopy.hasDistance = true)
+      : (errorCopy.hasDistance = false);
+
+    !tripInfo.description
+      ? (errorCopy.hasDescription = true)
+      : (errorCopy.hasDescription = false);
+
+    if (
+      errorCopy.hasDistance ||
+      errorCopy.hasDescription ||
+      errorCopy.hasCheck
+    ) {
+      setError(() => ({ ...errorCopy }));
+      return;
     } else {
-      setError(() => ({ hasCheck: false, hasDistance: false }));
+      setError(() => ({
+        hasCheck: false,
+        hasDistance: false,
+        hasDescription: false,
+      }));
       handleAdd(e, trip);
       setTripInfo(() => initialState);
     }
