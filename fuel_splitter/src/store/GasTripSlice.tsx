@@ -32,7 +32,13 @@ const fuelBill = createSlice({
 
       // Add new trip KMs total. add Trip to logs
       state.totalKM += totalKM;
-      state.tripLogs = [...state.tripLogs, action.payload];
+
+      // add trip to trip logs, then sort array to have earliest trip come first
+      state.tripLogs = [...state.tripLogs, action.payload].sort(
+        (a: TripInfo, b: TripInfo): any => {
+          return a.date!.getTime() - b.date!.getTime();
+        },
+      );
 
       //check each individual to see if theyre involved, and adjust trip numbers accordingly
       if (isBrendanIn) {
