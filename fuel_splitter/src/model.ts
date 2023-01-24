@@ -23,6 +23,7 @@ export interface TripInfo {
   isParcoIn: boolean;
   totalKM: number;
   date: Date | null;
+  description: string;
 }
 
 export interface GasBill {
