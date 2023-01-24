@@ -86,9 +86,14 @@
 
   .newTrip__input {
     display: flex;
-    flex-direction: column;
-    width: 50%;
+    width: 100%;
     margin: 5%;
+    justify-content: space-around;
+
+    .newTrip__input__container {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   button {
