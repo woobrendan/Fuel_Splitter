@@ -33,10 +33,10 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Trip #</TableCell>
+              <TableCell>Date</TableCell>
               <TableCell align="right">Total KM's</TableCell>
               <TableCell align="right">Involved</TableCell>
-              <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Description</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
