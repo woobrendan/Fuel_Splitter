@@ -13,6 +13,12 @@ interface BillError {
   hasTrips: boolean;
 }
 
+const initialErrorState = {
+  gasCostError: false,
+  costPerLError: false,
+  hasTrips: false,
+};
+
 const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
   const oneBill = useAppSelector((state) => state.fuelBill);
   const [gasBill, setGasBill] = useState<GasBill>({
@@ -20,11 +26,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     costPerL: 0,
   });
 
-  const [error, setError] = useState<BillError>({
-    gasCostError: false,
-    costPerLError: false,
-    hasTrips: false,
-  });
+  const [error, setError] = useState<BillError>(initialErrorState);
   const { gasCost, costPerL } = gasBill;
   const { gasCostError, costPerLError, hasTrips } = error;
 
@@ -52,11 +54,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
       setError(() => ({ ...errorCopy }));
       return;
     } else {
-      setError(() => ({
-        gasCostError: false,
-        costPerLError: false,
-        hasTrips: false,
-      }));
+      setError(() => initialErrorState);
       finalSubmit(gasBill);
     }
   };
