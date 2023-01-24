@@ -30,35 +30,34 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
 
   const handleFinalSubmit = (e: React.FormEvent, gasBill: GasBill) => {
     e.preventDefault();
+    const errorCopy: BillError = { ...error };
 
-    if (!gasCost) {
-      setError((prev) => ({ ...prev, gasCostError: true }));
-      if (!costPerL) {
-        setError((prev) => ({ ...prev, costPerLError: true }));
-        return;
-      } else {
-        setError((prev) => ({ ...prev, costPerLError: false }));
-        return;
-      }
+    !gasCost
+      ? (errorCopy.gasCostError = true)
+      : (errorCopy.gasCostError = false);
+
+    !costPerL
+      ? (errorCopy.costPerLError = true)
+      : (errorCopy.costPerLError = false);
+
+    oneBill.tripLogs.length < 1
+      ? (errorCopy.hasTrips = true)
+      : (errorCopy.hasTrips = false);
+
+    if (
+      errorCopy.gasCostError ||
+      errorCopy.costPerLError ||
+      errorCopy.hasTrips
+    ) {
+      setError(() => ({ ...errorCopy }));
+      return;
     } else {
-      setError((prev) => ({ ...prev, gasCostError: false }));
-    }
-
-    if (!costPerL) {
-      setError((prev) => ({ ...prev, costPerLError: true }));
-    } else {
-      setError((prev) => ({ ...prev, costPerLError: false }));
-
-      if (oneBill.tripLogs.length < 1) {
-        setError((prev) => ({ ...prev, hasTrips: true }));
-      } else {
-        setError({
-          costPerLError: false,
-          gasCostError: false,
-          hasTrips: false,
-        });
-        finalSubmit(gasBill);
-      }
+      setError(() => ({
+        gasCostError: false,
+        costPerLError: false,
+        hasTrips: false,
+      }));
+      finalSubmit(gasBill);
     }
   };
 
