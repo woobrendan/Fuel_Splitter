@@ -93,6 +93,10 @@
     .newTrip__input__container {
       display: flex;
       flex-direction: column;
+
+      span {
+        font-size: 12px;
+      }
     }
   }
 
