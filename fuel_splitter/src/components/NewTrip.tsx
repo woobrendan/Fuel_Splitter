@@ -159,30 +159,37 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       {error.hasCheck && (
         <span className="error">At least one box must be checked</span>
       )}
-      <div className="newTrip__input">
-        <label>Total KM's travelled:</label>
-        <input
-          placeholder="Enter Total KM's travelled"
-          type="input"
-          value={tripInfo.totalKM}
-          onChange={(e: React.FormEvent) => {
-            const target = e.target as HTMLTextAreaElement;
-            setTripInfo((prev) => ({ ...prev, totalKM: Number(target.value) }));
-          }}
-        />
-        {error.hasDistance && (
-          <span className="error">Section must be filled in</span>
-        )}
-        <label>Trip Description:</label>
-        <input
-          type="input"
-          value={tripInfo.description}
-          onChange={(e: React.FormEvent) => {
-            const target = e.target as HTMLTextAreaElement;
-            setTripInfo((prev) => ({ ...prev, description: target.value }));
-          }}
-        />
-      </div>
+      <section className="newTrip__input">
+        <div className="newTrip__input__container">
+          <label>Total KM's:</label>
+          <input
+            placeholder="Enter Total KM's travelled"
+            type="input"
+            value={tripInfo.totalKM}
+            onChange={(e: React.FormEvent) => {
+              const target = e.target as HTMLTextAreaElement;
+              setTripInfo((prev) => ({
+                ...prev,
+                totalKM: Number(target.value),
+              }));
+            }}
+          />
+          {error.hasDistance && (
+            <span className="error">Section must be filled in</span>
+          )}
+        </div>
+        <div className="newTrip__input__container">
+          <label>Trip Description:</label>
+          <input
+            type="input"
+            value={tripInfo.description}
+            onChange={(e: React.FormEvent) => {
+              const target = e.target as HTMLTextAreaElement;
+              setTripInfo((prev) => ({ ...prev, description: target.value }));
+            }}
+          />
+        </div>
+      </section>
       <Button
         variant="contained"
         color="success"
