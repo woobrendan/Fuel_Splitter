@@ -17,6 +17,11 @@ const TripDetails: React.FC<Props> = ({ bill }) => {
   const { brendan, lory, david, parco } = bill;
   const tripInfo = [brendan, lory, david, parco];
 
+  const getAmountOwed = (indivPercent: number) => {
+    const owed = bill.totalPrice * indivPercent;
+    return Math.round(owed * 100) / 100;
+  };
+
   return (
     <div className="history__single__tripDetails">
       <TableContainer component={Paper}>
@@ -27,6 +32,7 @@ const TripDetails: React.FC<Props> = ({ bill }) => {
               <TableCell align="right">KM's</TableCell>
               <TableCell align="right"># of Trips</TableCell>
               <TableCell align="right">Bill %</TableCell>
+              <TableCell align="right">Owed</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -42,6 +48,9 @@ const TripDetails: React.FC<Props> = ({ bill }) => {
                 <TableCell align="right">{trip.totalTrips}</TableCell>
                 <TableCell align="right">
                   {(trip.billPortion * 100).toFixed()}%
+                </TableCell>
+                <TableCell align="right">
+                  {getAmountOwed(trip.billPortion)}
                 </TableCell>
               </TableRow>
             ))}
