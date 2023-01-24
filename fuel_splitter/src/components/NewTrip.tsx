@@ -19,6 +19,7 @@ const initialState = {
   isParcoIn: false,
   totalKM: 0,
   date: new Date(),
+  description: "",
 };
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
@@ -172,6 +173,15 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         {error.hasDistance && (
           <span className="error">Section must be filled in</span>
         )}
+        <label>Trip Description:</label>
+        <input
+          type="input"
+          value={tripInfo.description}
+          onChange={(e: React.FormEvent) => {
+            const target = e.target as HTMLTextAreaElement;
+            setTripInfo((prev) => ({ ...prev, description: target.value }));
+          }}
+        />
       </div>
       <Button
         variant="contained"
