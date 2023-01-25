@@ -1,6 +1,7 @@
 import { FuelBill } from "../../model";
 import TravelList from "../Travel_Log/TravelList";
-import TripDetails from "./TripDetails";
+import TotalBreakdown from "./TotalBreakdown";
+import IndivBreakDown from "./IndivBreakDown";
 
 interface Props {
   bill: FuelBill;
@@ -13,7 +14,8 @@ const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
       <h2>Trip Summary #{tripNum}</h2>
       <div className="history__single__summary">
         <TravelList tripLogs={bill.tripLogs} historyComp={true} />
-        <TripDetails bill={bill} />
+        <IndivBreakDown bill={bill} />
+        <TotalBreakdown bill={bill} />
       </div>
     </section>
   );
