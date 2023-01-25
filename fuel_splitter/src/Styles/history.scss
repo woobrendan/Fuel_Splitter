@@ -5,6 +5,10 @@
     align-items: center;
     padding: 2%;
 
+    h2 {
+      align-self: center;
+    }
+
     &:nth-child(odd) {
       background: rgb(255 255 0 / 85%);
 
@@ -32,7 +36,12 @@
     .history__single__summary {
       display: flex;
       justify-content: space-evenly;
+      flex-direction: column;
       width: 100%;
+
+      .history__single__breakdown {
+        margin-bottom: 5%;
+      }
     }
   }
 }
