@@ -14,9 +14,6 @@ interface Props {
 }
 
 const TotalBreakdown: React.FC<Props> = ({ bill }) => {
-  const { brendan, lory, david, parco } = bill;
-  const tripInfo = [brendan, lory, david, parco];
-
   return (
     <div className="history__single__tripDetails">
       <TableContainer component={Paper}>
