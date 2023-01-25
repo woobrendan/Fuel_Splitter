@@ -50,7 +50,7 @@ const TripDetails: React.FC<Props> = ({ bill }) => {
                   {(trip.billPortion * 100).toFixed()}%
                 </TableCell>
                 <TableCell align="right">
-                  {getAmountOwed(trip.billPortion)}
+                  ${getAmountOwed(trip.billPortion)}
                 </TableCell>
               </TableRow>
             ))}
