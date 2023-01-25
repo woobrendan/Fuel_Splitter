@@ -47,7 +47,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
 
   return (
     <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-      <TableCell align="right">{convertDateToString(date)}</TableCell>
+      <TableCell>{convertDateToString(date)}</TableCell>
       <TableCell align="center">{totalKM}</TableCell>
       <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
       <TableCell align="right">{description}</TableCell>
