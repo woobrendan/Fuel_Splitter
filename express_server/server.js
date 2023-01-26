@@ -21,7 +21,9 @@ db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Mongoose"));
 
 const fuelBillRoute = require("./routes/fuelBill.ts");
+const historyRoute = require("./routes/history.ts");
 
 app.use("/fuelBill", fuelBillRoute);
+app.use("/history", historyRoute);
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}`));
