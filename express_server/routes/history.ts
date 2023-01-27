@@ -1,15 +1,12 @@
-// const express = require("express");
-import express, { Request, Response } from "express";
+import express from "express";
+import controller from "../controllers/history_controller";
+
 const router = express.Router();
-const history = require("../models/history_schema");
 
-router.get("/", async (req: Request, res: Response) => {
-  try {
-    const results = await history.find();
-    res.json(results);
-  } catch (err: any) {
-    res.status(500).json({ message: err.message });
-  }
-});
+router.post("/create", controller.createHistory);
+router.get("/get/:historyId", controller.readHistory);
+router.get("/get/", controller.readAll);
+router.patch("/update/:historyId", controller.updateHistory);
+router.delete("/delete/", controller.deleteHistory);
 
-module.exports = router;
+export = router;
