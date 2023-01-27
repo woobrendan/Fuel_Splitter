@@ -2,8 +2,11 @@ import express from "express";
 import http from "http";
 import mongoose from "mongoose";
 import { config } from "./config/config";
+const morgan = require("morgan");
 
 const router = express();
+
+router.use(morgan("dev"));
 
 mongoose
   .connect(config.mongo.url, { retryWrites: true, w: "majority" })
@@ -44,19 +47,25 @@ const startServer = () => {
     }
 
     next();
-
-    // Routes
-
-    //** Health Check */
-    router.get("/ping", (req, res, next) =>
-      res.status(200).json({ message: "pong" }),
-    );
-
-    //** Error handling */
-    router.use((req, res, next) => {
-      const error = new Error("not found");
-      console.log("Error: ", error);
-      return res.status(404).json({ message: error.message });
-    });
   });
+
+  // Routes
+
+  //** Health Check */
+  router.get("/ping", (req, res, next) =>
+    res.status(200).json({ message: "pong" }),
+  );
+
+  //** Error handling */
+  router.use((req, res, next) => {
+    const error = new Error("not found");
+    console.log("Error: ", error);
+    return res.status(404).json({ message: error.message });
+  });
+
+  http
+    .createServer(router)
+    .listen(config.server.port, () =>
+      console.log(`Server is running on port ${config.server.port}`),
+    );
 };
