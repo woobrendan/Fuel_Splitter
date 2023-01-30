@@ -13,9 +13,23 @@ const SingleTripInfo: React.FC = () => {
   const navigate = useNavigate();
   const oneBill = useAppSelector((state) => state.fuelBill);
 
-  const handleAdd = (e: React.FormEvent, trip: TripInfo) => {
+  const handleAdd = async (e: React.FormEvent, trip: TripInfo) => {
     e.preventDefault();
     dispatch(fuelBillActions.addNewTrip(trip));
+    try {
+      const data = await fetch("http://localhost:1212/trips/create", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(trip),
+      });
+
+      return data.json;
+    } catch (error) {
+      console.log("Error posting trip");
+    }
   };
 
   const finalSubmit = (gasBill: GasBill) => {
