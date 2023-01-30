@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import {
   Table,
   TableCell,
@@ -11,6 +11,7 @@ import {
 import { useAppSelector } from "../../store/hooks";
 import TravelRow from "./TravelRow";
 import { TripInfo } from "../../model";
+import axios from "axios";
 
 interface Props {
   tripLogs?: TripInfo[];
@@ -19,6 +20,20 @@ interface Props {
 
 const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
+  const [trips, setTrips] = useState<TripInfo[]>([]);
+
+  useEffect(() => {
+    getTrips();
+  }, []);
+
+  const getTrips = async () => {
+    try {
+      const trips = await axios.get("http://localhost:1212/trips/get");
+      setTrips(() => [...trips.data.tripLogs]);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   const getArr = () => {
     if (historyComp) return tripLogs;
