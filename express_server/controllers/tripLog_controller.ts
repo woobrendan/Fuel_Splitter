@@ -22,8 +22,49 @@ const readAll = (req: Request, res: Response) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-const udpateTripLog = (req: Request, res: Response) => {};
+const udpateTripLog = async (req: Request, res: Response) => {
+  const tripId = req.params.tripId;
+  try {
+    const tripLog = await TripLog.findById(tripId);
+    if (tripLog) {
+      tripLog.set(req.body);
+      const updated = await tripLog.save();
+      return res.status(200).json({ updated });
+    } else {
+      res.status(404).json({ message: "Trip not found" });
+    }
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
 
-const deleteTripLog = (req: Request, res: Response) => {};
+const deleteTripLog = async (req: Request, res: Response) => {
+  const tripId = req.params.tripId;
+  try {
+    const trip = await TripLog.findByIdAndDelete(tripId);
+    return trip
+      ? res.status(201).json({ message: "Deleted" })
+      : res.status(404).json({ message: "Not Found" });
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
 
-const deleteAll = (req: Request, res: Response) => {};
+const deleteAll = (req: Request, res: Response) => {
+  return TripLog.deleteMany({})
+    .then((trip) =>
+      trip
+        ? res.status(201).json({ message: "Deleted" })
+        : res.status(404).json({ message: "Not Found" }),
+    )
+    .catch((error) => res.status(500).json({ error }));
+};
+
+export default {
+  createTripLog,
+  readTripLog,
+  readAll,
+  udpateTripLog,
+  deleteAll,
+  deleteTripLog,
+};
