@@ -6,7 +6,6 @@ export interface FuelBillModel extends FuelBill, Document {}
 
 const historySchema: Schema = new Schema(
   {
-    _id: String,
     totalPrice: { type: Number, required: true },
     totalKM: { type: Number, required: true },
     costPerLitre: { type: Number, required: true },
