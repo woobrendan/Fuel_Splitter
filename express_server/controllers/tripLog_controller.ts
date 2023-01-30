@@ -1,8 +1,17 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import mongoose from "mongoose";
 import TripLog from "../models/tripLog_schema";
 
-const createTripLog = (req: Request, res: Response) => {};
+const createTripLog = (req: Request, res: Response) => {
+  const trip = new TripLog({
+    _id: new mongoose.Types.ObjectId(),
+    ...req.body,
+  });
+  return trip
+    .save()
+    .then((trip) => res.status(201).json({ trip }))
+    .catch((error) => res.status(500).json({ error }));
+};
 
 const readTripLog = async (req: Request, res: Response) => {
   const tripId = req.params.tripId;
