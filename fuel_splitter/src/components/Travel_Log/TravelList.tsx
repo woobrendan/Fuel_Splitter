@@ -19,8 +19,8 @@ interface Props {
 }
 
 const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
-  const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
-  const [trips, setTrips] = useState<TripInfo[]>([]);
+  // const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
+  const [dbTrips, setDbTrips] = useState<TripInfo[]>([]);
 
   useEffect(() => {
     getTrips();
@@ -29,7 +29,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const getTrips = async () => {
     try {
       const trips = await axios.get("http://localhost:1212/trips/get");
-      setTrips(() => [...trips.data.tripLogs]);
+      setDbTrips(() => [...trips.data.tripLogs]);
     } catch (error) {
       console.log("Error:", error);
     }
@@ -38,7 +38,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const getArr = () => {
     if (historyComp) return tripLogs;
     else {
-      return stateTripLogs ? stateTripLogs : null;
+      return dbTrips.length > 0 ? dbTrips : null;
     }
   };
 
