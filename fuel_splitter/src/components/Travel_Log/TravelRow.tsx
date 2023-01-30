@@ -27,8 +27,13 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
     return names;
   };
 
-  const convertDateToString = (day: Date | null): string => {
-    const newDate: string = day!.toISOString().split("T")[0];
+  const convertDateToString = (day: any): string => {
+    let newDate: string = "";
+    if (typeof day === "string") {
+      newDate = day.split("T")[0];
+    } else {
+      newDate = day.toISOString().split("T")[0];
+    }
     return dateToString(newDate);
   };
 
