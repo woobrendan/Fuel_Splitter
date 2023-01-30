@@ -3,6 +3,7 @@ import http from "http";
 import mongoose from "mongoose";
 import { config } from "./config/config";
 import historyRoute from "./routes/history";
+import tripLogRoute from "./routes/tripLog";
 const morgan = require("morgan");
 
 const router = express();
@@ -53,6 +54,7 @@ const startServer = () => {
 
   //** Routes */
   router.use("/history", historyRoute);
+  router.use("/trips", tripLogRoute);
 
   //** Health Check */
   router.get("/ping", (req, res, next) =>
