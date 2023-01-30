@@ -2,11 +2,13 @@ import express from "express";
 import http from "http";
 import mongoose from "mongoose";
 import { config } from "./config/config";
+import historyRoute from "./routes/history";
 const morgan = require("morgan");
 
 const router = express();
 
 router.use(morgan("dev"));
+mongoose.set("strictQuery", true);
 
 mongoose
   .connect(config.mongo.url, { retryWrites: true, w: "majority" })
@@ -49,7 +51,8 @@ const startServer = () => {
     next();
   });
 
-  // Routes
+  //** Routes */
+  router.use("/history", historyRoute);
 
   //** Health Check */
   router.get("/ping", (req, res, next) =>
