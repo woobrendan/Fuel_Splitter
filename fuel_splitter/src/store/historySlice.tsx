@@ -16,6 +16,9 @@ const historySlice = createSlice({
       state.history = [...state.history, action.payload];
     },
     removeFromHistory(state, action: PayloadAction<any>) {},
+    setHistory(state, action: PayloadAction<FuelBill[]>) {
+      state.history = [...action.payload];
+    },
   },
 });
 
