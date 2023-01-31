@@ -8,10 +8,11 @@ import {
   Paper,
   TableBody,
 } from "@mui/material";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import TravelRow from "./TravelRow";
 import { TripInfo } from "../../model";
 import axios from "axios";
+import { fuelBillActions } from "../../store/GasTripSlice";
 
 interface Props {
   tripLogs?: TripInfo[];
@@ -19,8 +20,8 @@ interface Props {
 }
 
 const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
-  // const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
-  const [dbTrips, setDbTrips] = useState<TripInfo[]>([]);
+  const dispatch = useAppDispatch();
+  const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
   useEffect(() => {
     getTrips();
@@ -29,7 +30,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const getTrips = async () => {
     try {
       const trips = await axios.get("http://localhost:1212/trips/get");
-      setDbTrips(() => [...trips.data.tripLogs]);
+      dispatch(fuelBillActions.setTripLogs(trips.data.tripLogs));
     } catch (error) {
       console.log("Error:", error);
     }
@@ -38,7 +39,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const getArr = () => {
     if (historyComp) return tripLogs;
     else {
-      return dbTrips.length > 0 ? dbTrips : null;
+      return stateTripLogs.length > 0 ? stateTripLogs : null;
     }
   };
 
