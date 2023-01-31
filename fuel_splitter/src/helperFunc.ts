@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const getToday = (): string => {
   let today: Date = new Date();
   const dd: string = String(today.getDate()).padStart(2, "0");
@@ -28,4 +30,12 @@ const dateToString = (date: string): string => {
   return `${monthName} ${day}, ${Number(dateArr[0])}`;
 };
 
-export { getToday, dateToString };
+const resetTripLog = async () => {
+  try {
+    axios.delete("http://localhost:1212/trips/delete/all");
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+export { getToday, dateToString, resetTripLog };
