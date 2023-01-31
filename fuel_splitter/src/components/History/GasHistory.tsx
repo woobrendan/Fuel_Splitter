@@ -18,8 +18,8 @@ const GasHistory: React.FC = () => {
 
   const getHistory = async () => {
     try {
-      const data = await axios.get("http://localhost:1212/history/get/");
-      const trips: FuelBill[] = data.data.tripLogs;
+      const history = await axios.get("http://localhost:1212/history/get/");
+      const trips: FuelBill[] = history.data.history;
       // dispatch(historyActions.setHistory(trips));
       setHistoryTrips(() => [...trips]);
     } catch (err) {
