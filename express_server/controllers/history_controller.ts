@@ -5,7 +5,7 @@ import { TripInfo } from "../models/model";
 
 const createHistory = (req: Request, res: Response, next: NextFunction) => {
   const { totalKM, totalPrice, costPerLitre } = req.body;
-  const copyOfArr = req.body.hhistoryLogs.map((log: TripInfo) => ({
+  const copyOfArr = req.body.tripLogs.map((log: TripInfo) => ({
     ...log,
   }));
   const history = new History({
@@ -17,7 +17,7 @@ const createHistory = (req: Request, res: Response, next: NextFunction) => {
     lory: { ...req.body.lory },
     david: { ...req.body.david },
     parco: { ...req.body.parco },
-    hhistoryLogs: copyOfArr,
+    tripLogs: copyOfArr,
   });
 
   return history
