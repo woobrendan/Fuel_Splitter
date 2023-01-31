@@ -10,5 +10,6 @@ router.get("/get/:historyId", controller.readHistory);
 router.get("/get/", controller.readAll);
 router.patch("/update/:historyId", controller.updateHistory);
 router.delete("/delete/", controller.deleteHistory);
+router.delete("/delete/all", controller.deleteAll);
 
 export = router;
