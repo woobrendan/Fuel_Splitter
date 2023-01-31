@@ -14,19 +14,19 @@
     "parco": { "name": "Parco", "totalKM": "0", "totalTrips": "0", "billPortion": "0" },
     "tripLogs": [
       {
-        "isBrendanIn": "true",
-        "isLoryIn": "true",
-        "isDavidIn": "false",
-        "isParcoIn": "false",
+        "isBrendanIn": true,
+        "isLoryIn": true,
+        "isDavidIn": false,
+        "isParcoIn": false,
         "totalKM": "20",
         "date": "2023-01-20T20:57:46.188Z",
         "description": "Groceries"
       },
       {
-        "isBrendanIn": "false",
-        "isLoryIn": "false",
-        "isDavidIn": "true",
-        "isParcoIn": "false",
+        "isBrendanIn": false,
+        "isLoryIn": false,
+        "isDavidIn": true,
+        "isParcoIn": false,
         "totalKM": "14",
         "date": "2023-01-19T20:57:46.188Z",
         "description": "Gym"
@@ -48,28 +48,28 @@
     "parco": { "name": "Parco", "totalKM": 6.25, "totalTrips": 1, "billPortion": "0.16" },
     "tripLogs": [
       {
-        "isBrendanIn": "true",
-        "isLoryIn": "true",
-        "isDavidIn": "false",
-        "isParcoIn": "false",
+        "isBrendanIn": true,
+        "isLoryIn": true,
+        "isDavidIn": false,
+        "isParcoIn": false,
         "totalKM": "10",
         "date": "2023-01-23T20:57:46.188Z",
         "description": "Metrotown"
       },
       {
-        "isBrendanIn": "false",
-        "isLoryIn": "true",
-        "isDavidIn": "true",
-        "isParcoIn": "false",
+        "isBrendanIn": false,
+        "isLoryIn": true,
+        "isDavidIn": true,
+        "isParcoIn": false,
         "totalKM": 5,
         "date": "2023-01-25T20:57:46.188Z",
         "description": "Sylvia"
       },
       {
-        "isBrendanIn": "true",
-        "isLoryIn": "true",
-        "isDavidIn": "true",
-        "isParcoIn": "true",
+        "isBrendanIn": true,
+        "isLoryIn": true,
+        "isDavidIn": true,
+        "isParcoIn": true,
         "totalKM": 25,
         "date": "2023-01-24T20:57:46.188Z",
         "description": "Airport"
