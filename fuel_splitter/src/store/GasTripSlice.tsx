@@ -83,6 +83,9 @@ const fuelBill = createSlice({
     resetGasTrip(state) {
       state = initialState;
     },
+    setTripLogs(state, action: PayloadAction<TripInfo[]>) {
+      state.tripLogs = [...action.payload];
+    },
   },
 });
 
