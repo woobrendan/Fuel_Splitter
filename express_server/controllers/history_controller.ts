@@ -5,7 +5,9 @@ import { TripInfo } from "../models/model";
 
 const createHistory = (req: Request, res: Response, next: NextFunction) => {
   const { totalKM, totalPrice, costPerLitre } = req.body;
-  const copyOfArr = req.body.tripLogs.map((log: TripInfo) => ({ ...log }));
+  const copyOfArr = req.body.hhistoryLogs.map((log: TripInfo) => ({
+    ...log,
+  }));
   const history = new History({
     _id: new mongoose.Types.ObjectId(),
     totalKM,
@@ -15,7 +17,7 @@ const createHistory = (req: Request, res: Response, next: NextFunction) => {
     lory: { ...req.body.lory },
     david: { ...req.body.david },
     parco: { ...req.body.parco },
-    tripLogs: copyOfArr,
+    hhistoryLogs: copyOfArr,
   });
 
   return history
@@ -73,10 +75,21 @@ const deleteHistory = (req: Request, res: Response, next: NextFunction) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+const deleteAll = (req: Request, res: Response, next: NextFunction) => {
+  return History.deleteMany({})
+    .then((history) =>
+      history
+        ? res.status(201).json({ message: "Deleted" })
+        : res.status(404).json({ message: "Not Found" }),
+    )
+    .catch((error) => res.status(500).json({ error }));
+};
+
 export default {
   createHistory,
   readHistory,
   readAll,
   updateHistory,
   deleteHistory,
+  deleteAll,
 };
