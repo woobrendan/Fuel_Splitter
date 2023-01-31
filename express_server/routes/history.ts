@@ -3,7 +3,9 @@ import controller from "../controllers/history_controller";
 
 const router = express.Router();
 
-router.post("/create", controller.createHistory);
+//localhost.../history
+
+router.post("/new", controller.createHistory);
 router.get("/get/:historyId", controller.readHistory);
 router.get("/get/", controller.readAll);
 router.patch("/update/:historyId", controller.updateHistory);
