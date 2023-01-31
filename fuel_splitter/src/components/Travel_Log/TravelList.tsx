@@ -28,8 +28,13 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
 
   const getTrips = async () => {
     try {
-      const trips = await axios.get("http://localhost:1212/trips/get");
-      setDbTrips(() => [...trips.data.tripLogs]);
+      if (historyComp) {
+        const trips = await axios.get("http://localhost:1212/history/get/");
+        setDbTrips(() => [...trips.data.tripLogs]);
+      } else {
+        const trips = await axios.get("http://localhost:1212/trips/get");
+        setDbTrips(() => [...trips.data.tripLogs]);
+      }
     } catch (error) {
       console.log("Error:", error);
     }
