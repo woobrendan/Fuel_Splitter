@@ -30,7 +30,14 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const getTrips = async () => {
     try {
       const trips = await axios.get("http://localhost:1212/trips/get");
-      dispatch(fuelBillActions.setTripLogs(trips.data.tripLogs));
+      const tripData = trips.data.tripLogs.map((trip: any) => {
+        const dateString: string = trip.date;
+        return {
+          ...trip,
+          date: new Date(dateString),
+        };
+      });
+      dispatch(fuelBillActions.setTripLogs(tripData));
     } catch (error) {
       console.log("Error:", error);
     }
