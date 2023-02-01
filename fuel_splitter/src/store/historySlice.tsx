@@ -6,7 +6,7 @@ interface HistoryState {
   history: FuelBill[];
 }
 
-const initialState: HistoryState = { history: [...tempHistory] };
+const initialState: HistoryState = { history: [] };
 
 const historySlice = createSlice({
   name: "history",
