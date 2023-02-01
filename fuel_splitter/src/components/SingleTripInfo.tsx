@@ -21,13 +21,12 @@ const SingleTripInfo: React.FC = () => {
   };
 
   const finalSubmit = (gasBill: GasBill) => {
-    const { gasCost, costPerL } = gasBill;
     const copy: FuelBill = {
       ...oneBill,
-      totalPrice: gasCost,
-      costPerLitre: costPerL,
+      totalPrice: gasBill.gasCost,
+      costPerLitre: gasBill.costPerL,
     };
-    // dispatch(fuelBillActions.addGasBill(gasBill));
+
     dispatch(historyActions.addToHistory(copy));
     addToHistory(copy);
 
