@@ -7,6 +7,7 @@ import TravelList from "./Travel_Log/TravelList";
 import GasPay from "./TripManage/GasPay";
 import { historyActions } from "../store/historySlice";
 import { useNavigate } from "react-router";
+import { resetTripLog } from "../helperFunc";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +38,11 @@ const SingleTripInfo: React.FC = () => {
     const copy = { ...oneBill, totalPrice: gasCost, costPerLitre: costPerL };
     dispatch(fuelBillActions.addGasBill(gasBill));
     dispatch(historyActions.addToHistory(copy));
+
+    //** reset trip Logs */
     dispatch(fuelBillActions.resetGasTrip());
+    resetTripLog();
+
     navigate("/history");
   };
 
