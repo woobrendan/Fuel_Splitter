@@ -18,66 +18,7 @@ const fuelBill = createSlice({
   initialState,
   reducers: {
     addNewTrip(state, action: PayloadAction<TripInfo>) {
-      // const { isBrendanIn, isDavidIn, isLoryIn, isParcoIn, totalKM } =
-      //   action.payload;
-
-      // //check how many people are involved, then divide to find portion of km
-      // let count: number = 0;
-      // const involvment = [isBrendanIn, isDavidIn, isLoryIn, isParcoIn];
-
-      // for (let check of involvment) {
-      //   if (check) count++;
-      // }
-
-      // const costPer: number = totalKM / count;
-
-      // // Add new trip KMs total. add Trip to logs
-      // state.totalKM += totalKM;
-
-      // // add trip to trip logs, then sort array to have earliest trip come first
-      // state.tripLogs = [...state.tripLogs, action.payload].sort(
-      //   (a: TripInfo, b: TripInfo): any => {
-      //     return a.date!.getTime() - b.date!.getTime();
-      //   },
-      // );
-
-      // //check each individual to see if theyre involved, and adjust trip numbers accordingly
-      // if (isBrendanIn) {
-      //   state.brendan.totalKM =
-      //     Math.round((state.brendan.totalKM + costPer) * 100) / 100;
-      //   state.brendan.totalTrips = state.brendan.totalTrips + 1;
-      // }
-
-      // if (isLoryIn) {
-      //   state.lory.totalTrips = state.lory.totalTrips + 1;
-      //   state.lory.totalKM =
-      //     Math.round((state.lory.totalKM + costPer) * 100) / 100;
-      // }
-
-      // if (isParcoIn) {
-      //   state.parco.totalTrips = state.parco.totalTrips + 1;
-      //   state.parco.totalKM =
-      //     Math.round((state.parco.totalKM + costPer) * 100) / 100;
-      //   state.parco.billPortion =
-      //     Math.round((state.parco.totalKM / state.totalKM) * 100) / 100;
-      // }
-
-      // if (isDavidIn) {
-      //   state.david.totalTrips = state.david.totalTrips + 1;
-      //   state.david.totalKM =
-      //     Math.round((state.david.totalKM + costPer) * 100) / 100;
-      // }
-      // // recalculate each person bill portion after a new trip has been added
-      // state.david.billPortion =
-      //   Math.round((state.david.totalKM / state.totalKM) * 100) / 100;
-      // state.brendan.billPortion =
-      //   Math.round((state.brendan.totalKM / state.totalKM) * 100) / 100;
-      // state.lory.billPortion =
-      //   Math.round((state.lory.totalKM / state.totalKM) * 100) / 100;
-      // state.parco.billPortion =
-      //   Math.round((state.parco.totalKM / state.totalKM) * 100) / 100;
       state = addTrip(state, action.payload);
-      // console.log("return", addTrip(state, action.payload));
     },
     addGasBill(state, action: PayloadAction<GasBill>) {
       state.costPerLitre = action.payload.costPerL;
@@ -87,13 +28,18 @@ const fuelBill = createSlice({
       state = initialState;
     },
     setTripLogs(state, action: PayloadAction<TripInfo[]>) {
-      state.tripLogs = [...action.payload];
-      // console.log("aciton", action.payload);
-      // for (let log of action.payload) {
-      //   this.addNewTrip(state, {payload: log, type: string})
-      //   // {payload: trip, type: string}
-      //   console.log("log", log);
-      // }
+      const idArr: string[] = [];
+      for (let trip of state.tripLogs) {
+        idArr.push(trip._id!);
+      }
+
+      let tempState = state;
+      for (let log of action.payload) {
+        if (!idArr.includes(log._id!)) {
+          tempState = addTrip(tempState, log);
+        }
+      }
+      state = tempState;
     },
   },
 });
