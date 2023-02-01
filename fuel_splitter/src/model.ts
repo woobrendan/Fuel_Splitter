@@ -24,6 +24,7 @@ export interface TripInfo {
   totalKM: number;
   date: Date | null;
   description: string;
+  _id?: string;
 }
 
 export interface GasBill {
