@@ -1,13 +1,13 @@
 import NewTrip from "./NewTrip";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import "../Styles/tripinfo.scss";
-import { TripInfo, GasBill } from "../model";
+import { TripInfo, GasBill, FuelBill } from "../model";
 import { fuelBillActions } from "../store/GasTripSlice";
 import TravelList from "./Travel_Log/TravelList";
 import GasPay from "./TripManage/GasPay";
 import { historyActions } from "../store/historySlice";
 import { useNavigate } from "react-router";
-import { resetTripLog } from "../helperFunc";
+import { addToHistory, resetTripLog } from "../helperFunc";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -35,9 +35,14 @@ const SingleTripInfo: React.FC = () => {
 
   const finalSubmit = (gasBill: GasBill) => {
     const { gasCost, costPerL } = gasBill;
-    const copy = { ...oneBill, totalPrice: gasCost, costPerLitre: costPerL };
+    const copy: FuelBill = {
+      ...oneBill,
+      totalPrice: gasCost,
+      costPerLitre: costPerL,
+    };
     dispatch(fuelBillActions.addGasBill(gasBill));
     dispatch(historyActions.addToHistory(copy));
+    addToHistory(copy);
 
     //** reset trip Logs */
     dispatch(fuelBillActions.resetGasTrip());
