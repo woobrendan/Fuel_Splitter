@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FuelBill } from "./model";
+import { FuelBill, TripInfo } from "./model";
 
 const getToday = (): string => {
   let today: Date = new Date();
@@ -47,4 +47,19 @@ const addToHistory = (fuelBill: FuelBill) => {
   }
 };
 
-export { getToday, dateToString, resetTripLog, addToHistory };
+const addTripLog = async (trip: TripInfo) => {
+  try {
+    const data = await fetch("http://localhost:1212/trips/create", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(trip),
+    });
+  } catch (error) {
+    console.log("Error posting trip:", error);
+  }
+};
+
+export { getToday, dateToString, resetTripLog, addToHistory, addTripLog };
