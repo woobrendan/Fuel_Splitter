@@ -7,7 +7,7 @@ import TravelList from "./Travel_Log/TravelList";
 import GasPay from "./TripManage/GasPay";
 import { historyActions } from "../store/historySlice";
 import { useNavigate } from "react-router";
-import { addToHistory, resetTripLog } from "../helperFunc";
+import { addToHistory, addTripLog, resetTripLog } from "../helperFunc";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,20 +17,7 @@ const SingleTripInfo: React.FC = () => {
   const handleAdd = async (e: React.FormEvent, trip: TripInfo) => {
     e.preventDefault();
     dispatch(fuelBillActions.addNewTrip(trip));
-    try {
-      const data = await fetch("http://localhost:1212/trips/create", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(trip),
-      });
-
-      return data.json;
-    } catch (error) {
-      console.log("Error posting trip");
-    }
+    addTripLog(trip);
   };
 
   const finalSubmit = (gasBill: GasBill) => {
@@ -40,7 +27,7 @@ const SingleTripInfo: React.FC = () => {
       totalPrice: gasCost,
       costPerLitre: costPerL,
     };
-    dispatch(fuelBillActions.addGasBill(gasBill));
+    // dispatch(fuelBillActions.addGasBill(gasBill));
     dispatch(historyActions.addToHistory(copy));
     addToHistory(copy);
 
