@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FuelBill } from "./model";
 
 const getToday = (): string => {
   let today: Date = new Date();
@@ -34,8 +35,16 @@ const resetTripLog = async () => {
   try {
     axios.delete("http://localhost:1212/trips/delete/all");
   } catch (error) {
-    console.log("Error:", error);
+    console.log("Error deleting all trips:", error);
   }
 };
 
-export { getToday, dateToString, resetTripLog };
+const addToHistory = (fuelBill: FuelBill) => {
+  try {
+    axios.post("http://localhost:1212/history/new", fuelBill);
+  } catch (error) {
+    console.log("Error adding to History:", error);
+  }
+};
+
+export { getToday, dateToString, resetTripLog, addToHistory };
