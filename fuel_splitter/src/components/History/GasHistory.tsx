@@ -7,8 +7,8 @@ import { FuelBill } from "../../model";
 import { historyActions } from "../../store/historySlice";
 
 const GasHistory: React.FC = () => {
-  // const history = useAppSelector((state) => state.fuelHistory.history);
-  const [historyTrips, setHistoryTrips] = useState<FuelBill[]>([]);
+  const history = useAppSelector((state) => state.fuelHistory.history);
+  // const [historyTrips, setHistoryTrips] = useState<FuelBill[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -21,7 +21,7 @@ const GasHistory: React.FC = () => {
       const history = await axios.get("http://localhost:1212/history/get/");
       const trips: FuelBill[] = history.data.history;
       dispatch(historyActions.setHistory(trips));
-      setHistoryTrips(() => [...trips]);
+      // setHistoryTrips(() => [...trips]);
     } catch (err) {
       console.log("Error:", err);
     }
@@ -29,7 +29,7 @@ const GasHistory: React.FC = () => {
 
   return (
     <section id="history">
-      {historyTrips
+      {history
         .map((bill, index) => (
           <SingleHistory bill={bill} key={index} tripNum={index + 1} />
         ))
