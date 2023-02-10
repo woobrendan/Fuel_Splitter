@@ -9,8 +9,8 @@
     "ts-node": "^10.9.1"
   },
   "scripts": {
-    "start": "nodemon server2.ts",
-    "start:alt": "node build/server2.ts",
+    "start": "nodemon server.ts",
+    "start:alt": "node build/server.ts",
     "build": "npx tsc"
   },
   "devDependencies": {
