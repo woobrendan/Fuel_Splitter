@@ -49,7 +49,7 @@ const addToHistory = (fuelBill: FuelBill) => {
 
 const addTripLog = async (trip: TripInfo) => {
   try {
-    const data = await fetch("http://localhost:1212/trips/create", {
+    await fetch("http://localhost:1212/trips/create", {
       method: "POST",
       headers: {
         Accept: "application/json",
