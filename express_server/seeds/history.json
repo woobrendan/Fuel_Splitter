@@ -86,18 +86,18 @@
       "totalTrips": 11,
       "billPortion": "0.2473"
     },
-    "david": { "name": "David", "totalKM": 8.75, "totalTrips": 2, "billPortion": "0.22" },
-    "lory": { "name": "Lory", "totalKM": 13.75, "totalTrips": 3, "billPortion": 0.34 },
-    "parco": { "name": "Parco", "totalKM": 6.25, "totalTrips": 1, "billPortion": "0.16" },
+    "david": { "name": "David", "totalKM": 93.67, "totalTrips": 16, "billPortion": "0.3038" },
+    "lory": { "name": "Lory", "totalKM": 77.07, "totalTrips": 16, "billPortion": 0.25 },
+    "parco": { "name": "Parco", "totalKM": 61.33, "totalTrips": 8, "billPortion": "0.1989" },
     "tripLogs": [
       {
-        "isBrendanIn": true,
+        "isBrendanIn": false,
         "isLoryIn": true,
-        "isDavidIn": false,
+        "isDavidIn": true,
         "isParcoIn": false,
         "totalKM": "10",
-        "date": "2023-01-23T20:57:46.188Z",
-        "description": "Metrotown"
+        "date": "2022-12-26T20:57:46.188Z",
+        "description": "Return from Sylvia House"
       },
       {
         "isBrendanIn": false,
