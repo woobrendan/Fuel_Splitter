@@ -75,5 +75,48 @@
         "description": "Airport"
       }
     ]
+  },
+  {
+    "totalPrice": 76.09,
+    "totalKM": 308,
+    "costPerLitre": 1.859,
+    "brendan": {
+      "name": "Brendan",
+      "totalKM": 76.23,
+      "totalTrips": 11,
+      "billPortion": "0.2473"
+    },
+    "david": { "name": "David", "totalKM": 8.75, "totalTrips": 2, "billPortion": "0.22" },
+    "lory": { "name": "Lory", "totalKM": 13.75, "totalTrips": 3, "billPortion": 0.34 },
+    "parco": { "name": "Parco", "totalKM": 6.25, "totalTrips": 1, "billPortion": "0.16" },
+    "tripLogs": [
+      {
+        "isBrendanIn": true,
+        "isLoryIn": true,
+        "isDavidIn": false,
+        "isParcoIn": false,
+        "totalKM": "10",
+        "date": "2023-01-23T20:57:46.188Z",
+        "description": "Metrotown"
+      },
+      {
+        "isBrendanIn": false,
+        "isLoryIn": true,
+        "isDavidIn": true,
+        "isParcoIn": false,
+        "totalKM": 5,
+        "date": "2023-01-25T20:57:46.188Z",
+        "description": "Sylvia"
+      },
+      {
+        "isBrendanIn": true,
+        "isLoryIn": true,
+        "isDavidIn": true,
+        "isParcoIn": true,
+        "totalKM": 25,
+        "date": "2023-01-24T20:57:46.188Z",
+        "description": "Airport"
+      }
+    ]
   }
 ]
