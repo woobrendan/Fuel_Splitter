@@ -73,6 +73,9 @@ describe("Error Handling", () => {
   });
 
   it("should remove error if all sections are filled", () => {
+    const description = "This is a description";
+    const km = "12";
+
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get(".newTrip__container > .MuiButton-root").click();
     cy.get(".error").should("be.visible");
@@ -81,8 +84,10 @@ describe("Error Handling", () => {
     ).should("not.exist");
 
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
-    cy.get(".newTrip__input > input").type("12");
+    cy.get(".newTrip__input > :nth-child(1) > input").type(km);
+    cy.get(".newTrip__input > :nth-child(2) > input").type(description);
     cy.get(".newTrip__container > .MuiButton-root").click();
+
     cy.get(".newTrip__container > :nth-child(5)").should("be.visible");
     cy.get(".newTrip__input > .error").should("not.exist");
   });
