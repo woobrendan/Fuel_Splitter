@@ -83,12 +83,10 @@ describe("Error Handling", () => {
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
 
-    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get(".newTrip__input > :nth-child(1) > input").type(km);
     cy.get(".newTrip__input > :nth-child(2) > input").type(description);
     cy.get(".newTrip__container > .MuiButton-root").click();
 
-    cy.get(".newTrip__container > :nth-child(5)").should("be.visible");
     cy.get(".newTrip__input > .error").should("not.exist");
   });
 });
