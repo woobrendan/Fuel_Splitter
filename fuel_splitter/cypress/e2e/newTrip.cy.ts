@@ -29,13 +29,17 @@ describe("Adding New Trip", () => {
       ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
     ).should("be.checked");
 
-    cy.get(".newTrip__input > input").type("12");
+    cy.get(".newTrip__input > :nth-child(1) > input").type("12");
+    cy.get(".newTrip__input > :nth-child(2) > input").type(
+      "This is a description",
+    );
     cy.get(".newTrip__container > .MuiButton-root").click();
 
-    cy.get(
-      ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
-    ).should("exist");
-    cy.get("td.MuiTableCell-alignCenter").contains("12");
+    // cy.get(
+    //   ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
+    // ).should("exist");
+    cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
+    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains("12");
     cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
       "Brendan",
     );
