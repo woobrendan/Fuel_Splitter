@@ -186,9 +186,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
               }));
             }}
           />
-          {error.hasDistance && (
-            <span className="error">Section must be filled in</span>
-          )}
+          {error.hasDistance && <span className="error">Must have KMs</span>}
         </div>
         <div className="newTrip__input__container">
           <label>Trip Description:</label>
@@ -201,7 +199,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             }}
           />
           {error.hasDescription && (
-            <span className="error">Section must be filled in</span>
+            <span className="error">Must have description</span>
           )}
         </div>
       </section>
