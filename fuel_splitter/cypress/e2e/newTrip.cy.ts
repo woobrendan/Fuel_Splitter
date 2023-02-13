@@ -3,15 +3,12 @@ describe("Adding New Trip", () => {
     cy.visit("http://localhost:3000/");
   });
 
-  it("Should have a table without rows, and have container to add new trip", () => {
+  it("Should start with a table without rows, have a container to add new trip without checks", () => {
     cy.get(".css-1ygcj2i-MuiTableCell-root");
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
     cy.get(".newTrip__container");
-  });
-
-  it("New Trip should not have any checks", () => {
     cy.get(
       ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
     ).should("not.be.checked");
