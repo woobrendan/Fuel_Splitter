@@ -81,6 +81,21 @@ describe("Error Handling", () => {
       .should("not.exist");
     cy.get(":nth-child(1) > .error").should("be.visible");
     cy.get(":nth-child(2) > .error").should("be.visible");
+
+    cy.get(".newTrip__input > :nth-child(1) > input").type(km);
+    cy.get(".newTrip__container > .MuiButton-root").click();
+
+    cy.get(".error").contains("Must have KMs").should("not.exist");
+    cy.get(".error")
+      .contains("At least one box must be checked")
+      .should("not.exist");
+    cy.get(":nth-child(2) > .error").should("be.visible");
+
+    cy.get(".newTrip__input > :nth-child(1) > input").clear().type("0");
+    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get(".error")
+      .contains("At least one box must be checked")
+      .should("not.exist");
   });
 
   it("should remove error if all sections are filled", () => {
