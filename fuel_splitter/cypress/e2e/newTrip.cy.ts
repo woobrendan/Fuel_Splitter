@@ -75,6 +75,7 @@ describe("Error Handling", () => {
   it("should remove error if all sections are filled", () => {
     const description = "This is a description";
     const km = "12";
+    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
 
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get(".newTrip__container > .MuiButton-root").click();
