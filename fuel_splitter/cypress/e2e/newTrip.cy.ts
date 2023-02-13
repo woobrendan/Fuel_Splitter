@@ -51,10 +51,10 @@ describe("Adding New Trip", () => {
 describe("Error Handling", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
+    cy.get(".newTrip__container > .MuiButton-root").click();
   });
 
   it("Should not let you add trip if nothing is checked or filled", () => {
-    cy.get(".newTrip__container > .MuiButton-root").click();
     cy.get(".newTrip__container > :nth-child(5)").should("be.visible");
     cy.get(":nth-child(1) > .error").should("be.visible");
     cy.get(":nth-child(2) > .error").should("be.visible");
@@ -70,6 +70,15 @@ describe("Error Handling", () => {
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
     cy.get(".error").should("be.visible");
+  });
+
+  it("should only show appropriate errors after being partially fixed", () => {
+    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
+    cy.get(".newTrip__container > .MuiButton-root").click();
+
+    cy.get(".newTrip__container > :nth-child(5)").should("not.exist");
+    cy.get(":nth-child(1) > .error").should("be.visible");
+    cy.get(":nth-child(2) > .error").should("be.visible");
   });
 
   it("should remove error if all sections are filled", () => {
