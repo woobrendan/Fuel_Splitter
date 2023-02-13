@@ -1,3 +1,6 @@
+const description = "This is a description";
+const km = "12";
+
 describe("Adding New Trip", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
@@ -25,9 +28,6 @@ describe("Adding New Trip", () => {
   });
 
   it("Should add new trip to table", () => {
-    const description = "This is a description";
-    const km = "12";
-
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get(
       ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
@@ -76,14 +76,14 @@ describe("Error Handling", () => {
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get(".newTrip__container > .MuiButton-root").click();
 
-    cy.get(".newTrip__container > :nth-child(5)").should("not.exist");
+    cy.get(".error")
+      .contains("At least one box must be checked")
+      .should("not.exist");
     cy.get(":nth-child(1) > .error").should("be.visible");
     cy.get(":nth-child(2) > .error").should("be.visible");
   });
 
   it("should remove error if all sections are filled", () => {
-    const description = "This is a description";
-    const km = "12";
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
 
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
