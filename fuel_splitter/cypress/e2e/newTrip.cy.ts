@@ -1,6 +1,7 @@
 describe("Adding New Trip", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
+    cy.request("http://localhost:1212/trips/delete/all");
   });
 
   it("Should start with a table without rows, have a container to add new trip without checks", () => {
@@ -24,24 +25,25 @@ describe("Adding New Trip", () => {
   });
 
   it("Should add new trip to table", () => {
+    const description = "This is a description";
+    const km = "12";
+
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get(
       ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
     ).should("be.checked");
 
-    cy.get(".newTrip__input > :nth-child(1) > input").type("12");
-    cy.get(".newTrip__input > :nth-child(2) > input").type(
-      "This is a description",
-    );
+    cy.get(".newTrip__input > :nth-child(1) > input").type(km);
+    cy.get(".newTrip__input > :nth-child(2) > input").type(description);
     cy.get(".newTrip__container > .MuiButton-root").click();
 
-    // cy.get(
-    //   ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
-    // ).should("exist");
     cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
-    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains("12");
+    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(km);
     cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
       "Brendan",
+    );
+    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
+      description,
     );
   });
 });
