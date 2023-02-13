@@ -1,7 +1,7 @@
 describe("Adding New Trip", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
-    cy.request("http://localhost:1212/trips/delete/all");
+    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
   });
 
   it("Should start with a table without rows, have a container to add new trip without checks", () => {
