@@ -56,7 +56,8 @@ describe("Error Handling", () => {
   it("Should not let you add trip if nothing is checked or filled", () => {
     cy.get(".newTrip__container > .MuiButton-root").click();
     cy.get(".newTrip__container > :nth-child(5)").should("be.visible");
-    cy.get(".newTrip__input > .error").should("be.visible");
+    cy.get(":nth-child(1) > .error").should("be.visible");
+    cy.get(":nth-child(2) > .error").should("be.visible");
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
