@@ -207,6 +207,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         variant="contained"
         color="success"
         type="submit"
+        data-testid="submit_trip"
         className="submit_button"
       >
         Submit
