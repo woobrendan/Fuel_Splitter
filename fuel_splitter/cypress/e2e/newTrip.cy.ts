@@ -33,8 +33,8 @@ describe("Adding New Trip", () => {
       ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
     ).should("be.checked");
 
-    cy.get(".newTrip__input > :nth-child(1) > input").type(km);
-    cy.get(".newTrip__input > :nth-child(2) > input").type(description);
+    cy.get('[data-testid="trip_km"]').type(km);
+    cy.get('[data-testid="trip_description"]').type(description);
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
@@ -82,7 +82,7 @@ describe("Error Handling", () => {
     cy.get(":nth-child(1) > .error").should("be.visible");
     cy.get(":nth-child(2) > .error").should("be.visible");
 
-    cy.get(".newTrip__input > :nth-child(1) > input").type(km);
+    cy.get('[data-testid="trip_km"]').type(km);
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".error").contains("Must have KMs").should("not.exist");
@@ -91,8 +91,8 @@ describe("Error Handling", () => {
       .should("not.exist");
     cy.get(":nth-child(2) > .error").should("be.visible");
 
-    cy.get(".newTrip__input > :nth-child(1) > input").clear().type("0");
-    cy.get(".newTrip__input > :nth-child(2) > input").type(description);
+    cy.get('[data-testid="trip_km"]').clear().type("0");
+    cy.get('[data-testid="trip_description"]').type(description);
     cy.get('[data-testid="submit_trip"]').click();
     cy.get(".error")
       .contains("At least one box must be checked")
@@ -111,8 +111,8 @@ describe("Error Handling", () => {
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
 
-    cy.get(".newTrip__input > :nth-child(1) > input").type(km);
-    cy.get(".newTrip__input > :nth-child(2) > input").type(description);
+    cy.get('[data-testid="trip_km"]').type(km);
+    cy.get('[data-testid="trip_description"]').type(description);
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".newTrip__input > .error").should("not.exist");
@@ -142,8 +142,8 @@ describe("Adding to history", () => {
 
     trips.map((trip: Trip, index: number) => {
       cy.get(`.MuiFormGroup-root > :nth-child(${trip.check})`).click();
-      cy.get(".newTrip__input > :nth-child(1) > input").type(trip.km);
-      cy.get(".newTrip__input > :nth-child(2) > input").type(trip.description);
+      cy.get('[data-testid="trip_km"]').type(trip.km);
+      cy.get('[data-testid="trip_description"]').type(trip.description);
       cy.get('[data-testid="submit_trip"]').click();
 
       cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
