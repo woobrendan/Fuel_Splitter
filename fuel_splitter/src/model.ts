@@ -31,3 +31,8 @@ export interface GasBill {
   gasCost: number;
   costPerL: number;
 }
+
+export interface NameVal {
+  name: string;
+  value: boolean;
+}
