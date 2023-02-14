@@ -178,6 +178,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             placeholder="Enter Total KM's travelled"
             type="input"
             value={tripInfo.totalKM}
+            data-testid="trip_km"
             onChange={(e: React.FormEvent) => {
               const target = e.target as HTMLTextAreaElement;
               setTripInfo((prev) => ({
@@ -193,6 +194,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           <input
             type="input"
             value={tripInfo.description}
+            data-testid="trip_description"
             onChange={(e: React.FormEvent) => {
               const target = e.target as HTMLTextAreaElement;
               setTripInfo((prev) => ({ ...prev, description: target.value }));
