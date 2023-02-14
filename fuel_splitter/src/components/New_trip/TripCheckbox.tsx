@@ -1,21 +1,22 @@
 import { FormControlLabel, Checkbox } from "@mui/material";
+import { NameVal } from "../../model";
 
 interface Props {
   onCheck: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  nameVal: 
+  nameVal: NameVal;
 }
 
-const TripCheckbox: React.FC<Props> = ({onCheck}) => {
+const TripCheckbox: React.FC<Props> = ({ onCheck, nameVal }) => {
   return (
     <FormControlLabel
       control={
         <Checkbox
-          checked={tripInfo.isBrendanIn}
+          checked={nameVal.value}
           onChange={onCheck}
-          value="Brendan"
+          value={nameVal.name}
         />
       }
-      label="Brendan"
+      label={nameVal.name}
     />
   );
 };
