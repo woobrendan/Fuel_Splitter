@@ -1,5 +1,5 @@
-const description = "This is a description";
-const km = "12";
+const description: string = "This is a description";
+const km: string = "12";
 
 describe("Adding New Trip", () => {
   beforeEach(() => {
@@ -128,7 +128,13 @@ describe("Adding to history", () => {
   });
 
   it("Should add collect all trip logs and gas, and add trip to history", () => {
-    const trips = [
+    interface Trip {
+      km: string;
+      description: string;
+      check: string;
+    }
+
+    const trips: Trip[] = [
       {
         km: "14",
         description: "Gym",
@@ -141,7 +147,7 @@ describe("Adding to history", () => {
       },
     ];
 
-    trips.map((trip) => {
+    trips.map((trip: Trip) => {
       cy.get(`.MuiFormGroup-root > :nth-child(${trip.check})`).click();
       cy.get(".newTrip__input > :nth-child(1) > input").type(trip.km);
       cy.get(".newTrip__input > :nth-child(2) > input").type(trip.description);
