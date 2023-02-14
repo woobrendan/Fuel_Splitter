@@ -117,4 +117,14 @@ describe("Error Handling", () => {
 
     cy.get(".newTrip__input > .error").should("not.exist");
   });
+
+  //add error handling tests for gas total
+});
+
+describe("Adding to history", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000/");
+    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+  });
+  it("Should add collect all trip logs and gas, and add trip to history", () => {});
 });
