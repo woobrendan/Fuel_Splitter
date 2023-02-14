@@ -35,7 +35,7 @@ describe("Adding New Trip", () => {
 
     cy.get(".newTrip__input > :nth-child(1) > input").type(km);
     cy.get(".newTrip__input > :nth-child(2) > input").type(description);
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
     cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(km);
@@ -51,7 +51,7 @@ describe("Adding New Trip", () => {
 describe("Error Handling", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
   });
 
   it("Should not let you add trip if nothing is checked or filled", () => {
@@ -65,7 +65,7 @@ describe("Error Handling", () => {
 
   it("should only have one error if checked", () => {
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
@@ -74,7 +74,7 @@ describe("Error Handling", () => {
 
   it("should only show appropriate errors after being partially fixed", () => {
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".error")
       .contains("At least one box must be checked")
@@ -83,7 +83,7 @@ describe("Error Handling", () => {
     cy.get(":nth-child(2) > .error").should("be.visible");
 
     cy.get(".newTrip__input > :nth-child(1) > input").type(km);
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".error").contains("Must have KMs").should("not.exist");
     cy.get(".error")
@@ -93,7 +93,7 @@ describe("Error Handling", () => {
 
     cy.get(".newTrip__input > :nth-child(1) > input").clear().type("0");
     cy.get(".newTrip__input > :nth-child(2) > input").type(description);
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
     cy.get(".error")
       .contains("At least one box must be checked")
       .should("not.exist");
@@ -105,7 +105,7 @@ describe("Error Handling", () => {
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
 
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
     cy.get(".error").should("be.visible");
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
@@ -113,7 +113,7 @@ describe("Error Handling", () => {
 
     cy.get(".newTrip__input > :nth-child(1) > input").type(km);
     cy.get(".newTrip__input > :nth-child(2) > input").type(description);
-    cy.get(".newTrip__container > .MuiButton-root").click();
+    cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".newTrip__input > .error").should("not.exist");
   });
@@ -144,7 +144,7 @@ describe("Adding to history", () => {
       cy.get(`.MuiFormGroup-root > :nth-child(${trip.check})`).click();
       cy.get(".newTrip__input > :nth-child(1) > input").type(trip.km);
       cy.get(".newTrip__input > :nth-child(2) > input").type(trip.description);
-      cy.get(".newTrip__container > .MuiButton-root").click();
+      cy.get('[data-testid="submit_trip"]').click();
 
       cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
       cy.get(
