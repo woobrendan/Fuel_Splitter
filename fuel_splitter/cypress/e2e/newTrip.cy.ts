@@ -132,22 +132,15 @@ describe("Adding to history", () => {
       km: string;
       description: string;
       check: string;
+      name: string;
     }
 
     const trips: Trip[] = [
-      {
-        km: "14",
-        description: "Gym",
-        check: "2",
-      },
-      {
-        km: "25",
-        description: "Airport",
-        check: "3",
-      },
+      { km: "14", description: "Gym", check: "2", name: "Lory" },
+      { km: "25", description: "Airport", check: "3", name: "David" },
     ];
 
-    trips.map((trip: Trip) => {
+    trips.map((trip: Trip, index: number) => {
       cy.get(`.MuiFormGroup-root > :nth-child(${trip.check})`).click();
       cy.get(".newTrip__input > :nth-child(1) > input").type(trip.km);
       cy.get(".newTrip__input > :nth-child(2) > input").type(trip.description);
