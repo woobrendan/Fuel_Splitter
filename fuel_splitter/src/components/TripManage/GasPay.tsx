@@ -72,6 +72,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
             type="number"
             placeholder="Enter Cost Per Litre"
             value={gasBill.costPerL}
+            data-cy="cost_per_L"
             onChange={(e: React.FormEvent) => {
               const target = e.target as HTMLTextAreaElement;
               setGasBill((prev) => ({
@@ -89,6 +90,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
             step="0.01"
             placeholder="Enter Gas Paid"
             value={gasBill.gasCost}
+            data-cy="total_cost"
             onChange={(e: React.FormEvent) => {
               const target = e.target as HTMLTextAreaElement;
               setGasBill((prev) => ({
@@ -99,7 +101,12 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           />
           {gasCostError && <span>Section must be complete</span>}
         </div>
-        <Button variant="contained" type="submit" className="submit_button">
+        <Button
+          variant="contained"
+          type="submit"
+          className="submit_button"
+          data-cy="submit_all"
+        >
           Submit All
         </Button>
       </form>
