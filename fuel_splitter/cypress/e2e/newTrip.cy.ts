@@ -126,5 +126,26 @@ describe("Adding to history", () => {
     cy.visit("http://localhost:3000/");
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
   });
-  it("Should add collect all trip logs and gas, and add trip to history", () => {});
+
+  it("Should add collect all trip logs and gas, and add trip to history", () => {
+    const trips = [
+      {
+        km: "14",
+        description: "Gym",
+        check: "2",
+      },
+      {
+        km: "25",
+        description: "Airport",
+        check: "3",
+      },
+    ];
+
+    trips.map((trip) => {
+      cy.get(`.MuiFormGroup-root > :nth-child(${trip.check})`).click();
+      cy.get(".newTrip__input > :nth-child(1) > input").type(trip.km);
+      cy.get(".newTrip__input > :nth-child(2) > input").type(trip.description);
+      cy.get(".newTrip__container > .MuiButton-root").click();
+    });
+  });
 });
