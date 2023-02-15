@@ -13,7 +13,7 @@ const TripCheckbox: React.FC<Props> = ({ onCheck, nameVal }) => {
       control={
         <Checkbox
           checked={value}
-          onChange={onCheck}
+          onChange={(e) => onCheck(e)}
           value={name}
           data-testid={`checkbox_${name}`}
         />
