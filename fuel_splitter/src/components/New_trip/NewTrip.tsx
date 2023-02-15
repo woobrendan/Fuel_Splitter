@@ -160,33 +160,15 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           error={error.hasDistance}
           onInputChange={onInputChange}
           label="Total KM"
+          name="totalKM"
         />
-
-        {/* <div className="newTrip__input__container">
-          <label>Total KM's:</label>
-          <input
-            placeholder="Enter Total KM's travelled"
-            type="input"
-            value={tripInfo.totalKM}
-            data-testid="trip_km"
-            name="totalKM"
-            onChange={(e: React.FormEvent) => onInputChange(e)}
-          />
-          {error.hasDistance && <span className="error">Must have KMs</span>}
-        </div> */}
-        <div className="newTrip__input__container">
-          <label>Trip Description:</label>
-          <input
-            type="input"
-            value={tripInfo.description}
-            data-testid="trip_description"
-            name="description"
-            onChange={(e: React.FormEvent) => onInputChange(e)}
-          />
-          {error.hasDescription && (
-            <span className="error">Must have description</span>
-          )}
-        </div>
+        <InputContainer
+          val={tripInfo.description}
+          error={error.hasDescription}
+          onInputChange={onInputChange}
+          label="Trip Description"
+          name="description"
+        />
       </section>
       <Button
         variant="contained"
