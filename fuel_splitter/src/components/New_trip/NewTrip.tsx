@@ -3,6 +3,7 @@ import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
 import { NameVal, TripInfo } from "../../model";
 import DatePicker from "../DatePicker";
+import InputContainer from "./InputContainer";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -154,7 +155,14 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         <span className="error">At least one box must be checked</span>
       )}
       <section className="newTrip__input">
-        <div className="newTrip__input__container">
+        <InputContainer
+          val={tripInfo.totalKM}
+          error={error.hasDistance}
+          onInputChange={onInputChange}
+          label="Total KM"
+        />
+
+        {/* <div className="newTrip__input__container">
           <label>Total KM's:</label>
           <input
             placeholder="Enter Total KM's travelled"
@@ -165,7 +173,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             onChange={(e: React.FormEvent) => onInputChange(e)}
           />
           {error.hasDistance && <span className="error">Must have KMs</span>}
-        </div>
+        </div> */}
         <div className="newTrip__input__container">
           <label>Trip Description:</label>
           <input
