@@ -117,6 +117,16 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     }
   };
 
+  const onInputChange = (e: React.FormEvent, inputLabel: string) => {
+    const target = e.target as HTMLTextAreaElement;
+    const value =
+      inputLabel === "totalKM" ? Number(target.value) : target.value;
+    setTripInfo((prev) => ({
+      ...prev,
+      [inputLabel]: value,
+    }));
+  };
+
   const names: NameVal[] = [
     { name: "Brendan", value: tripInfo.isBrendanIn },
     { name: "Lory", value: tripInfo.isLoryIn },
@@ -137,50 +147,9 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     >
       <h1>Add New Trip Info</h1>
       <DatePicker getDate={getDate} />
+
       <h2>Trip Participants</h2>
-      <FormGroup className="newTrip__checkboxes">
-        {/* <FormControlLabel
-          control={
-            <Checkbox
-              checked={tripInfo.isBrendanIn}
-              onChange={onCheck}
-              value="Brendan"
-            />
-          }
-          label="Brendan"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={tripInfo.isLoryIn}
-              onChange={onCheck}
-              value="Lory"
-            />
-          }
-          label="Lory"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={tripInfo.isDavidIn}
-              onChange={onCheck}
-              value="David"
-            />
-          }
-          label="David"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={tripInfo.isParcoIn}
-              onChange={onCheck}
-              value="Parco"
-            />
-          }
-          label="Parco"
-        /> */}
-        {mappedCheckbox}
-      </FormGroup>
+      <FormGroup className="newTrip__checkboxes">{mappedCheckbox}</FormGroup>
       {error.hasCheck && (
         <span className="error">At least one box must be checked</span>
       )}
