@@ -85,7 +85,7 @@ describe("Error Handling", () => {
     cy.get('[data-testid="totalKM"]').type(km);
     cy.get('[data-testid="submit_trip"]').click();
 
-    cy.get(".error").contains("Must have KMs").should("not.exist");
+    cy.get(".error").contains("Must have Total KM").should("not.exist");
     cy.get(".error")
       .contains("At least one box must be checked")
       .should("not.exist");
@@ -97,8 +97,8 @@ describe("Error Handling", () => {
     cy.get(".error")
       .contains("At least one box must be checked")
       .should("not.exist");
-    cy.get(".error").contains("Must have KMs").should("exist");
-    cy.get(".error").contains("Must have description").should("not.exist");
+    cy.get(".error").contains("Must have Total KM").should("exist");
+    cy.get(".error").contains("Must have Trip Description").should("not.exist");
   });
 
   it("should remove error if all sections are filled", () => {
