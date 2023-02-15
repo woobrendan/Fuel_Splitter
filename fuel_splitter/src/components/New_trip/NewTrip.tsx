@@ -117,13 +117,13 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     }
   };
 
-  const onInputChange = (e: React.FormEvent, inputLabel: string) => {
+  const onInputChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
     const value =
-      inputLabel === "totalKM" ? Number(target.value) : target.value;
+      target.name === "totalKM" ? Number(target.value) : target.value;
     setTripInfo((prev) => ({
       ...prev,
-      [inputLabel]: value,
+      [target.name]: value,
     }));
   };
 
@@ -161,13 +161,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             type="input"
             value={tripInfo.totalKM}
             data-testid="trip_km"
-            onChange={(e: React.FormEvent) => {
-              const target = e.target as HTMLTextAreaElement;
-              setTripInfo((prev) => ({
-                ...prev,
-                totalKM: Number(target.value),
-              }));
-            }}
+            name="totalKM"
+            onChange={(e: React.FormEvent) => onInputChange(e)}
           />
           {error.hasDistance && <span className="error">Must have KMs</span>}
         </div>
@@ -177,10 +172,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             type="input"
             value={tripInfo.description}
             data-testid="trip_description"
-            onChange={(e: React.FormEvent) => {
-              const target = e.target as HTMLTextAreaElement;
-              setTripInfo((prev) => ({ ...prev, description: target.value }));
-            }}
+            name="description"
+            onChange={(e: React.FormEvent) => onInputChange(e)}
           />
           {error.hasDescription && (
             <span className="error">Must have description</span>
