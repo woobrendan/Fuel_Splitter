@@ -123,8 +123,8 @@ describe("Error Handling", () => {
 
 describe("Adding to history", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.visit("http://localhost:3000/");
   });
 
   it("Should add collect all trip logs and gas, and add trip to history", () => {
@@ -146,7 +146,6 @@ describe("Adding to history", () => {
       cy.get('[data-testid="description"]').type(trip.description);
       cy.get('[data-testid="submit_trip"]').click();
 
-      cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
       cy.get(
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(2)`,
       ).contains(trip.km);
