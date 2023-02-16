@@ -1,10 +1,22 @@
 const description: string = "This is a description";
 const km: string = "12";
 
+interface Trip {
+  km: string;
+  description: string;
+  check: string;
+  name: string;
+}
+
+const trips: Trip[] = [
+  { km: "14", description: "Gym", check: "2", name: "Lory" },
+  { km: "25", description: "Airport", check: "3", name: "David" },
+];
+
 describe("Adding New Trip", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.visit("http://localhost:3000/");
   });
 
   it("Should start with a table without rows, have a container to add new trip without checks", () => {
@@ -19,22 +31,25 @@ describe("Adding New Trip", () => {
   });
 
   it("Should add new trip to table", () => {
-    cy.get('[data-testid="checkbox_Brendan"]').click();
+    const trip = trips[0];
+    cy.get(`[data-testid="checkbox_${trip.name}"]`).click();
     cy.get(
-      '[data-testid="checkbox_Brendan"] > .PrivateSwitchBase-input',
+      `[data-testid="checkbox_${trip.name}"] > .PrivateSwitchBase-input`,
     ).should("be.checked");
 
-    cy.get('[data-testid="totalKM"]').type(km);
-    cy.get('[data-testid="description"]').type(description);
+    cy.get('[data-testid="totalKM"]').type(trip.km);
+    cy.get('[data-testid="description"]').type(trip.description);
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
-    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(km);
+    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(
+      trip.km,
+    );
     cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-      "Brendan",
+      trip.name,
     );
     cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
-      description,
+      trip.description,
     );
   });
 });
@@ -119,20 +134,8 @@ describe("Adding to history", () => {
   });
 
   it("Should add collect all trip logs and gas, and add trip to history", () => {
-    interface Trip {
-      km: string;
-      description: string;
-      check: string;
-      name: string;
-    }
-
-    const trips: Trip[] = [
-      { km: "14", description: "Gym", check: "2", name: "Lory" },
-      { km: "25", description: "Airport", check: "3", name: "David" },
-    ];
-
     trips.map((trip: Trip, index: number) => {
-      cy.get(`.MuiFormGroup-root > :nth-child(${trip.check})`).click();
+      cy.get(`[data-testid="checkbox_${trip.name}"]`).click();
       cy.get('[data-testid="totalKM"]').type(trip.km);
       cy.get('[data-testid="description"]').type(trip.description);
       cy.get('[data-testid="submit_trip"]').click();
