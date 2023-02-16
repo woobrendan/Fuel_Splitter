@@ -59,6 +59,14 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
     }
   };
 
+  const onInputChange = (e: React.FormEvent) => {
+    const target = e.target as HTMLTextAreaElement;
+    setGasBill((prev) => ({
+      ...prev,
+      [target.name]: Number(target.value),
+    }));
+  };
+
   return (
     <div className="single_trip__submitAll">
       {hasTrips && <span>Must have at least one Trip</span>}
@@ -72,6 +80,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
             type="number"
             placeholder="Enter Cost Per Litre"
             value={gasBill.costPerL}
+            name="costPerL"
             data-cy="cost_per_L"
             onChange={(e: React.FormEvent) => {
               const target = e.target as HTMLTextAreaElement;
@@ -87,7 +96,8 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           <label>Total Gas Paid:</label>
           <input
             type="number"
-            step="0.01"
+            // step="0.01"
+            name="gasCost"
             placeholder="Enter Gas Paid"
             value={gasBill.gasCost}
             data-cy="total_cost"
