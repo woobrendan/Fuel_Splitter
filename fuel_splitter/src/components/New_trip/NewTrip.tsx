@@ -1,4 +1,4 @@
-import { FormGroup, FormControlLabel, Button, Checkbox } from "@mui/material";
+import { FormGroup, Button } from "@mui/material";
 import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
 import { NameVal, TripInfo } from "../../model";
@@ -78,12 +78,14 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // const target = event.target as HTMLInputElement;
+    // // const some = `is${target.value}In`
     // type Person = keyof TripInfo
-    // const indiv: Person = `is${event.target.value}In`
+    // const indiv: keyof TripInfo = `is${target.value}In`
     // // const person: string = `is${event.target.value}In`
     // setTripInfo((prev: TripInfo) => ({
     //   ...prev,
-    //   [`is${event.target.value}In`]: !Boolean(prev[indiv]),
+    //   [`is${target.name}In`]: !Boolean(prev[indiv]),
     // }));
 
     // refactor later to not be brute force
