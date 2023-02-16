@@ -1,16 +1,12 @@
-const description: string = "This is a description";
-const km: string = "12";
-
 interface Trip {
   km: string;
   description: string;
-  check: string;
   name: string;
 }
 
 const trips: Trip[] = [
-  { km: "14", description: "Gym", check: "2", name: "Lory" },
-  { km: "25", description: "Airport", check: "3", name: "David" },
+  { km: "14", description: "Gym", name: "Lory" },
+  { km: "25", description: "Airport", name: "David" },
 ];
 
 describe("Adding New Trip", () => {
@@ -79,6 +75,8 @@ describe("Error Handling", () => {
   });
 
   it("should only show appropriate errors after being partially fixed", () => {
+    const trip = trips[0];
+
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
     cy.get('[data-testid="submit_trip"]').click();
 
@@ -88,7 +86,7 @@ describe("Error Handling", () => {
     cy.get(":nth-child(1) > .error").should("be.visible");
     cy.get(":nth-child(2) > .error").should("be.visible");
 
-    cy.get('[data-testid="totalKM"]').type(km);
+    cy.get('[data-testid="totalKM"]').type(trip.km);
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".error").contains("Must have Total KM").should("not.exist");
@@ -98,7 +96,7 @@ describe("Error Handling", () => {
     cy.get(":nth-child(2) > .error").should("be.visible");
 
     cy.get('[data-testid="totalKM"]').clear().type("0");
-    cy.get('[data-testid="description"]').type(description);
+    cy.get('[data-testid="description"]').type(trip.description);
     cy.get('[data-testid="submit_trip"]').click();
     cy.get(".error")
       .contains("At least one box must be checked")
@@ -108,6 +106,8 @@ describe("Error Handling", () => {
   });
 
   it("should remove error if all sections are filled", () => {
+    const trip = trips[0];
+
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
 
     cy.get(".MuiFormGroup-root > :nth-child(1)").click();
@@ -117,8 +117,8 @@ describe("Error Handling", () => {
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
 
-    cy.get('[data-testid="totalKM"]').type(km);
-    cy.get('[data-testid="description"]').type(description);
+    cy.get('[data-testid="totalKM"]').type(trip.km);
+    cy.get('[data-testid="description"]').type(trip.description);
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".newTrip__input > .error").should("not.exist");
