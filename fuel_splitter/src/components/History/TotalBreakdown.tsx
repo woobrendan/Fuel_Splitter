@@ -29,11 +29,21 @@ const TotalBreakdown: React.FC<Props> = ({ bill }) => {
             <TableRow
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row" align="left" colSpan={2}>
+              <TableCell
+                component="th"
+                scope="row"
+                align="left"
+                colSpan={2}
+                data-testid="total_price"
+              >
                 ${bill.totalPrice}
               </TableCell>
-              <TableCell align="right">{bill.totalKM}</TableCell>
-              <TableCell align="right">{bill.costPerLitre}</TableCell>
+              <TableCell align="right" data-testid="total_km">
+                {bill.totalKM}
+              </TableCell>
+              <TableCell align="right" data-testid="cost_L">
+                {bill.costPerLitre}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
