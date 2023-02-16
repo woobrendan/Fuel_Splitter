@@ -1,6 +1,7 @@
-import { FormGroup, FormControlLabel, Checkbox, Button } from "@mui/material";
+import { FormGroup, FormControlLabel, Button, Checkbox } from "@mui/material";
+import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
-import { TripInfo } from "../model";
+import { NameVal, TripInfo } from "../../model";
 import DatePicker from "./DatePicker";
 
 interface Props {
@@ -115,6 +116,17 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         break;
     }
   };
+
+  const names: NameVal[] = [
+    { name: "Brendan", value: tripInfo.isBrendanIn },
+    { name: "Lory", value: tripInfo.isLoryIn },
+    { name: "David", value: tripInfo.isDavidIn },
+    { name: "Parco", value: tripInfo.isParcoIn },
+  ];
+
+  const mappedCheckbox = names.map((name: NameVal) => (
+    <TripCheckbox nameVal={name} onCheck={onCheck} />
+  ));
 
   return (
     <form
