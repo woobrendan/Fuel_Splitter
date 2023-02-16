@@ -7,16 +7,18 @@ interface Props {
 }
 
 const TripCheckbox: React.FC<Props> = ({ onCheck, nameVal }) => {
+  const { name, value } = nameVal;
   return (
     <FormControlLabel
       control={
         <Checkbox
-          checked={nameVal.value}
+          checked={value}
           onChange={onCheck}
-          value={nameVal.name}
+          value={name}
+          data-testid={name}
         />
       }
-      label={nameVal.name}
+      label={name}
     />
   );
 };
