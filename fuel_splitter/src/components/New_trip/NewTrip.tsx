@@ -2,7 +2,7 @@ import { FormGroup, FormControlLabel, Button, Checkbox } from "@mui/material";
 import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
 import { NameVal, TripInfo } from "../../model";
-import DatePicker from "./DatePicker";
+import DatePicker from "../DatePicker";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -139,7 +139,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       <DatePicker getDate={getDate} />
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
-        <FormControlLabel
+        {/* <FormControlLabel
           control={
             <Checkbox
               checked={tripInfo.isBrendanIn}
@@ -178,7 +178,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
             />
           }
           label="Parco"
-        />
+        /> */}
+        {mappedCheckbox}
       </FormGroup>
       {error.hasCheck && (
         <span className="error">At least one box must be checked</span>
