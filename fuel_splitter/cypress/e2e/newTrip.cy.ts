@@ -172,6 +172,9 @@ describe("Adding to history", () => {
   });
 
   it("Should add collect all trip logs and gas, and add trip to history", () => {
+    const costPerL = "1.72";
+    const totalGas = "72.89 ";
+
     trips.forEach((trip: Trip, index: number) => {
       checkEachName(trip);
       cy.get('[data-testid="totalKM"]').type(trip.km);
@@ -191,5 +194,11 @@ describe("Adding to history", () => {
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(4)`,
       ).contains(trip.description);
     });
+
+    cy.get('[data-cy="cost_per_L"]').clear().type(costPerL);
+    cy.get('[data-cy="total_cost"]').clear().type(totalGas);
+    cy.get('[data-cy="submit_all"]').click();
+
+    cy.url().should("eq", "http://localhost:3000/history");
   });
 });
