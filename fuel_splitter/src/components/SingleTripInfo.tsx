@@ -1,4 +1,4 @@
-import NewTrip from "./NewTrip";
+import NewTrip from "./New_trip/NewTrip";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import "../Styles/tripinfo.scss";
 import { TripInfo, GasBill, FuelBill } from "../model";
