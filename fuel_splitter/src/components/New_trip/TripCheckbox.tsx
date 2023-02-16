@@ -15,7 +15,7 @@ const TripCheckbox: React.FC<Props> = ({ onCheck, nameVal }) => {
           checked={value}
           onChange={onCheck}
           value={name}
-          data-testid={name}
+          data-testid={`checkbox_${name}`}
         />
       }
       label={name}
