@@ -15,11 +15,21 @@ describe("Final Gas Totals", () => {
     cy.get('[data-cy="cost_L_error"]').should("exist");
   });
 
-  it("Should not allow you to submit without any trips", () => {
-    // cy.get('[data-cy="cost_per_L"]').clear().type(costPerL);
-    // cy.get('[data-cy="total_cost"]').clear().type(totalGas);
+  it("Should only show appropriate errors after being partially fixed", () => {
+    cy.get('[data-cy="submit_all"]').click();
+    cy.get('[data-cy="cost_per_L"]').clear().type(costPerL);
     cy.get('[data-cy="submit_all"]').click();
 
+    cy.get('[data-cy="gas_paid_error"]').should("exist");
+    cy.get('[data-cy="cost_L_error"]').should("not.exist");
+    cy.get('[data-cy="no_trips"]').should("exist");
+
+    cy.get('[data-cy="cost_per_L"]').clear();
+    cy.get('[data-cy="total_cost"]').clear().type(totalGas);
+    cy.get('[data-cy="submit_all"]').click();
+
+    cy.get('[data-cy="gas_paid_error"]').should("not.exist");
+    cy.get('[data-cy="cost_L_error"]').should("exist");
     cy.get('[data-cy="no_trips"]').should("exist");
   });
 });
