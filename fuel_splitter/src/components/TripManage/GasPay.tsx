@@ -69,7 +69,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
 
   return (
     <div className="single_trip__submitAll">
-      {hasTrips && <span>Must have at least one Trip</span>}
+      {hasTrips && <span data-cy="no_trips">Must have at least one Trip</span>}
       <form
         className="single_trip__submitAll__form"
         onSubmit={(e) => handleFinalSubmit(e, gasBill)}
@@ -90,7 +90,9 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
               }));
             }}
           />
-          {costPerLError && <span>Section must be complete</span>}
+          {costPerLError && (
+            <span data-cy="cost_L_error">Section must be complete</span>
+          )}
         </div>
         <div className="single_trip__submitAll__input">
           <label>Total Gas Paid:</label>
@@ -109,7 +111,9 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
               }));
             }}
           />
-          {gasCostError && <span>Section must be complete</span>}
+          {gasCostError && (
+            <span data-cy="gas_paid_error">Section must be complete</span>
+          )}
         </div>
         <Button
           variant="contained"
