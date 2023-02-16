@@ -1,13 +1,19 @@
 interface Trip {
   km: string;
   description: string;
-  name: string;
+  names: string[];
 }
 
 const trips: Trip[] = [
-  { km: "14", description: "Gym", name: "Lory" },
-  { km: "25", description: "Airport", name: "David" },
+  { km: "14", description: "Gym", names: ["Lory"] },
+  { km: "25", description: "Airport", names: ["David"] },
 ];
+
+const checkEachName = (trip: Trip) => {
+  trip.names.forEach((name) =>
+    cy.get(`[data-testid="checkbox_${name}"]`).click(),
+  );
+};
 
 describe("Adding New Trip", () => {
   beforeEach(() => {
@@ -28,9 +34,11 @@ describe("Adding New Trip", () => {
 
   it("Should add new trip to table", () => {
     const trip = trips[0];
-    cy.get(`[data-testid="checkbox_${trip.name}"]`).click();
+
+    checkEachName(trip);
+
     cy.get(
-      `[data-testid="checkbox_${trip.name}"] > .PrivateSwitchBase-input`,
+      `[data-testid="checkbox_${trip.names[0]}"] > .PrivateSwitchBase-input`,
     ).should("be.checked");
 
     cy.get('[data-testid="totalKM"]').type(trip.km);
@@ -42,7 +50,30 @@ describe("Adding New Trip", () => {
       trip.km,
     );
     cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-      trip.name,
+      trip.names[0],
+    );
+    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
+      trip.description,
+    );
+  });
+
+  it("Should add new trip with multiple people on trip", () => {
+    const trip = trips[0];
+    checkEachName(trip);
+    cy.get(
+      `[data-testid="checkbox_${trip.names[0]}"] > .PrivateSwitchBase-input`,
+    ).should("be.checked");
+
+    cy.get('[data-testid="totalKM"]').type(trip.km);
+    cy.get('[data-testid="description"]').type(trip.description);
+    cy.get('[data-testid="submit_trip"]').click();
+
+    cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
+    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(
+      trip.km,
+    );
+    cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
+      trip.names[0],
     );
     cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
       trip.description,
@@ -135,7 +166,7 @@ describe("Adding to history", () => {
 
   it("Should add collect all trip logs and gas, and add trip to history", () => {
     trips.map((trip: Trip, index: number) => {
-      cy.get(`[data-testid="checkbox_${trip.name}"]`).click();
+      checkEachName(trip);
       cy.get('[data-testid="totalKM"]').type(trip.km);
       cy.get('[data-testid="description"]').type(trip.description);
       cy.get('[data-testid="submit_trip"]').click();
@@ -144,7 +175,7 @@ describe("Adding to history", () => {
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(2)`,
       ).contains(trip.km);
       cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-        trip.name,
+        trip.names[0],
       );
       cy.get(
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(4)`,
