@@ -1,8 +1,9 @@
 interface Props {
   onInputChange: (e: React.FormEvent) => void;
-  val: number;
+  val: number | string;
   error: boolean;
   label: string;
+  name: string;
 }
 
 const InputContainer: React.FC<Props> = ({
@@ -10,19 +11,19 @@ const InputContainer: React.FC<Props> = ({
   val,
   error,
   label,
+  name,
 }) => {
   return (
     <div className="newTrip__input__container">
       <label>{label}:</label>
       <input
-        placeholder="Enter Total KM's travelled"
         type="input"
         value={val}
-        data-testid="trip_km"
-        name="totalKM"
+        data-testid={name}
+        name={name}
         onChange={(e: React.FormEvent) => onInputChange(e)}
       />
-      {error && <span className="error">Must have KMs</span>}
+      {error && <span className="error">Must have {label}</span>}
     </div>
   );
 };
