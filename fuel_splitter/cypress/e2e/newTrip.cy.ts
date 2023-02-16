@@ -11,7 +11,7 @@ const trips: Trip[] = [
     description: "Gym",
     names: ["Lory", "Brendan", "Parco", "David"],
   },
-  { km: "25", description: "Airport", names: ["David", "Lory"] },
+  { km: "9", description: "Physio", names: ["David", "Lory"] },
 ];
 
 const checkEachName = (trip: Trip) => {
@@ -66,7 +66,7 @@ describe("Adding New Trip", () => {
   });
 
   it("Should add new trip with multiple people on trip", () => {
-    trips.forEach((trip, index) => {
+    trips.forEach((trip: Trip, index: number) => {
       checkEachName(trip);
       cy.get('[data-testid="totalKM"]').type(trip.km);
       cy.get('[data-testid="description"]').type(trip.description);
@@ -75,28 +75,16 @@ describe("Adding New Trip", () => {
       cy.get(
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(2)`,
       ).contains(trip.km);
-      cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-        trip.names[index],
+
+      trip.names.forEach((name) =>
+        cy
+          .get(`.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(3)`)
+          .contains(name),
       );
       cy.get(
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(4)`,
       ).contains(trip.description);
     });
-
-    // cy.get(
-    //   `[data-testid="checkbox_${trip.names[0]}"] > .PrivateSwitchBase-input`,
-    // ).should("be.checked");
-
-    // cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
-    // cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(
-    //   trip.km,
-    // );
-    // cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-    //   trip.names[0],
-    // );
-    // cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
-    //   trip.description,
-    // );
   });
 });
 
@@ -184,7 +172,7 @@ describe("Adding to history", () => {
   });
 
   it("Should add collect all trip logs and gas, and add trip to history", () => {
-    trips.map((trip: Trip, index: number) => {
+    trips.forEach((trip: Trip, index: number) => {
       checkEachName(trip);
       cy.get('[data-testid="totalKM"]').type(trip.km);
       cy.get('[data-testid="description"]').type(trip.description);
@@ -193,8 +181,11 @@ describe("Adding to history", () => {
       cy.get(
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(2)`,
       ).contains(trip.km);
-      cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-        trip.names[0],
+
+      trip.names.forEach((name: string) =>
+        cy
+          .get(`.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(3)`)
+          .contains(name),
       );
       cy.get(
         `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(4)`,
