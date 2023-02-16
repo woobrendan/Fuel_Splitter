@@ -8,29 +8,20 @@ describe("Adding New Trip", () => {
   });
 
   it("Should start with a table without rows, have a container to add new trip without checks", () => {
-    cy.get(".css-1ygcj2i-MuiTableCell-root");
     cy.get(
       ".MuiTableBody-root > .MuiTableRow-root > th.MuiTableCell-root",
     ).should("not.exist");
-    cy.get(".newTrip__container");
-    cy.get(
-      ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
-    ).should("not.be.checked");
-    cy.get(
-      ":nth-child(2) > .MuiButtonBase-root > .PrivateSwitchBase-input",
-    ).should("not.be.checked");
-    cy.get(
-      ":nth-child(3) > .MuiButtonBase-root > .PrivateSwitchBase-input",
-    ).should("not.be.checked");
-    cy.get(
-      ":nth-child(4) > .MuiButtonBase-root > .PrivateSwitchBase-input",
-    ).should("not.be.checked");
+    cy.get(".newTrip__container").should("exist");
+    cy.get('[data-testid="checkbox_Brendan"]').should("not.be.checked");
+    cy.get('[data-testid="checkbox_David"]').should("not.be.checked");
+    cy.get('[data-testid="checkbox_Lory"]').should("not.be.checked");
+    cy.get('[data-testid="checkbox_Parco"]').should("not.be.checked");
   });
 
   it("Should add new trip to table", () => {
-    cy.get(".MuiFormGroup-root > :nth-child(1)").click();
+    cy.get('[data-testid="checkbox_Brendan"]').click();
     cy.get(
-      ":nth-child(1) > .MuiButtonBase-root > .PrivateSwitchBase-input",
+      '[data-testid="checkbox_Brendan"] > .PrivateSwitchBase-input',
     ).should("be.checked");
 
     cy.get('[data-testid="totalKM"]').type(km);
