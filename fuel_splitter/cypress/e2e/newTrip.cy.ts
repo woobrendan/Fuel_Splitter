@@ -5,14 +5,22 @@ interface Trip {
 }
 
 const trips: Trip[] = [
-  { km: "14", description: "Gym", names: ["Lory"] },
   { km: "25", description: "Airport", names: ["David"] },
+  {
+    km: "14",
+    description: "Gym",
+    names: ["Lory", "Brendan", "Parco", "David"],
+  },
+  { km: "25", description: "Airport", names: ["David", "Lory"] },
 ];
 
 const checkEachName = (trip: Trip) => {
-  trip.names.forEach((name) =>
+  trip.names.forEach((name) => {
     cy.get(`[data-testid="checkbox_${name}"]`).click(),
-  );
+      cy
+        .get(`[data-testid="checkbox_${name}"] > .PrivateSwitchBase-input`)
+        .should("be.checked");
+  });
 };
 
 describe("Adding New Trip", () => {
@@ -58,26 +66,37 @@ describe("Adding New Trip", () => {
   });
 
   it("Should add new trip with multiple people on trip", () => {
-    const trip = trips[0];
-    checkEachName(trip);
-    cy.get(
-      `[data-testid="checkbox_${trip.names[0]}"] > .PrivateSwitchBase-input`,
-    ).should("be.checked");
+    trips.forEach((trip, index) => {
+      checkEachName(trip);
+      cy.get('[data-testid="totalKM"]').type(trip.km);
+      cy.get('[data-testid="description"]').type(trip.description);
+      cy.get('[data-testid="submit_trip"]').click();
 
-    cy.get('[data-testid="totalKM"]').type(trip.km);
-    cy.get('[data-testid="description"]').type(trip.description);
-    cy.get('[data-testid="submit_trip"]').click();
+      cy.get(
+        `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(2)`,
+      ).contains(trip.km);
+      cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
+        trip.names[index],
+      );
+      cy.get(
+        `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(4)`,
+      ).contains(trip.description);
+    });
 
-    cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
-    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(
-      trip.km,
-    );
-    cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
-      trip.names[0],
-    );
-    cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
-      trip.description,
-    );
+    // cy.get(
+    //   `[data-testid="checkbox_${trip.names[0]}"] > .PrivateSwitchBase-input`,
+    // ).should("be.checked");
+
+    // cy.get(".MuiTableBody-root > .MuiTableRow-root").should("exist");
+    // cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(2)").contains(
+    //   trip.km,
+    // );
+    // cy.get(".MuiTableBody-root > .MuiTableRow-root > :nth-child(3)").contains(
+    //   trip.names[0],
+    // );
+    // cy.get(".MuiTableBody-root > :nth-child(1) > :nth-child(4)").contains(
+    //   trip.description,
+    // );
   });
 });
 
