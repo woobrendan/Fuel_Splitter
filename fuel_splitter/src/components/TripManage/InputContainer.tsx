@@ -4,6 +4,8 @@ interface Props {
   error: boolean;
   label: string;
   name: string;
+  type: string;
+  comp: string;
 }
 
 const InputContainer: React.FC<Props> = ({
@@ -12,12 +14,14 @@ const InputContainer: React.FC<Props> = ({
   error,
   label,
   name,
+  type,
+  comp,
 }) => {
   return (
-    <div className="newTrip__input__container">
+    <div className={`input__container_${comp}`}>
       <label>{label}:</label>
       <input
-        type="input"
+        type={type}
         value={val}
         data-testid={name}
         name={name}
