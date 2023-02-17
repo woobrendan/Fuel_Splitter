@@ -78,7 +78,6 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           <label>Cost per Litre:</label>
           <input
             type="number"
-            placeholder="Enter Cost Per Litre"
             value={gasBill.costPerL}
             name="costPerL"
             data-cy="cost_per_L"
@@ -100,7 +99,6 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
             type="number"
             // step="0.01"
             name="gasCost"
-            placeholder="Enter Gas Paid"
             value={gasBill.gasCost}
             data-cy="total_cost"
             onChange={(e: React.FormEvent) => {
