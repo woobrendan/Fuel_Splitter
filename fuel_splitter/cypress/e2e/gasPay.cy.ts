@@ -1,5 +1,6 @@
 const costPerL = "1.72";
 const totalGas = "72.89 ";
+import { Trip, trips, checkEachName } from "../helpers/model_functions";
 
 describe("Final Gas Totals", () => {
   beforeEach(() => {
@@ -11,6 +12,24 @@ describe("Final Gas Totals", () => {
     cy.get('[data-cy="submit_all"]').click();
 
     cy.get('[data-cy="no_trips"]').should("exist");
+    cy.get('[data-cy="gas_paid_error"]').should("exist");
+    cy.get('[data-cy="cost_L_error"]').should("exist");
+  });
+
+  it("Should only have two input errors when trips are added", () => {
+    const trip = trips[0];
+
+    checkEachName(trip);
+
+    cy.get(
+      `[data-testid="checkbox_${trip.names[0]}"] > .PrivateSwitchBase-input`,
+    ).should("be.checked");
+
+    cy.get('[data-testid="totalKM"]').type(trip.km);
+    cy.get('[data-testid="description"]').type(trip.description);
+    cy.get('[data-testid="submit_trip"]').click();
+    cy.get('[data-cy="submit_all"]').click();
+
     cy.get('[data-cy="gas_paid_error"]').should("exist");
     cy.get('[data-cy="cost_L_error"]').should("exist");
   });
