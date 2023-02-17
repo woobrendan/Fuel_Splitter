@@ -163,6 +163,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           onInputChange={onInputChange}
           label="Total KM"
           name="totalKM"
+          type="input"
+          comp="newTrip"
         />
         <InputContainer
           val={tripInfo.description}
@@ -170,6 +172,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
           onInputChange={onInputChange}
           label="Trip Description"
           name="description"
+          type="input"
+          comp="newTrip"
         />
       </section>
       <Button
