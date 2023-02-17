@@ -1,3 +1,5 @@
+import history from "../seeds/history";
+
 interface Trip {
   km: string;
   description: string;
@@ -168,6 +170,7 @@ describe("Error Handling", () => {
 describe("Adding to history", () => {
   beforeEach(() => {
     cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.request("DELETE", "http://localhost:1212/history/delete/all");
     cy.visit("http://localhost:3000/");
   });
 
@@ -202,5 +205,11 @@ describe("Adding to history", () => {
     cy.url().should("eq", "http://localhost:3000/history");
     cy.get('[data-testid="total_price"]').contains(Number(totalGas));
     cy.get('[data-testid="cost_L"]').contains(Number(costPerL));
+  });
+
+  after(() => {
+    history.forEach((trip) => {
+      cy.request("POST", "http://localhost:1212/history/new", trip);
+    });
   });
 });
