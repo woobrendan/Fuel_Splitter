@@ -12,8 +12,8 @@ describe("Final Gas Totals", () => {
     cy.get('[data-cy="submit_all"]').click();
 
     cy.get('[data-cy="no_trips"]').should("exist");
-    cy.get('[data-cy="gas_paid_error"]').should("exist");
-    cy.get('[data-cy="cost_L_error"]').should("exist");
+    cy.get('[data-cy="gasCost_error"]').should("exist");
+    cy.get('[data-cy="costPerL_error"]').should("exist");
   });
 
   it("Should only have two input errors when trips are added", () => {
@@ -30,25 +30,25 @@ describe("Final Gas Totals", () => {
     cy.get('[data-testid="submit_trip"]').click();
     cy.get('[data-cy="submit_all"]').click();
 
-    cy.get('[data-cy="gas_paid_error"]').should("exist");
-    cy.get('[data-cy="cost_L_error"]').should("exist");
+    cy.get('[data-cy="gasCost_error"]').should("exist");
+    cy.get('[data-cy="costPerL_error"]').should("exist");
   });
 
   it("Should only show appropriate errors after being partially fixed", () => {
     cy.get('[data-cy="submit_all"]').click();
-    cy.get('[data-cy="cost_per_L"]').clear().type(costPerL);
+    cy.get('[data-testid="costPerL"]').clear().type(costPerL);
     cy.get('[data-cy="submit_all"]').click();
 
-    cy.get('[data-cy="gas_paid_error"]').should("exist");
-    cy.get('[data-cy="cost_L_error"]').should("not.exist");
+    cy.get('[data-cy="gasCost_error"]').should("exist");
+    cy.get('[data-cy="costPerL_error"]').should("not.exist");
     cy.get('[data-cy="no_trips"]').should("exist");
 
-    cy.get('[data-cy="cost_per_L"]').clear();
-    cy.get('[data-cy="total_cost"]').clear().type(totalGas);
+    cy.get('[data-testid="costPerL"]').clear();
+    cy.get('[data-testid="gasCost"]').clear().type(totalGas);
     cy.get('[data-cy="submit_all"]').click();
 
-    cy.get('[data-cy="gas_paid_error"]').should("not.exist");
-    cy.get('[data-cy="cost_L_error"]').should("exist");
+    cy.get('[data-cy="gasCost_error"]').should("not.exist");
+    cy.get('[data-cy="costPerL_error"]').should("exist");
     cy.get('[data-cy="no_trips"]').should("exist");
   });
 });
