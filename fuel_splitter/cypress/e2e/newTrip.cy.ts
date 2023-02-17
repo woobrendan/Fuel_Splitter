@@ -200,5 +200,7 @@ describe("Adding to history", () => {
     cy.get('[data-cy="submit_all"]').click();
 
     cy.url().should("eq", "http://localhost:3000/history");
+    cy.get('[data-testid="total_price"]').contains(Number(totalGas));
+    cy.get('[data-testid="cost_L"]').contains(Number(costPerL));
   });
 });
