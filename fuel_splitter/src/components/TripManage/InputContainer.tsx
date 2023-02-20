@@ -27,7 +27,11 @@ const InputContainer: React.FC<Props> = ({
         name={name}
         onChange={(e: React.FormEvent) => onInputChange(e)}
       />
-      {error && <span className="error">Must have {label}</span>}
+      {error && (
+        <span className="error" data-cy={`${name}_error`}>
+          Must have {label}
+        </span>
+      )}
     </div>
   );
 };
