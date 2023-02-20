@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import SingleTripInfo from "./components/SingleTripInfo";
+import SingleTripInfo from "./components/TripManage/SingleTripInfo";
 import GasHistory from "./components/History/GasHistory";
 import "./Styles/app.scss";
 import NavBar from "./components/NavBar";
