@@ -174,8 +174,8 @@ describe("Adding to history", () => {
       ).contains(trip.description);
     });
 
-    cy.get('[data-cy="cost_per_L"]').clear().type(costPerL);
-    cy.get('[data-cy="total_cost"]').clear().type(totalGas);
+    cy.get('[data-testid="costPerL"]').clear().type(costPerL);
+    cy.get('[data-testid="gasCost"]').clear().type(totalGas);
     cy.get('[data-cy="submit_all"]').click();
 
     cy.url().should("eq", "http://localhost:3000/history");
