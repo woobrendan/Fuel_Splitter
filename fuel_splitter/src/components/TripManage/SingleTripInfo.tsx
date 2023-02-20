@@ -1,6 +1,6 @@
 import NewTrip from "./New_trip/NewTrip";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import "../Styles/tripinfo.scss";
+import "../../Styles/tripinfo.scss";
 import { TripInfo, GasBill, FuelBill } from "../../model";
 import { fuelBillActions } from "../../store/GasTripSlice";
 import TravelList from "../Travel_Log/TravelList";
