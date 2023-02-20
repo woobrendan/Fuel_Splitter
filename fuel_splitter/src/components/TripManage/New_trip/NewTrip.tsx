@@ -137,10 +137,6 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     { name: "Parco", value: tripInfo.isParcoIn },
   ];
 
-  const mappedCheckbox = names.map((name: NameVal) => (
-    <TripCheckbox nameVal={name} onCheck={onCheck} />
-  ));
-
   return (
     <form
       className="newTrip__container"
@@ -152,7 +148,11 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       <DatePicker getDate={getDate} />
 
       <h2>Trip Participants</h2>
-      <FormGroup className="newTrip__checkboxes">{mappedCheckbox}</FormGroup>
+      <FormGroup className="newTrip__checkboxes">
+        {names.map((name: NameVal) => (
+          <TripCheckbox nameVal={name} onCheck={onCheck} />
+        ))}
+      </FormGroup>
       {error.hasCheck && (
         <span className="error">At least one box must be checked</span>
       )}
