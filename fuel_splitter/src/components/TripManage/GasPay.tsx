@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { GasBill } from "../../model";
 import { useAppSelector } from "../../store/hooks";
+import InputContainer from "./InputContainer";
 
 interface Prop {
   finalSubmit: (gasBill: GasBill) => void;
@@ -74,45 +75,24 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
         className="single_trip__submitAll__form"
         onSubmit={(e) => handleFinalSubmit(e, gasBill)}
       >
-        <div className="single_trip__submitAll__input">
-          <label>Cost per Litre:</label>
-          <input
-            type="number"
-            value={gasBill.costPerL}
-            name="costPerL"
-            data-cy="cost_per_L"
-            onChange={(e: React.FormEvent) => {
-              const target = e.target as HTMLTextAreaElement;
-              setGasBill((prev) => ({
-                ...prev,
-                costPerL: Number(target.value),
-              }));
-            }}
-          />
-          {costPerLError && (
-            <span data-cy="cost_L_error">Section must be complete</span>
-          )}
-        </div>
-        <div className="single_trip__submitAll__input">
-          <label>Total Gas Paid:</label>
-          <input
-            type="number"
-            // step="0.01"
-            name="gasCost"
-            value={gasBill.gasCost}
-            data-cy="total_cost"
-            onChange={(e: React.FormEvent) => {
-              const target = e.target as HTMLTextAreaElement;
-              setGasBill((prev) => ({
-                ...prev,
-                gasCost: Number(target.value),
-              }));
-            }}
-          />
-          {gasCostError && (
-            <span data-cy="gas_paid_error">Section must be complete</span>
-          )}
-        </div>
+        <InputContainer
+          val={gasBill.costPerL}
+          error={costPerLError}
+          onInputChange={onInputChange}
+          label="Cost Per L"
+          name="costPerL"
+          type="number"
+          comp="gasPay"
+        />
+        <InputContainer
+          val={gasBill.gasCost}
+          error={gasCostError}
+          onInputChange={onInputChange}
+          label="Total Gas Paid"
+          name="gasCost"
+          type="number"
+          comp="gasPay"
+        />
         <Button
           variant="contained"
           type="submit"
