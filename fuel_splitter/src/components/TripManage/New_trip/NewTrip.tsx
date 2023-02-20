@@ -2,7 +2,7 @@ import { FormGroup, Button } from "@mui/material";
 import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
 import { NameVal, TripInfo } from "../../../model";
-import DatePicker from "../../DatePicker";
+import DatePicker from "../DatePicker";
 import InputContainer from "../InputContainer";
 
 interface Props {
