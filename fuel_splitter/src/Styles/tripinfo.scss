@@ -34,7 +34,7 @@
         font-size: 12px;
       }
 
-      .single_trip__submitAll__input {
+      .input__container_gasPay {
         display: flex;
         flex-direction: column;
       }
@@ -90,7 +90,7 @@
     margin: 5%;
     justify-content: space-around;
 
-    .newTrip__input__container {
+    .input__container_newTrip {
       display: flex;
       flex-direction: column;
 
