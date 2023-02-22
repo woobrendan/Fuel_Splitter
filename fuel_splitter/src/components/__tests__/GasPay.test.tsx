@@ -3,6 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import { GasBill, FuelBill } from "../../model";
 import { Provider } from "react-redux";
+// import { createStore } from "../../store/store";
 import store from "../../store/store";
 
 // const render = (component: React.FC) =>
@@ -55,19 +56,17 @@ const testSubmit = (gasBill: GasBill) => {
   // navigate("/history");
 };
 
-describe(GasPay, () => {
-  // it("renders without crashing", () => {
-  //   render(<GasPay finalSubmit={testSubmit} />);
-  //   expect(getByText("Cost Per L:")).toBeInTheDocument;
-  // });
+const comp = (
+  <Provider store={store}>
+    <GasPay finalSubmit={testSubmit} />
+  </Provider>
+);
 
+describe(GasPay, () => {
   it("can click submit all button", () => {
+    //need to fill other inputs?
     const handleClick = jest.fn();
-    const { getByTestId } = render(
-      <Provider store={store}>
-        <GasPay finalSubmit={testSubmit} />
-      </Provider>,
-    );
+    const { getByTestId } = render(comp);
 
     const button = getByTestId("submit_all");
 
@@ -77,14 +76,11 @@ describe(GasPay, () => {
   });
 
   it("Submit button to have text 'submit all'", () => {
-    const { getByTestId } = render(
-      <Provider store={store}>
-        <GasPay finalSubmit={testSubmit} />
-      </Provider>,
-    );
+    const { getByTestId } = render(comp);
 
     const button = getByTestId("submit_all");
     // expect(button).toHaveTextContent("Submit All");
     expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent("Submit All");
   });
 });
