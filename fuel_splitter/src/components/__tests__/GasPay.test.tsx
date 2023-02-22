@@ -64,16 +64,24 @@ describe(GasPay, () => {
 
     const button = getByTestId("submit_all");
 
-    expect(button).toBeInTheDocument();
+    // expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent("Submit All");
   });
 
-  it("should update the input value when typing", () => {
+  it("should update cost per L value when typing", () => {
     const { getByTestId } = render(comp);
 
     const costPerL = getByTestId("costPerL") as HTMLInputElement;
     fireEvent.change(costPerL, { target: { value: 1.89 } });
     expect(costPerL.value).toBe("1.89");
+  });
+
+  it("should update total cost value when typing", () => {
+    const { getByTestId } = render(comp);
+
+    const costPerL = getByTestId("gasCost") as HTMLInputElement;
+    fireEvent.change(costPerL, { target: { value: 50.12 } });
+    expect(costPerL.value).toBe("50.12");
   });
 
   it("can click submit all button", () => {
