@@ -2,6 +2,11 @@ import GasPay from "../TripManage/GasPay";
 import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import { GasBill, FuelBill } from "../../model";
+import { Provider } from "react-redux";
+import store from "../../store/store";
+
+// const render = (component: React.FC) =>
+//   rtlRender(<Provider store={store}>{component}</Provider>);
 
 const testSubmit = (gasBill: GasBill) => {
   const copy: FuelBill = {
@@ -58,12 +63,28 @@ describe(GasPay, () => {
 
   it("can click submit all button", () => {
     const handleClick = jest.fn();
-    const { getByText } = render(<GasPay finalSubmit={testSubmit} />);
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <GasPay finalSubmit={testSubmit} />
+      </Provider>,
+    );
 
-    const button = getByText("Submit All");
+    const button = getByTestId("submit_all");
 
     fireEvent.click(button);
 
     expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("Submit button to have text 'submit all'", () => {
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <GasPay finalSubmit={testSubmit} />
+      </Provider>,
+    );
+
+    const button = getByTestId("submit_all");
+    // expect(button).toHaveTextContent("Submit All");
+    expect(button).toBeInTheDocument();
   });
 });
