@@ -1,5 +1,5 @@
 import GasPay from "../TripManage/GasPay";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import { GasBill, FuelBill } from "../../model";
 import { Provider } from "react-redux";
@@ -59,6 +59,23 @@ const comp = (
 );
 
 describe(GasPay, () => {
+  it("Submit button to have text 'submit all'", () => {
+    const { getByTestId } = render(comp);
+
+    const button = getByTestId("submit_all");
+
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent("Submit All");
+  });
+
+  it("should update the input value when typing", () => {
+    const { getByTestId } = render(comp);
+
+    const costPerL = getByTestId("costPerL") as HTMLInputElement;
+    fireEvent.change(costPerL, { target: { value: 1.89 } });
+    expect(costPerL.value).toBe("1.89");
+  });
+
   it("can click submit all button", () => {
     //need to fill other inputs?
     const handleClick = jest.fn();
@@ -69,14 +86,5 @@ describe(GasPay, () => {
     fireEvent.click(button);
 
     expect(handleClick).toHaveBeenCalledTimes(1);
-  });
-
-  it("Submit button to have text 'submit all'", () => {
-    const { getByTestId } = render(comp);
-
-    const button = getByTestId("submit_all");
-    // expect(button).toHaveTextContent("Submit All");
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent("Submit All");
   });
 });
