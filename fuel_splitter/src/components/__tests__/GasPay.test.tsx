@@ -3,11 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import { GasBill, FuelBill } from "../../model";
 import { Provider } from "react-redux";
-// import { createStore } from "../../store/store";
-import store from "../../store/store";
-
-// const render = (component: React.FC) =>
-//   rtlRender(<Provider store={store}>{component}</Provider>);
+import { createStore } from "../../store/store";
 
 const testSubmit = (gasBill: GasBill) => {
   const copy: FuelBill = {
@@ -57,7 +53,7 @@ const testSubmit = (gasBill: GasBill) => {
 };
 
 const comp = (
-  <Provider store={store}>
+  <Provider store={createStore()}>
     <GasPay finalSubmit={testSubmit} />
   </Provider>
 );
