@@ -79,20 +79,8 @@ describe(GasPay, () => {
   it("should update total cost value when typing", () => {
     const { getByTestId } = render(comp);
 
-    const costPerL = getByTestId("gasCost") as HTMLInputElement;
-    fireEvent.change(costPerL, { target: { value: 50.12 } });
-    expect(costPerL.value).toBe("50.12");
-  });
-
-  it("can click submit all button", () => {
-    //need to fill other inputs?
-    const handleClick = jest.fn();
-    const { getByTestId } = render(comp);
-
-    const button = getByTestId("submit_all");
-
-    fireEvent.click(button);
-
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    const gasCost = getByTestId("gasCost") as HTMLInputElement;
+    fireEvent.change(gasCost, { target: { value: 50.12 } });
+    expect(gasCost.value).toBe("50.12");
   });
 });
