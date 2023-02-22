@@ -176,7 +176,7 @@ describe("Adding to history", () => {
 
     cy.get('[data-testid="costPerL"]').clear().type(costPerL);
     cy.get('[data-testid="gasCost"]').clear().type(totalGas);
-    cy.get('[data-cy="submit_all"]').click();
+    cy.get('[data-testid="submit_all"]').click();
 
     cy.url().should("eq", "http://localhost:3000/history");
     cy.get('[data-testid="total_price"]').contains(Number(totalGas));
