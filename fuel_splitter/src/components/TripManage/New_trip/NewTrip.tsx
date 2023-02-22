@@ -149,8 +149,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
 
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
-        {names.map((name: NameVal) => (
-          <TripCheckbox nameVal={name} onCheck={onCheck} />
+        {names.map((name: NameVal, index: number) => (
+          <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
         ))}
       </FormGroup>
       {error.hasCheck && (
