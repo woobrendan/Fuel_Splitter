@@ -97,7 +97,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
           variant="contained"
           type="submit"
           className="submit_button"
-          data-cy="submit_all"
+          data-testid="submit_all"
         >
           Submit All
         </Button>
