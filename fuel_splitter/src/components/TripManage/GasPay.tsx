@@ -71,10 +71,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
   return (
     <div className="single_trip__submitAll">
       {hasTrips && <span data-cy="no_trips">Must have at least one Trip</span>}
-      <form
-        className="single_trip__submitAll__form"
-        onSubmit={(e) => handleFinalSubmit(e, gasBill)}
-      >
+      <form className="single_trip__submitAll__form">
         <InputContainer
           val={gasBill.costPerL}
           error={costPerLError}
@@ -95,7 +92,7 @@ const GasPay: React.FC<Prop> = ({ finalSubmit }) => {
         />
         <Button
           variant="contained"
-          type="submit"
+          onClick={(e) => handleFinalSubmit(e, gasBill)}
           className="submit_button"
           data-testid="submit_all"
         >
