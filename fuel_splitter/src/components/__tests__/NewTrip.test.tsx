@@ -7,11 +7,14 @@ import { createStore } from "../../store/store";
 import { Trip, trips, checkEachName } from "./model_functions";
 import { getToday } from "../../helperFunc";
 
-// const comp = (
-//   <Provider store={createStore()}>
-//     <NewTrip handleAdd={handleAdd} />
-//   </Provider>
-// );
+const newTrip = () => {
+  const handleAdd = jest.fn();
+  return (
+    <Provider store={createStore()}>
+      <NewTrip handleAdd={handleAdd} />
+    </Provider>
+  );
+};
 
 describe(NewTrip, () => {
   //** CheckBoxes */
@@ -90,11 +93,7 @@ describe(NewTrip, () => {
   it("Should start with total KM at 0 and no description", () => {
     const handleAdd = jest.fn();
 
-    const { getByTestId } = render(
-      <Provider store={createStore()}>
-        <NewTrip handleAdd={handleAdd} />
-      </Provider>,
-    );
+    const { getByTestId } = render(newTrip());
 
     const totalKM = getByTestId("totalKM");
     const tripDescription = getByTestId("description");
