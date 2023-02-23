@@ -1,7 +1,23 @@
 import SingleTripInfo from "../TripManage/SingleTripInfo";
-import { render, fireEvent, screen } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  screen,
+  Matcher,
+  MatcherOptions,
+} from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createStore } from "../../store/store";
+import { Trip } from "./model_functions";
+
+const checkEachName = (
+  trip: Trip,
+  getter: (id: Matcher, options?: MatcherOptions | undefined) => HTMLElement,
+) => {
+  trip.names.forEach((name) => {
+    fireEvent.click(getter(`checkbox_${name}`));
+  });
+};
 
 describe(SingleTripInfo, () => {
   it("can click submit all button", () => {
