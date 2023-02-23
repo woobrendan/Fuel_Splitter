@@ -1,10 +1,11 @@
 import NewTrip from "../TripManage/New_trip/NewTrip";
 import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
+import DatePicker from "../TripManage/DatePicker";
 import { render, fireEvent, screen } from "@testing-library/react";
-import { GasBill, FuelBill } from "../../model";
 import { Provider } from "react-redux";
 import { createStore } from "../../store/store";
 import { Trip, trips, checkEachName } from "./model_functions";
+import { getToday } from "../../helperFunc";
 
 // const comp = (
 //   <Provider store={createStore()}>
@@ -27,7 +28,6 @@ describe(NewTrip, () => {
   });
 
   it("Should be able to toggle all check boxes", () => {
-    const name = { name: "Brendan", value: false };
     const handleAdd = jest.fn();
 
     trips[1].names.forEach((name) => {
@@ -57,5 +57,15 @@ describe(NewTrip, () => {
 
     expect(handleClick).toHaveBeenCalledTimes(1);
     expect(getByTestId("checkbox_Brendan")).toHaveClass("Mui-checked");
+  });
+
+  it("Should start with todays date", () => {
+    const today = getToday();
+    const handleChange = jest.fn();
+
+    const { getByTestId } = render(<DatePicker getDate={handleChange} />);
+    const datePicker = getByTestId("date_picker").querySelector("input");
+    console.log("datepicker", datePicker);
+    expect(datePicker).toHaveValue(today);
   });
 });
