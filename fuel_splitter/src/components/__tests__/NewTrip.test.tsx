@@ -14,6 +14,7 @@ import { getToday } from "../../helperFunc";
 // );
 
 describe(NewTrip, () => {
+  //** CheckBoxes */
   it("Should toggle checkbox", () => {
     const handleClick = jest.fn();
     const name = { name: "Brendan", value: false };
@@ -59,6 +60,8 @@ describe(NewTrip, () => {
     expect(getByTestId("checkbox_Brendan")).toHaveClass("Mui-checked");
   });
 
+  //** Date Picker */
+
   it("Should start with todays date", () => {
     const today = getToday();
     const handleChange = jest.fn();
@@ -81,5 +84,22 @@ describe(NewTrip, () => {
     fireEvent.change(datePicker, { target: { value: dateVal } });
 
     expect(datePicker).toHaveValue(dateVal);
+  });
+
+  //** New Trip Input */
+  it("Should start with total KM at 0 and no description", () => {
+    const handleAdd = jest.fn();
+
+    const { getByTestId } = render(
+      <Provider store={createStore()}>
+        <NewTrip handleAdd={handleAdd} />
+      </Provider>,
+    );
+
+    const totalKM = getByTestId("totalKM");
+    const tripDescription = getByTestId("description");
+
+    expect(totalKM).toHaveValue("0");
+    expect(tripDescription).toHaveValue("");
   });
 });
