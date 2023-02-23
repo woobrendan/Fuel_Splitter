@@ -25,4 +25,24 @@ describe(NewTrip, () => {
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  it("Should be able to toggle all check boxes", () => {});
+
+  it("Should be able to uncheckboxes", () => {});
+
+  it("Should check box and have truthy value", async () => {
+    const handleClick = jest.fn();
+    const name = { name: "Brendan", value: false };
+    const { getByTestId } = render(
+      <TripCheckbox nameVal={name} onCheck={handleClick} />,
+    );
+
+    const checkbox = getByTestId("checkbox_Brendan");
+    // const child = checkbox.querySelector("input");
+
+    fireEvent.click(checkbox);
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(getByTestId("checkbox_Brendan")).toHaveClass("Mui-checked");
+  });
 });
