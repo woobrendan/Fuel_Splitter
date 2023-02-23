@@ -8,16 +8,8 @@ import {
 } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createStore } from "../../store/store";
-import { Trip } from "./model_functions";
-
-const checkEachName = (
-  trip: Trip,
-  getter: (id: Matcher, options?: MatcherOptions | undefined) => HTMLElement,
-) => {
-  trip.names.forEach((name) => {
-    fireEvent.click(getter(`checkbox_${name}`));
-  });
-};
+import { Trip, trips, checkEachName } from "./model_functions";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 describe(SingleTripInfo, () => {
   it("can click submit all button", () => {
@@ -25,21 +17,24 @@ describe(SingleTripInfo, () => {
     const handleClick = jest.fn();
     const { getByTestId } = render(
       <Provider store={createStore()}>
-        <SingleTripInfo />
+        <Router>
+          <SingleTripInfo />
+        </Router>
       </Provider>,
     );
 
     //create new trip then proceed to test buttoin
+    checkEachName(trips[0], getByTestId);
+    fireEvent.click(getByTestId("submit_trip"));
 
-    const button = getByTestId("submit_all");
-
+    //** Add trip data into Gas Pay component */
     const costPerL = getByTestId("costPerL") as HTMLInputElement;
     fireEvent.change(costPerL, { target: { value: 1.89 } });
 
     const gasCost = getByTestId("gasCost") as HTMLInputElement;
     fireEvent.change(gasCost, { target: { value: 50.12 } });
 
-    fireEvent.click(button);
+    fireEvent.click(getByTestId("submit_all"));
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
