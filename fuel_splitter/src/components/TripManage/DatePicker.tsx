@@ -17,12 +17,12 @@ const DatePicker: React.FC<Props> = ({ getDate }) => {
   };
 
   return (
-    <div id="date-picker">
+    <div id="date-picker" data-testid="date_picker">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DesktopDatePicker
             label="Date"
-            inputFormat="yyyy-MM-dd"
+            inputFormat="MM-dd-yyyy"
             value={date}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} />}
