@@ -37,5 +37,6 @@ module.exports = {
   moduleDirectories: ["node_modules", "src"],
   moduleNameMapper: {
     "^src/(.*)$": "<rootDir>/src/$1",
+    "\\.(css|scss)$": "<rootDir>/src/Styles/styleMock.js",
   },
 };
