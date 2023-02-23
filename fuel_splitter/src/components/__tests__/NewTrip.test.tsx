@@ -65,7 +65,21 @@ describe(NewTrip, () => {
 
     const { getByTestId } = render(<DatePicker getDate={handleChange} />);
     const datePicker = getByTestId("date_picker").querySelector("input");
-    console.log("datepicker", datePicker);
+
     expect(datePicker).toHaveValue(today);
+  });
+
+  it("Should start with update date picker with new value", () => {
+    const handleChange = jest.fn();
+    const dateVal = "03-15-2023";
+
+    const { getByTestId } = render(<DatePicker getDate={handleChange} />);
+    const datePicker = getByTestId("date_picker").querySelector(
+      "input",
+    ) as HTMLElement;
+
+    fireEvent.change(datePicker, { target: { value: dateVal } });
+
+    expect(datePicker).toHaveValue(dateVal);
   });
 });
