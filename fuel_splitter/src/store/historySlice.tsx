@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FuelBill } from "../model";
-import { tempHistory } from "../temp";
 
 interface HistoryState {
   history: FuelBill[];
