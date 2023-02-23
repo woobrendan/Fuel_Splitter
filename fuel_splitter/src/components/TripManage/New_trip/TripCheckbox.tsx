@@ -16,6 +16,9 @@ const TripCheckbox: React.FC<Props> = ({ onCheck, nameVal }) => {
           onChange={(e) => onCheck(e)}
           value={name}
           data-testid={`checkbox_${name}`}
+          inputProps={{
+            "aria-label": `checkbox_${name}`,
+          }}
         />
       }
       label={name}
