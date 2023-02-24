@@ -44,16 +44,19 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     }));
   };
 
-  const getErrorState = (val: boolean) => {};
+  const getErrorState = (val: boolean) => {
+    if (val) {
+      setError((prev) => ({
+        ...prev,
+        hasDate: true,
+      }));
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
 
     e.preventDefault();
-
-    // if (tripInfo.date === "Invalid Date") {
-
-    // }
 
     const errorCopy: ErrorHandle = { ...error };
 
@@ -151,7 +154,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       }}
     >
       <h1>Add New Trip Info</h1>
-      <Date_Picker getDate={getDate} />
+      <Date_Picker getDate={getDate} getErrorState={getErrorState} />
 
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
