@@ -4,7 +4,6 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import type { DateValidationError } from "@mui/x-date-pickers/internals/hooks/validation/useDateValidation";
-// import type { DateValidationError } from "@mui/x-date-pickers";
 
 interface Props {
   getDate: (dateVal: Date | null) => void;
@@ -16,11 +15,9 @@ const Date_Picker: React.FC<Props> = ({ getDate, getErrorState }) => {
   const [error, setError] = useState<DateValidationError | null>(null);
   const [errorDate, setErrorDate] = useState<boolean>(false);
 
-  const handleChange = async (newValue: Date | null) => {
-    if (!errorDate) {
-      setDate(newValue);
-      getDate(newValue);
-    }
+  const handleChange = (newValue: Date | null) => {
+    setDate(newValue);
+    getDate(newValue);
   };
 
   return (
