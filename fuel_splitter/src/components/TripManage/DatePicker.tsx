@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Stack, TextField } from "@mui/material";
+import { TextField, Box } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker, DatePickerProps } from "@mui/x-date-pickers/DatePicker";
-import type { DateValidationError } from "@mui/x-date-pickers/internals/hooks/validation/useDateValidation";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import type { DateValidationError } from "@mui/x-date-pickers/internals/hooks/validation/useDateValidation";
+import type { DateValidationError } from '@mui/x-date-pickers';
 
 interface Props {
   getDate: (dateVal: Date | null) => void;
@@ -41,10 +42,11 @@ const Date_Picker: React.FC<Props> = ({ getDate }) => {
     }
   };
 
+
   return (
     <div id="date-picker" data-testid="date_picker">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Stack spacing={3}>
+        <Box>
           <DatePicker
             label="Date"
             inputFormat="MM-dd-yyyy"
@@ -53,12 +55,12 @@ const Date_Picker: React.FC<Props> = ({ getDate }) => {
               textField: {
                 helperText: errorMessage,
               },
-            }}
+            } as DatePickerProps['slotProps'],
             value={date}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} />}
           />
-        </Stack>
+        </Box>
       </LocalizationProvider>
     </div>
   );
