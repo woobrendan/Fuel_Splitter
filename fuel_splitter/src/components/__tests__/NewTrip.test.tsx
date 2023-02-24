@@ -68,8 +68,11 @@ describe(NewTrip, () => {
   it("Should start with todays date", () => {
     const today = getToday();
     const handleChange = jest.fn();
+    const getError = jest.fn();
 
-    const { getByTestId } = render(<DatePicker getDate={handleChange} />);
+    const { getByTestId } = render(
+      <DatePicker getDate={handleChange} getErrorState={getError} />,
+    );
     const datePicker = getByTestId("date_picker").querySelector("input");
 
     expect(datePicker).toHaveValue(today);
@@ -77,9 +80,12 @@ describe(NewTrip, () => {
 
   it("Should start with update date picker with new value", () => {
     const handleChange = jest.fn();
+    const getError = jest.fn();
     const dateVal = "03-15-2023";
 
-    const { getByTestId } = render(<DatePicker getDate={handleChange} />);
+    const { getByTestId } = render(
+      <DatePicker getDate={handleChange} getErrorState={getError} />,
+    );
     const datePicker = getByTestId("date_picker").querySelector(
       "input",
     ) as HTMLElement;
