@@ -8,16 +8,16 @@ import type { DateValidationError } from "@mui/x-date-pickers/internals/hooks/va
 
 interface Props {
   getDate: (dateVal: Date | null) => void;
+  getErrorState: (val: boolean) => void;
 }
 
-const Date_Picker: React.FC<Props> = ({ getDate }) => {
+const Date_Picker: React.FC<Props> = ({ getDate, getErrorState }) => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [error, setError] = useState<DateValidationError | null>(null);
   const [errorDate, setErrorDate] = useState<boolean>(false);
 
   const handleChange = async (newValue: Date | null) => {
-    if (!error) {
-      console.log("we good");
+    if (!errorDate) {
       setDate(newValue);
       getDate(newValue);
     }
