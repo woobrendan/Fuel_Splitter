@@ -34,9 +34,11 @@ const Date_Picker: React.FC<Props> = ({ getDate, getErrorState }) => {
               if (reason) {
                 setError(reason);
                 setErrorDate(true);
+                getErrorState(true);
               } else {
                 setError(null);
                 setErrorDate(false);
+                getErrorState(false);
               }
             }}
             value={date}
