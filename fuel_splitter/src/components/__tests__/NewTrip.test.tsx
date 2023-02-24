@@ -91,8 +91,6 @@ describe(NewTrip, () => {
 
   //** New Trip Input */
   it("Should start with total KM at 0 and no description", () => {
-    const handleAdd = jest.fn();
-
     const { getByTestId } = render(newTrip());
 
     const totalKM = getByTestId("totalKM");
@@ -100,5 +98,20 @@ describe(NewTrip, () => {
 
     expect(totalKM).toHaveValue("0");
     expect(tripDescription).toHaveValue("");
+  });
+
+  it("Should accepts strings in both inputs", () => {
+    const { getByTestId } = render(newTrip());
+    const kmVal = trips[0].km;
+    const description = trips[0].description;
+
+    const totalKM = getByTestId("totalKM");
+    const tripDescription = getByTestId("description");
+
+    fireEvent.change(totalKM, { target: { value: kmVal } });
+    fireEvent.change(tripDescription, { target: { value: description } });
+
+    expect(totalKM).toHaveValue("25");
+    expect(tripDescription).toHaveValue("Airport");
   });
 });
