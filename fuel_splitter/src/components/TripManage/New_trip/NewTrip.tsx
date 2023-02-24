@@ -2,7 +2,7 @@ import { FormGroup, Button } from "@mui/material";
 import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
 import { NameVal, TripInfo } from "../../../model";
-import DatePicker from "../DatePicker";
+import Date_Picker from "../DatePicker";
 import InputContainer from "../InputContainer";
 
 interface Props {
@@ -44,6 +44,10 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
 
     e.preventDefault();
+
+    // if (tripInfo.date === "Invalid Date") {
+
+    // }
 
     const errorCopy: ErrorHandle = { ...error };
 
@@ -145,7 +149,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       }}
     >
       <h1>Add New Trip Info</h1>
-      <DatePicker getDate={getDate} />
+      <Date_Picker getDate={getDate} />
 
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
