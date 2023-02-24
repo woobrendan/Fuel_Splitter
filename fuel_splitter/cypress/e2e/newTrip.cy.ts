@@ -81,12 +81,21 @@ describe("Error Handling", () => {
     ).should("not.exist");
   });
 
-  it.only("Should show invalid date when date is invalid", () => {
+  it("Should show invalid date when date is invalid", () => {
     cy.get("input:first").clear().type("16-15-1002");
 
     cy.get('[data-testid="submit_trip"]').click();
 
     cy.get(".Mui-error").contains("invalidDate");
+  });
+
+  it.only("Should show invalid date, then remove error when fixed", () => {
+    cy.get("input:first").clear().type("16-15-1002");
+    cy.get('[data-testid="submit_trip"]').click();
+    cy.get(".Mui-error").contains("invalidDate");
+
+    cy.get("input:first").clear().type("02-24-2023");
+    cy.get(".Mui-error").should("not.exist");
   });
 
   it("should only have one error if checked", () => {
