@@ -13,7 +13,15 @@ interface ErrorHandle {
   hasCheck: boolean;
   hasDistance: boolean;
   hasDescription: boolean;
+  hasDate: boolean;
 }
+
+const errorInitial = {
+  hasCheck: false,
+  hasDistance: false,
+  hasDescription: false,
+  hasDate: false,
+};
 
 const initialState = {
   isBrendanIn: false,
@@ -27,11 +35,7 @@ const initialState = {
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [tripInfo, setTripInfo] = useState<TripInfo>(initialState);
-  const [error, setError] = useState<ErrorHandle>({
-    hasCheck: false,
-    hasDistance: false,
-    hasDescription: false,
-  });
+  const [error, setError] = useState<ErrorHandle>(errorInitial);
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
@@ -39,6 +43,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       date: dateVal,
     }));
   };
+
+  const getErrorState = (val: boolean) => {};
 
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
@@ -71,11 +77,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       setError(() => ({ ...errorCopy }));
       return;
     } else {
-      setError(() => ({
-        hasCheck: false,
-        hasDistance: false,
-        hasDescription: false,
-      }));
+      setError(() => errorInitial);
       handleAdd(e, trip);
       setTripInfo(() => initialState);
     }
