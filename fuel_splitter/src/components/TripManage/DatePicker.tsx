@@ -11,9 +11,15 @@ interface Props {
 const DatePicker: React.FC<Props> = ({ getDate }) => {
   const [date, setDate] = useState<Date | null>(new Date());
 
-  const handleChange = (newValue: Date | null) => {
-    setDate(newValue);
-    getDate(newValue);
+  const handleChange = async (newValue: Date | null) => {
+    const element = document.querySelectorAll('[aria-invalid="true"]');
+    console.log("element", element);
+
+    if (element.length === 0) {
+      console.log("we good");
+      setDate(newValue);
+      getDate(newValue);
+    }
   };
 
   return (
