@@ -75,7 +75,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     if (
       errorCopy.hasDistance ||
       errorCopy.hasDescription ||
-      errorCopy.hasCheck
+      errorCopy.hasCheck ||
+      errorCopy.hasDate
     ) {
       setError(() => ({ ...errorCopy }));
       return;
