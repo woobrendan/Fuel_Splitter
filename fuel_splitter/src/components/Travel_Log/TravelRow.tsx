@@ -1,5 +1,5 @@
 import { TableRow, TableCell, Button } from "@mui/material";
-import { dateToString } from "../../helperFunc";
+import { dateToString, convertDateToString } from "../../helperFunc";
 import { TripInfo } from "../../model";
 
 interface Props {
@@ -25,16 +25,6 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
     if (isDavidIn) names.push("David");
     if (isParcoIn) names.push("Parco");
     return names;
-  };
-
-  const convertDateToString = (day: any): string => {
-    let newDate: string = "";
-    if (typeof day === "string") {
-      newDate = day.split("T")[0];
-    } else {
-      newDate = day.toISOString().split("T")[0];
-    }
-    return dateToString(newDate);
   };
 
   const getNames = (nameArr: string[]) => {
