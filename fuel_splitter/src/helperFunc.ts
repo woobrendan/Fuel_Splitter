@@ -72,6 +72,19 @@ const convertDateToString = (day: any): string => {
   return dateToString(newDate);
 };
 
+const getNames = (nameArr: string[]) => {
+  let names: string = "";
+  if (nameArr.length === 1) return nameArr[0];
+  for (let i = 0; i < nameArr.length; i++) {
+    if (i === nameArr.length - 1) {
+      names += nameArr[i];
+    } else {
+      names += `${nameArr[i]}, `;
+    }
+  }
+  return names;
+};
+
 export {
   getToday,
   dateToString,
@@ -79,4 +92,5 @@ export {
   addToHistory,
   addTripLog,
   convertDateToString,
+  getNames,
 };
