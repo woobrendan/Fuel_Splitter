@@ -1,4 +1,4 @@
-import { TableRow, TableCell } from "@mui/material";
+import { TableRow, TableCell, Button } from "@mui/material";
 import { dateToString } from "../../helperFunc";
 import { TripInfo } from "../../model";
 
@@ -56,6 +56,9 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
       <TableCell align="right">{totalKM}</TableCell>
       <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
       <TableCell align="right">{description}</TableCell>
+      <TableCell align="right">
+        <Button>Edit</Button>
+      </TableCell>
     </TableRow>
   );
 };
