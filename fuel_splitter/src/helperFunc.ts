@@ -62,4 +62,21 @@ const addTripLog = async (trip: TripInfo) => {
   }
 };
 
-export { getToday, dateToString, resetTripLog, addToHistory, addTripLog };
+const convertDateToString = (day: any): string => {
+  let newDate: string = "";
+  if (typeof day === "string") {
+    newDate = day.split("T")[0];
+  } else {
+    newDate = day.toISOString().split("T")[0];
+  }
+  return dateToString(newDate);
+};
+
+export {
+  getToday,
+  dateToString,
+  resetTripLog,
+  addToHistory,
+  addTripLog,
+  convertDateToString,
+};
