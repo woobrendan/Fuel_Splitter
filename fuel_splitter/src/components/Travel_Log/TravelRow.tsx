@@ -29,24 +29,24 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
     return names;
   };
 
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const cleanTrip: TripDetails = {
+  const [cleanTrip, setCleanTrip] = useState<TripDetails>({
     date: convertDateToString(date),
     totalKM,
     involved: getNames(getNamesInvolved()),
     description,
+  });
+
+  const handleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-        <TableCell>{convertDateToString(date)}</TableCell>
-        <TableCell align="right">{totalKM}</TableCell>
-        <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
-        <TableCell align="right">{description}</TableCell>
+        <TableCell>{cleanTrip.date}</TableCell>
+        <TableCell align="right">{cleanTrip.totalKM}</TableCell>
+        <TableCell align="right">{cleanTrip.involved}</TableCell>
+        <TableCell align="right">{cleanTrip.description}</TableCell>
         <TableCell align="right">
           <Button
             variant="contained"
