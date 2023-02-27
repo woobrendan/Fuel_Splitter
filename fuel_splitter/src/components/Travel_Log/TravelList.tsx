@@ -60,6 +60,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
               <TableCell align="right">Total KM's</TableCell>
               <TableCell align="right">Involved</TableCell>
               <TableCell align="right">Description</TableCell>
+              <TableCell align="right">Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
