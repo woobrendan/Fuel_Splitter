@@ -2,6 +2,7 @@ import { TableRow, TableCell, Button } from "@mui/material";
 import { convertDateToString, getNames } from "../../helperFunc";
 import { TripInfo } from "../../model";
 import { useState } from "react";
+import EditModal from "../Travel_Log/EditModal";
 
 interface Props {
   tripLog: TripInfo;
@@ -28,23 +29,30 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
     return names;
   };
 
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
-    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-      <TableCell>{convertDateToString(date)}</TableCell>
-      <TableCell align="right">{totalKM}</TableCell>
-      <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
-      <TableCell align="right">{description}</TableCell>
-      <TableCell align="right">
-        <Button
-          variant="contained"
-          // onClick={(e) => handleFinalSubmit(e, gasBill)}
-          // className="submit_button"
-          data-testid="edit_trip"
-        >
-          Edit
-        </Button>
-      </TableCell>
-    </TableRow>
+    <>
+      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+        <TableCell>{convertDateToString(date)}</TableCell>
+        <TableCell align="right">{totalKM}</TableCell>
+        <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
+        <TableCell align="right">{description}</TableCell>
+        <TableCell align="right">
+          <Button
+            variant="contained"
+            onClick={() => handleModal()}
+            // className="submit_button"
+            data-testid="edit_trip"
+          >
+            Edit
+          </Button>
+        </TableCell>
+      </TableRow>
+      {showModal && <EditModal show={showModal} handleToggle={handleModal} />}
+    </>
   );
 };
 
