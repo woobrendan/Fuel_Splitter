@@ -1,13 +1,14 @@
 import { TableRow, TableCell, Button } from "@mui/material";
-import { dateToString, convertDateToString, getNames } from "../../helperFunc";
+import { convertDateToString, getNames } from "../../helperFunc";
 import { TripInfo } from "../../model";
+import { useState } from "react";
 
 interface Props {
   tripLog: TripInfo;
-  tripNum: number;
 }
 
-const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
+const TravelRow: React.FC<Props> = ({ tripLog }) => {
+  const [showModal, setShowModal] = useState(false);
   const {
     isBrendanIn,
     isLoryIn,
@@ -34,7 +35,14 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
       <TableCell align="right">{getNames(getNamesInvolved())}</TableCell>
       <TableCell align="right">{description}</TableCell>
       <TableCell align="right">
-        <Button>Edit</Button>
+        <Button
+          variant="contained"
+          // onClick={(e) => handleFinalSubmit(e, gasBill)}
+          // className="submit_button"
+          data-testid="edit_trip"
+        >
+          Edit
+        </Button>
       </TableCell>
     </TableRow>
   );
