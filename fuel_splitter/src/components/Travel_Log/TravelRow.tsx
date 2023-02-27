@@ -1,5 +1,5 @@
 import { TableRow, TableCell, Button } from "@mui/material";
-import { dateToString, convertDateToString } from "../../helperFunc";
+import { dateToString, convertDateToString, getNames } from "../../helperFunc";
 import { TripInfo } from "../../model";
 
 interface Props {
@@ -24,19 +24,6 @@ const TravelRow: React.FC<Props> = ({ tripLog, tripNum }) => {
     if (isLoryIn) names.push("Lory");
     if (isDavidIn) names.push("David");
     if (isParcoIn) names.push("Parco");
-    return names;
-  };
-
-  const getNames = (nameArr: string[]) => {
-    let names: string = "";
-    if (nameArr.length === 1) return nameArr[0];
-    for (let i = 0; i < nameArr.length; i++) {
-      if (i === nameArr.length - 1) {
-        names += nameArr[i];
-      } else {
-        names += `${nameArr[i]}, `;
-      }
-    }
     return names;
   };
 
