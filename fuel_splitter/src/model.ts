@@ -36,3 +36,10 @@ export interface NameVal {
   name: string;
   value: boolean;
 }
+
+export interface TripDetails {
+  date: string;
+  totalKM: number;
+  involved: string;
+  description: string;
+}
