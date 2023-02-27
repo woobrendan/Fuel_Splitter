@@ -1,6 +1,6 @@
 import { TableRow, TableCell, Button } from "@mui/material";
 import { convertDateToString, getNames } from "../../helperFunc";
-import { TripInfo } from "../../model";
+import { TripInfo, TripDetails } from "../../model";
 import { useState } from "react";
 import EditModal from "../Travel_Log/EditModal";
 
@@ -33,6 +33,13 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
     setShowModal(!showModal);
   };
 
+  const cleanTrip: TripDetails = {
+    date: convertDateToString(date),
+    totalKM,
+    involved: getNames(getNamesInvolved()),
+    description,
+  };
+
   return (
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -51,7 +58,13 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
           </Button>
         </TableCell>
       </TableRow>
-      {showModal && <EditModal show={showModal} handleToggle={handleModal} />}
+      {showModal && (
+        <EditModal
+          show={showModal}
+          handleToggle={handleModal}
+          tripDetails={cleanTrip}
+        />
+      )}
     </>
   );
 };
