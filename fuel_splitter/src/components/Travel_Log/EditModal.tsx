@@ -43,13 +43,26 @@ const EditModal: React.FC<Props> = ({
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
-        <div>
+        <div className="modal__input">
+          <label>Total KM:</label>
           <input
-            value={modalTrip.date}
-            name="date"
+            value={modalTrip.totalKM}
+            name="totalKM"
             type="input"
             onChange={(e) => handleOnChange(e)}
           />
+        </div>
+        <div className="modal__input">
+          <label>Involved:</label>
+          <input
+            value={modalTrip.involved}
+            name="involved"
+            type="input"
+            onChange={(e) => handleOnChange(e)}
+          />
+        </div>
+        <div className="modal__input">
+          <label>Description:</label>
           <input
             value={modalTrip.description}
             name="description"
@@ -57,6 +70,7 @@ const EditModal: React.FC<Props> = ({
             onChange={(e) => handleOnChange(e)}
           />
         </div>
+
         <Button variant="contained" color="success" onClick={() => onSubmit()}>
           Update
         </Button>
