@@ -40,6 +40,16 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
     setShowModal(!showModal);
   };
 
+  const handleChange = (e: React.FormEvent) => {
+    const target = e.target as HTMLTextAreaElement;
+    const value =
+      target.name === "totalKM" ? Number(target.value) : target.value;
+    setCleanTrip((prev) => ({
+      ...prev,
+      [target.name]: value,
+    }));
+  };
+
   return (
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -63,6 +73,7 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
           show={showModal}
           handleToggle={handleModal}
           tripDetails={cleanTrip}
+          handleChange={handleChange}
         />
       )}
     </>
