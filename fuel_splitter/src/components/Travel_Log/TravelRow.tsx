@@ -10,45 +10,32 @@ interface Props {
 
 const TravelRow: React.FC<Props> = ({ tripLog }) => {
   const [showModal, setShowModal] = useState(false);
-  const {
-    isBrendanIn,
-    isLoryIn,
-    isDavidIn,
-    isParcoIn,
-    date,
-    totalKM,
-    description,
-  } = tripLog;
+  const [tripLogState, setTripLogState] = useState<TripInfo>({ ...tripLog });
 
-  const getNamesInvolved = () => {
+  const getNamesInvolved = (log: TripInfo) => {
     let names: string[] = [];
-    if (isBrendanIn) names.push("Brendan");
-    if (isLoryIn) names.push("Lory");
-    if (isDavidIn) names.push("David");
-    if (isParcoIn) names.push("Parco");
+    if (log.isBrendanIn) names.push("Brendan");
+    if (log.isLoryIn) names.push("Lory");
+    if (log.isDavidIn) names.push("David");
+    if (log.isParcoIn) names.push("Parco");
     return names;
   };
 
-  const [cleanTrip, setCleanTrip] = useState<TripDetails>({
-    date: convertDateToString(date),
-    totalKM,
-    involved: getNames(getNamesInvolved()),
-    description,
-  });
-
   const handleModal = () => setShowModal(!showModal);
 
-  const updateTrip = (val: TripDetails) => {
-    setCleanTrip(() => val);
+  const updateTrip = (val: TripInfo) => {
+    setTripLogState(() => val);
   };
 
   return (
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-        <TableCell>{cleanTrip.date}</TableCell>
-        <TableCell align="right">{cleanTrip.totalKM}</TableCell>
-        <TableCell align="right">{cleanTrip.involved}</TableCell>
-        <TableCell align="right">{cleanTrip.description}</TableCell>
+        <TableCell>{convertDateToString(tripLogState.date)}</TableCell>
+        <TableCell align="right">{tripLogState.totalKM}</TableCell>
+        <TableCell align="right">
+          {getNames(getNamesInvolved(tripLogState))}
+        </TableCell>
+        <TableCell align="right">{tripLogState.description}</TableCell>
         <TableCell align="right">
           <Button
             variant="contained"
@@ -64,8 +51,9 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
         <EditModal
           show={showModal}
           handleToggle={handleModal}
-          tripDetails={cleanTrip}
+          // tripDetails={cleanTrip}
           updateTrip={updateTrip}
+          tripLog={tripLog}
         />
       )}
     </>
