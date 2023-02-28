@@ -36,18 +36,10 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
     description,
   });
 
-  const handleModal = () => {
-    setShowModal(!showModal);
-  };
+  const handleModal = () => setShowModal(!showModal);
 
-  const handleChange = (e: React.FormEvent) => {
-    const target = e.target as HTMLTextAreaElement;
-    const value =
-      target.name === "totalKM" ? Number(target.value) : target.value;
-    setCleanTrip((prev) => ({
-      ...prev,
-      [target.name]: value,
-    }));
+  const updateTrip = (val: TripDetails) => {
+    setCleanTrip(() => val);
   };
 
   return (
@@ -73,7 +65,7 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
           show={showModal}
           handleToggle={handleModal}
           tripDetails={cleanTrip}
-          handleChange={handleChange}
+          updateTrip={updateTrip}
         />
       )}
     </>
