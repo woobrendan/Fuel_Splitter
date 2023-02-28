@@ -1,28 +1,22 @@
 import { Modal, Box, Button } from "@mui/material";
 import "../../Styles/modal.scss";
-import { TripDetails } from "../../model";
+import { NameVal, TripInfo } from "../../model";
 import { useState } from "react";
 
 interface Props {
   show: boolean;
   handleToggle: () => void;
-  tripDetails: TripDetails;
-  updateTrip: (val: TripDetails) => void;
+  updateTrip: (val: TripInfo) => void;
+  tripLog: TripInfo;
 }
 
 const EditModal: React.FC<Props> = ({
   show,
   handleToggle,
-  tripDetails,
   updateTrip,
+  tripLog,
 }) => {
-  const { date, totalKM, description, involved } = tripDetails;
-  const [modalTrip, setModalTrip] = useState<TripDetails>({
-    date,
-    totalKM,
-    description,
-    involved,
-  });
+  const [modalTrip, setModalTrip] = useState<TripInfo>({ ...tripLog });
 
   const handleOnChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -39,6 +33,13 @@ const EditModal: React.FC<Props> = ({
     handleToggle();
   };
 
+  const names: NameVal[] = [
+    { name: "Brendan", value: tripLog.isBrendanIn },
+    { name: "Lory", value: tripLog.isLoryIn },
+    { name: "David", value: tripLog.isDavidIn },
+    { name: "Parco", value: tripLog.isParcoIn },
+  ];
+
   // render out data as inputs and create onchange to set and then return the tripDetails
   return (
     <Modal open={show} onClose={handleToggle}>
@@ -52,7 +53,7 @@ const EditModal: React.FC<Props> = ({
             onChange={(e) => handleOnChange(e)}
           />
         </div>
-        <div className="modal__input">
+        {/* <div className="modal__input">
           <label>Involved:</label>
           <input
             value={modalTrip.involved}
@@ -60,7 +61,7 @@ const EditModal: React.FC<Props> = ({
             type="input"
             onChange={(e) => handleOnChange(e)}
           />
-        </div>
+        </div> */}
         <div className="modal__input">
           <label>Description:</label>
           <input
