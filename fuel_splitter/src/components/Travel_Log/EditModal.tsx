@@ -10,7 +10,12 @@ interface Props {
   updateTrip: (val: TripDetails) => void;
 }
 
-const EditModal: React.FC<Props> = ({ show, handleToggle, tripDetails }) => {
+const EditModal: React.FC<Props> = ({
+  show,
+  handleToggle,
+  tripDetails,
+  updateTrip,
+}) => {
   const { date, totalKM, description, involved } = tripDetails;
   const [modalTrip, setModalTrip] = useState<TripDetails>({
     date,
@@ -29,7 +34,10 @@ const EditModal: React.FC<Props> = ({ show, handleToggle, tripDetails }) => {
     }));
   };
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    updateTrip(modalTrip);
+    handleToggle();
+  };
 
   // render out data as inputs and create onchange to set and then return the tripDetails
   return (
@@ -49,7 +57,7 @@ const EditModal: React.FC<Props> = ({ show, handleToggle, tripDetails }) => {
             onChange={(e) => handleOnChange(e)}
           />
         </div>
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" onClick={() => onSubmit()}>
           Update
         </Button>
       </Box>
