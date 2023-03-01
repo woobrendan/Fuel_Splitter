@@ -1,7 +1,8 @@
-import { Modal, Box, Button } from "@mui/material";
+import { Modal, Box, Button, FormGroup } from "@mui/material";
 import "../../Styles/modal.scss";
 import { NameVal, TripInfo } from "../../model";
 import { useState } from "react";
+import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
 
 interface Props {
   show: boolean;
@@ -28,16 +29,28 @@ const EditModal: React.FC<Props> = ({
     }));
   };
 
+  const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const indiv: string = event.target.value;
+    const copy = { ...modalTrip };
+
+    if (indiv === "Brendan") copy.isBrendanIn = !copy.isBrendanIn;
+    if (indiv === "Lory") copy.isLoryIn = !copy.isLoryIn;
+    if (indiv === "David") copy.isDavidIn = !copy.isDavidIn;
+    if (indiv === "Parco") copy.isParcoIn = !copy.isParcoIn;
+
+    setModalTrip(() => copy);
+  };
+
   const onSubmit = () => {
     updateTrip(modalTrip);
     handleToggle();
   };
 
   const names: NameVal[] = [
-    { name: "Brendan", value: tripLog.isBrendanIn },
-    { name: "Lory", value: tripLog.isLoryIn },
-    { name: "David", value: tripLog.isDavidIn },
-    { name: "Parco", value: tripLog.isParcoIn },
+    { name: "Brendan", value: modalTrip.isBrendanIn },
+    { name: "Lory", value: modalTrip.isLoryIn },
+    { name: "David", value: modalTrip.isDavidIn },
+    { name: "Parco", value: modalTrip.isParcoIn },
   ];
 
   // render out data as inputs and create onchange to set and then return the tripDetails
@@ -62,6 +75,11 @@ const EditModal: React.FC<Props> = ({
             onChange={(e) => handleOnChange(e)}
           />
         </div> */}
+        <FormGroup className="newTrip__checkboxes">
+          {names.map((name: NameVal, index: number) => (
+            <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
+          ))}
+        </FormGroup>
         <div className="modal__input">
           <label>Description:</label>
           <input
