@@ -100,34 +100,14 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
 
     // refactor later to not be brute force
     const indiv: string = event.target.value;
-    switch (indiv) {
-      case "Brendan":
-        setTripInfo((prev) => ({
-          ...prev,
-          isBrendanIn: !prev.isBrendanIn,
-        }));
-        break;
-      case "Lory":
-        setTripInfo((prev) => ({
-          ...prev,
-          isLoryIn: !prev.isLoryIn,
-        }));
-        break;
-      case "David":
-        setTripInfo((prev) => ({
-          ...prev,
-          isDavidIn: !prev.isDavidIn,
-        }));
-        break;
-      case "Parco":
-        setTripInfo((prev) => ({
-          ...prev,
-          isParcoIn: !prev.isParcoIn,
-        }));
-        break;
-      default:
-        break;
-    }
+    const copy = { ...tripInfo };
+
+    if (indiv === "Brendan") copy.isBrendanIn = !copy.isBrendanIn;
+    if (indiv === "Lory") copy.isLoryIn = !copy.isLoryIn;
+    if (indiv === "David") copy.isDavidIn = !copy.isDavidIn;
+    if (indiv === "Parco") copy.isParcoIn = !copy.isParcoIn;
+
+    setTripInfo(() => copy);
   };
 
   const onInputChange = (e: React.FormEvent) => {
