@@ -66,20 +66,6 @@ const EditModal: React.FC<Props> = ({
             onChange={(e) => handleOnChange(e)}
           />
         </div>
-        {/* <div className="modal__input">
-          <label>Involved:</label>
-          <input
-            value={modalTrip.involved}
-            name="involved"
-            type="input"
-            onChange={(e) => handleOnChange(e)}
-          />
-        </div> */}
-        <FormGroup className="newTrip__checkboxes">
-          {names.map((name: NameVal, index: number) => (
-            <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
-          ))}
-        </FormGroup>
         <div className="modal__input">
           <label>Description:</label>
           <input
@@ -89,6 +75,11 @@ const EditModal: React.FC<Props> = ({
             onChange={(e) => handleOnChange(e)}
           />
         </div>
+        <FormGroup className="modal__checkboxes">
+          {names.map((name: NameVal, index: number) => (
+            <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
+          ))}
+        </FormGroup>
 
         <Button variant="contained" color="success" onClick={() => onSubmit()}>
           Update
