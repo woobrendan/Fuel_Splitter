@@ -6,9 +6,10 @@ import EditModal from "../Travel_Log/EditModal";
 
 interface Props {
   tripLog: TripInfo;
+  historyComp: boolean;
 }
 
-const TravelRow: React.FC<Props> = ({ tripLog }) => {
+const TravelRow: React.FC<Props> = ({ tripLog, historyComp }) => {
   const [showModal, setShowModal] = useState(false);
   const [tripLogState, setTripLogState] = useState<TripInfo>({ ...tripLog });
 
@@ -36,15 +37,17 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
           {getNames(getNamesInvolved(tripLogState))}
         </TableCell>
         <TableCell align="right">{tripLogState.description}</TableCell>
-        <TableCell align="right">
-          <Button
-            variant="contained"
-            onClick={() => handleModal()}
-            data-testid="edit_trip"
-          >
-            Edit
-          </Button>
-        </TableCell>
+        {!historyComp && (
+          <TableCell align="right">
+            <Button
+              variant="contained"
+              onClick={() => handleModal()}
+              data-testid="edit_trip"
+            >
+              Edit
+            </Button>
+          </TableCell>
+        )}
       </TableRow>
       {showModal && (
         <EditModal
