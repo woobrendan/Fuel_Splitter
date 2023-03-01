@@ -13,7 +13,7 @@ const GasHistory: React.FC = () => {
 
   useEffect(() => {
     getHistory();
-  }, []);
+  });
 
   const getHistory = async () => {
     try {
