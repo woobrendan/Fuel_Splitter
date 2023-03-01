@@ -20,13 +20,16 @@ const fuelBill = createSlice({
     addNewTrip(state, action: PayloadAction<TripInfo>) {
       state = addTrip(state, action.payload);
     },
+
     addGasBill(state, action: PayloadAction<GasBill>) {
       state.costPerLitre = action.payload.costPerL;
       state.totalPrice = action.payload.gasCost;
     },
+
     resetGasTrip(state) {
       state = initialState;
     },
+
     setTripLogs(state, action: PayloadAction<TripInfo[]>) {
       const idArr: string[] = [];
       for (let trip of state.tripLogs) {
@@ -40,6 +43,15 @@ const fuelBill = createSlice({
         }
       }
       state = tempState;
+    },
+
+    updateTripLog(state, action: PayloadAction<TripInfo>) {
+      const trips = [...state.tripLogs];
+      const newTrips = trips.map((trip) =>
+        trip._id === action.payload._id ? { ...action.payload } : trip,
+      );
+
+      state.tripLogs = [...newTrips];
     },
   },
 });
