@@ -7,11 +7,12 @@ import EditModal from "../Travel_Log/EditModal";
 interface Props {
   tripLog: TripInfo;
   historyComp: boolean;
+  updateTrip: (val: TripInfo) => void;
 }
 
-const TravelRow: React.FC<Props> = ({ tripLog, historyComp }) => {
+const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
   const [showModal, setShowModal] = useState(false);
-  const [tripLogState, setTripLogState] = useState<TripInfo>({ ...tripLog });
+  // const [stateTripLog, setStateTripLog] = useState<TripInfo>({ ...tripLog });
 
   const getNamesInvolved = (log: TripInfo) => {
     let names: string[] = [];
@@ -24,19 +25,19 @@ const TravelRow: React.FC<Props> = ({ tripLog, historyComp }) => {
 
   const handleModal = () => setShowModal(!showModal);
 
-  const updateTrip = (val: TripInfo) => {
-    setTripLogState(() => val);
-  };
+  // const updateTrip = (val: TripInfo) => {
+  //   settripLog(() => val);
+  // };
 
   return (
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-        <TableCell>{convertDateToString(tripLogState.date)}</TableCell>
-        <TableCell align="right">{tripLogState.totalKM}</TableCell>
+        <TableCell>{convertDateToString(tripLog.date)}</TableCell>
+        <TableCell align="right">{tripLog.totalKM}</TableCell>
         <TableCell align="right">
-          {getNames(getNamesInvolved(tripLogState))}
+          {getNames(getNamesInvolved(tripLog))}
         </TableCell>
-        <TableCell align="right">{tripLogState.description}</TableCell>
+        <TableCell align="right">{tripLog.description}</TableCell>
         {!historyComp && (
           <TableCell align="right">
             <Button
@@ -54,7 +55,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, historyComp }) => {
           show={showModal}
           handleToggle={handleModal}
           updateTrip={updateTrip}
-          tripLog={tripLogState}
+          tripLog={tripLog}
         />
       )}
     </>
