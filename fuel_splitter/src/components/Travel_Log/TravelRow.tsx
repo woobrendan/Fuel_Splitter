@@ -40,7 +40,6 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
           <Button
             variant="contained"
             onClick={() => handleModal()}
-            // className="submit_button"
             data-testid="edit_trip"
           >
             Edit
@@ -51,9 +50,8 @@ const TravelRow: React.FC<Props> = ({ tripLog }) => {
         <EditModal
           show={showModal}
           handleToggle={handleModal}
-          // tripDetails={cleanTrip}
           updateTrip={updateTrip}
-          tripLog={tripLog}
+          tripLog={tripLogState}
         />
       )}
     </>
