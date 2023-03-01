@@ -1,14 +1,13 @@
 import SingleHistory from "./SingleHistory";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import "../../Styles/history.scss";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { FuelBill } from "../../model";
 import { historyActions } from "../../store/historySlice";
 
 const GasHistory: React.FC = () => {
   const history = useAppSelector((state) => state.fuelHistory.history);
-  // const [historyTrips, setHistoryTrips] = useState<FuelBill[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -21,7 +20,6 @@ const GasHistory: React.FC = () => {
       const history = await axios.get("http://localhost:1212/history/get/");
       const trips: FuelBill[] = history.data.history;
       dispatch(historyActions.setHistory(trips));
-      // setHistoryTrips(() => [...trips]);
     } catch (err) {
       console.log("Error:", err);
     }
