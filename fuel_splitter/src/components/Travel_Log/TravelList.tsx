@@ -16,7 +16,7 @@ import { fuelBillActions } from "../../store/GasTripSlice";
 
 interface Props {
   tripLogs?: TripInfo[];
-  historyComp?: boolean;
+  historyComp: boolean;
 }
 
 const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
@@ -60,13 +60,17 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
               <TableCell align="right">Total KM's</TableCell>
               <TableCell align="right">Involved</TableCell>
               <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Edit</TableCell>
+              {!historyComp && <TableCell align="right">Edit</TableCell>}
             </TableRow>
           </TableHead>
           <TableBody>
             {getArr() &&
               getArr()!.map((log: TripInfo, index: number) => (
-                <TravelRow tripLog={log} key={index} />
+                <TravelRow
+                  tripLog={log}
+                  key={index}
+                  historyComp={historyComp}
+                />
               ))}
           </TableBody>
         </Table>
