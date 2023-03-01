@@ -57,29 +57,34 @@ const EditModal: React.FC<Props> = ({
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
-        <div className="modal__input">
-          <label>Total KM:</label>
-          <input
-            value={modalTrip.totalKM}
-            name="totalKM"
-            type="input"
-            onChange={(e) => handleOnChange(e)}
-          />
+        <div className="modal__inputs">
+          <div className="modal__input">
+            <label>Total KM:</label>
+            <input
+              value={modalTrip.totalKM}
+              name="totalKM"
+              type="input"
+              onChange={(e) => handleOnChange(e)}
+            />
+          </div>
+          <div className="modal__input">
+            <label>Description:</label>
+            <input
+              value={modalTrip.description}
+              name="description"
+              type="input"
+              onChange={(e) => handleOnChange(e)}
+            />
+          </div>
         </div>
         <div className="modal__input">
-          <label>Description:</label>
-          <input
-            value={modalTrip.description}
-            name="description"
-            type="input"
-            onChange={(e) => handleOnChange(e)}
-          />
+          <label>Trip Participants:</label>
+          <FormGroup className="modal__checkboxes">
+            {names.map((name: NameVal, index: number) => (
+              <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
+            ))}
+          </FormGroup>
         </div>
-        <FormGroup className="modal__checkboxes">
-          {names.map((name: NameVal, index: number) => (
-            <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
-          ))}
-        </FormGroup>
 
         <Button variant="contained" color="success" onClick={() => onSubmit()}>
           Update
