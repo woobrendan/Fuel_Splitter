@@ -40,7 +40,7 @@ const SingleTripInfo: React.FC = () => {
   return (
     <div id="single_trip__container">
       <section className="single_trip__tripInfo">
-        <TravelList />
+        <TravelList historyComp={false} />
         <NewTrip handleAdd={handleAdd} />
       </section>
       <GasPay finalSubmit={finalSubmit} />
