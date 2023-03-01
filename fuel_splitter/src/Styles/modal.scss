@@ -3,9 +3,25 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 66%;
+  width: 40%;
   height: 200px;
   border: 2px solid black;
   box-shadow: 10px 5px 5px black;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+
+  .modal__checkboxes {
+    flex-direction: row;
+  }
+
+  .modal__inputs {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .MuiButton-root {
+    width: 15%;
+    min-width: 90px;
+  }
 }
