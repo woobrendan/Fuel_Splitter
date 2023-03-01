@@ -3,6 +3,8 @@ import "../../Styles/modal.scss";
 import { NameVal, TripInfo } from "../../model";
 import { useState } from "react";
 import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
+import { convertDateToString } from "../../helperFunc";
+import axios from "axios";
 
 interface Props {
   show: boolean;
@@ -42,6 +44,8 @@ const EditModal: React.FC<Props> = ({
   };
 
   const onSubmit = () => {
+    const tripId = modalTrip._id;
+    axios.patch(`http://localhost:1212/trips/update/${tripId}`, modalTrip);
     updateTrip(modalTrip);
     handleToggle();
   };
@@ -57,6 +61,7 @@ const EditModal: React.FC<Props> = ({
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
+        <h2>{convertDateToString(modalTrip.date)}</h2>
         <div className="modal__inputs">
           <div className="modal__input">
             <label>Total KM:</label>
