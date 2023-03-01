@@ -4,38 +4,19 @@ import { useState } from "react";
 import { NameVal, TripInfo } from "../../../model";
 import TripDatePicker from "../TripDatePicker";
 import InputContainer from "../InputContainer";
+import {
+  tripErorrInitialState,
+  ErrorHandle,
+} from "../../../Models/errorModels";
+import { initialTripState } from "../../../Models/tripModels";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
 }
 
-interface ErrorHandle {
-  hasCheck: boolean;
-  hasDistance: boolean;
-  hasDescription: boolean;
-  hasDate: boolean;
-}
-
-const errorInitial = {
-  hasCheck: false,
-  hasDistance: false,
-  hasDescription: false,
-  hasDate: false,
-};
-
-const initialState = {
-  isBrendanIn: false,
-  isLoryIn: false,
-  isDavidIn: false,
-  isParcoIn: false,
-  totalKM: 0,
-  date: new Date(),
-  description: "",
-};
-
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
-  const [tripInfo, setTripInfo] = useState<TripInfo>(initialState);
-  const [error, setError] = useState<ErrorHandle>(errorInitial);
+  const [tripInfo, setTripInfo] = useState<TripInfo>(initialTripState);
+  const [error, setError] = useState<ErrorHandle>(tripErorrInitialState);
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
@@ -81,9 +62,9 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       setError(() => ({ ...errorCopy }));
       return;
     } else {
-      setError(() => errorInitial);
+      setError(() => tripErorrInitialState);
       handleAdd(e, trip);
-      setTripInfo(() => initialState);
+      setTripInfo(() => initialTripState);
     }
   };
 
