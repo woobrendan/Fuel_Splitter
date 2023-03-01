@@ -10,7 +10,7 @@ interface Props {
   getErrorState: (val: boolean) => void;
 }
 
-const Date_Picker: React.FC<Props> = ({ getDate, getErrorState }) => {
+const TripDatePicker: React.FC<Props> = ({ getDate, getErrorState }) => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [error, setError] = useState<DateValidationError | null>(null);
   const [errorDate, setErrorDate] = useState<boolean>(false);
@@ -54,4 +54,4 @@ const Date_Picker: React.FC<Props> = ({ getDate, getErrorState }) => {
   );
 };
 
-export default Date_Picker;
+export default TripDatePicker;
