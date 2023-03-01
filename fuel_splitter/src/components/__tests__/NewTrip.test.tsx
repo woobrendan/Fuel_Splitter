@@ -1,6 +1,6 @@
 import NewTrip from "../TripManage/New_trip/NewTrip";
 import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
-import DatePicker from "../TripManage/DatePicker";
+import TripDatePicker from "../TripManage/TripDatePicker";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createStore } from "../../store/store";
@@ -71,7 +71,7 @@ describe(NewTrip, () => {
     const getError = jest.fn();
 
     const { getByTestId } = render(
-      <DatePicker getDate={handleChange} getErrorState={getError} />,
+      <TripDatePicker getDate={handleChange} getErrorState={getError} />,
     );
     const datePicker = getByTestId("date_picker").querySelector("input");
 
@@ -84,7 +84,7 @@ describe(NewTrip, () => {
     const dateVal = "03-15-2023";
 
     const { getByTestId } = render(
-      <DatePicker getDate={handleChange} getErrorState={getError} />,
+      <TripDatePicker getDate={handleChange} getErrorState={getError} />,
     );
     const datePicker = getByTestId("date_picker").querySelector(
       "input",
