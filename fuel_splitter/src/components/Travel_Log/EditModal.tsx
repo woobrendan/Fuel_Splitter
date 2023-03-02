@@ -1,6 +1,11 @@
 import { Modal, Box, Button, FormGroup } from "@mui/material";
 import "../../Styles/modal.scss";
-import { NameVal, TripInfo } from "../../model";
+import {
+  TripInfo,
+  initialTripState,
+  NameVal,
+  getCheckValues,
+} from "../../Models/tripModels";
 import { useState } from "react";
 import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
 import { convertDateToString } from "../../helperFunc";
@@ -9,7 +14,6 @@ import {
   tripErrorHandle,
   tripErorrInitialState,
 } from "../../Models/errorModels";
-import { initialTripState } from "../../Models/tripModels";
 
 interface Props {
   show: boolean;
@@ -49,13 +53,6 @@ const EditModal: React.FC<Props> = ({
     setModalTrip(() => copy);
   };
 
-  const onSubmit = () => {
-    const tripId = modalTrip._id;
-    axios.patch(`http://localhost:1212/trips/update/${tripId}`, modalTrip);
-    updateTrip(modalTrip);
-    handleToggle();
-  };
-
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
     const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = trip;
 
@@ -93,14 +90,6 @@ const EditModal: React.FC<Props> = ({
     }
   };
 
-  const names: NameVal[] = [
-    { name: "Brendan", value: modalTrip.isBrendanIn },
-    { name: "Lory", value: modalTrip.isLoryIn },
-    { name: "David", value: modalTrip.isDavidIn },
-    { name: "Parco", value: modalTrip.isParcoIn },
-  ];
-
-  // render out data as inputs and create onchange to set and then return the tripDetails
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
@@ -128,7 +117,7 @@ const EditModal: React.FC<Props> = ({
         <div className="modal__input">
           <label>Trip Participants:</label>
           <FormGroup className="modal__checkboxes">
-            {names.map((name: NameVal, index: number) => (
+            {getCheckValues(modalTrip).map((name: NameVal, index: number) => (
               <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
             ))}
           </FormGroup>
