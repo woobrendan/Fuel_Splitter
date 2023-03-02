@@ -1,12 +1,12 @@
 import { FormGroup, Button } from "@mui/material";
 import TripCheckbox from "./TripCheckbox";
 import { useState } from "react";
-import { NameVal, TripInfo } from "../../../model";
+import { TripInfo, getCheckValues, NameVal } from "../../../Models/tripModels";
 import TripDatePicker from "../TripDatePicker";
 import InputContainer from "../InputContainer";
 import {
   tripErorrInitialState,
-  ErrorHandle,
+  tripErrorHandle,
 } from "../../../Models/errorModels";
 import { initialTripState } from "../../../Models/tripModels";
 
@@ -16,7 +16,7 @@ interface Props {
 
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [tripInfo, setTripInfo] = useState<TripInfo>(initialTripState);
-  const [error, setError] = useState<ErrorHandle>(tripErorrInitialState);
+  const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
@@ -35,21 +35,21 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
-    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = tripInfo;
+    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = trip;
 
     e.preventDefault();
 
-    const errorCopy: ErrorHandle = { ...error };
+    const errorCopy: tripErrorHandle = { ...error };
 
     !isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn
       ? (errorCopy.hasCheck = true)
       : (errorCopy.hasCheck = false);
 
-    !tripInfo.totalKM
+    !trip.totalKM
       ? (errorCopy.hasDistance = true)
       : (errorCopy.hasDistance = false);
 
-    !tripInfo.description
+    !trip.description
       ? (errorCopy.hasDescription = true)
       : (errorCopy.hasDescription = false);
 
@@ -101,26 +101,17 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     }));
   };
 
-  const names: NameVal[] = [
-    { name: "Brendan", value: tripInfo.isBrendanIn },
-    { name: "Lory", value: tripInfo.isLoryIn },
-    { name: "David", value: tripInfo.isDavidIn },
-    { name: "Parco", value: tripInfo.isParcoIn },
-  ];
-
   return (
     <form
       className="newTrip__container"
-      onSubmit={(e) => {
-        handleSubmit(e, tripInfo);
-      }}
+      onSubmit={(e) => handleSubmit(e, tripInfo)}
     >
       <h1>Add New Trip Info</h1>
       <TripDatePicker getDate={getDate} getErrorState={getErrorState} />
 
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
-        {names.map((name: NameVal, index: number) => (
+        {getCheckValues(tripInfo).map((name: NameVal, index: number) => (
           <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
         ))}
       </FormGroup>
