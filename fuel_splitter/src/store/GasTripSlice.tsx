@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FuelBill, TripInfo, GasBill } from "../model";
+import { FuelBill, GasBill } from "../model";
+import { TripInfo } from "../Models/tripModels";
 import { addTrip } from "./gasActions";
 
 const initialState: FuelBill = {
