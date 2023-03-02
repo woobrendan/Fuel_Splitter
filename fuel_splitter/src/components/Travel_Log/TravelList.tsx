@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import TravelRow from "./TravelRow";
-import { TripInfo } from "../../model";
+import { TripInfo } from "../../Models/tripModels";
 import axios from "axios";
 import { fuelBillActions } from "../../store/GasTripSlice";
 
