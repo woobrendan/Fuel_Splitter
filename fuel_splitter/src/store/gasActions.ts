@@ -1,4 +1,5 @@
-import { FuelBill, TripInfo } from "../model";
+import { FuelBill } from "../model";
+import { TripInfo } from "../Models/tripModels";
 
 const addTrip = (state: FuelBill, trip: TripInfo) => {
   // const copyState = {
