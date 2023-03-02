@@ -1,5 +1,6 @@
 import axios from "axios";
-import { FuelBill, TripInfo } from "./model";
+import { FuelBill } from "./model";
+import { TripInfo } from "./Models/tripModels";
 
 const getToday = (): string => {
   let today: Date = new Date();
