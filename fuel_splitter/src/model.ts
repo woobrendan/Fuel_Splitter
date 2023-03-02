@@ -1,3 +1,5 @@
+import { TripInfo } from "./Models/tripModels";
+
 export interface IndividualInfo {
   name?: string;
   totalKM: number;
@@ -16,25 +18,9 @@ export interface FuelBill {
   tripLogs: TripInfo[];
 }
 
-export interface TripInfo {
-  isBrendanIn: boolean;
-  isLoryIn: boolean;
-  isDavidIn: boolean;
-  isParcoIn: boolean;
-  totalKM: number;
-  date: Date | null;
-  description: string;
-  _id?: string;
-}
-
 export interface GasBill {
   gasCost: number;
   costPerL: number;
-}
-
-export interface NameVal {
-  name: string;
-  value: boolean;
 }
 
 export interface TripDetails {
