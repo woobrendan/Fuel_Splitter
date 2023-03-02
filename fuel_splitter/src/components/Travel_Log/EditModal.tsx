@@ -103,6 +103,9 @@ const EditModal: React.FC<Props> = ({
               type="input"
               onChange={(e) => handleOnChange(e)}
             />
+            {error.hasDistance && (
+              <span className="error">Must have total KM's</span>
+            )}
           </div>
           <div className="modal__input">
             <label>Description:</label>
@@ -112,6 +115,9 @@ const EditModal: React.FC<Props> = ({
               type="input"
               onChange={(e) => handleOnChange(e)}
             />
+            {error.hasDescription && (
+              <span className="error">Must have Description</span>
+            )}
           </div>
         </div>
         <div className="modal__input">
@@ -121,6 +127,9 @@ const EditModal: React.FC<Props> = ({
               <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
             ))}
           </FormGroup>
+          {error.hasCheck && (
+            <span className="error">At least one box must be checked</span>
+          )}
         </div>
 
         <Button
