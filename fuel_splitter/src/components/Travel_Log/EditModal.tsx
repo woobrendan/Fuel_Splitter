@@ -5,6 +5,11 @@ import { useState } from "react";
 import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
 import { convertDateToString } from "../../helperFunc";
 import axios from "axios";
+import {
+  tripErrorHandle,
+  tripErorrInitialState,
+} from "../../Models/errorModels";
+import { initialTripState } from "../../Models/tripModels";
 
 interface Props {
   show: boolean;
@@ -20,6 +25,7 @@ const EditModal: React.FC<Props> = ({
   tripLog,
 }) => {
   const [modalTrip, setModalTrip] = useState<TripInfo>({ ...tripLog });
+  const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
 
   const handleOnChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -48,6 +54,43 @@ const EditModal: React.FC<Props> = ({
     axios.patch(`http://localhost:1212/trips/update/${tripId}`, modalTrip);
     updateTrip(modalTrip);
     handleToggle();
+  };
+
+  const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
+    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = trip;
+
+    e.preventDefault();
+
+    const errorCopy: tripErrorHandle = { ...error };
+
+    !isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn
+      ? (errorCopy.hasCheck = true)
+      : (errorCopy.hasCheck = false);
+
+    !trip.totalKM
+      ? (errorCopy.hasDistance = true)
+      : (errorCopy.hasDistance = false);
+
+    !trip.description
+      ? (errorCopy.hasDescription = true)
+      : (errorCopy.hasDescription = false);
+
+    if (
+      errorCopy.hasDistance ||
+      errorCopy.hasDescription ||
+      errorCopy.hasCheck ||
+      errorCopy.hasDate
+    ) {
+      setError(() => ({ ...errorCopy }));
+      return;
+    } else {
+      axios.patch(`http://localhost:1212/trips/update/${trip._id}`, modalTrip);
+      updateTrip(modalTrip);
+      handleToggle();
+
+      setError(() => tripErorrInitialState);
+      setModalTrip(() => initialTripState);
+    }
   };
 
   const names: NameVal[] = [
@@ -91,7 +134,11 @@ const EditModal: React.FC<Props> = ({
           </FormGroup>
         </div>
 
-        <Button variant="contained" color="success" onClick={() => onSubmit()}>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={(e) => handleSubmit(e, modalTrip)}
+        >
           Update
         </Button>
       </Box>
