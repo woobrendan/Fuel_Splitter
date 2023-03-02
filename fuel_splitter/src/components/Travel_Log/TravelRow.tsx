@@ -1,6 +1,6 @@
 import { TableRow, TableCell, Button } from "@mui/material";
 import { convertDateToString, getNames } from "../../helperFunc";
-import { TripInfo, TripDetails } from "../../model";
+import { TripInfo } from "../../Models/tripModels";
 import { useState } from "react";
 import EditModal from "../Travel_Log/EditModal";
 
@@ -12,7 +12,6 @@ interface Props {
 
 const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
   const [showModal, setShowModal] = useState(false);
-  // const [stateTripLog, setStateTripLog] = useState<TripInfo>({ ...tripLog });
 
   const getNamesInvolved = (log: TripInfo) => {
     let names: string[] = [];
@@ -22,12 +21,6 @@ const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
     if (log.isParcoIn) names.push("Parco");
     return names;
   };
-
-  const handleModal = () => setShowModal(!showModal);
-
-  // const updateTrip = (val: TripInfo) => {
-  //   settripLog(() => val);
-  // };
 
   return (
     <>
@@ -42,7 +35,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
           <TableCell align="right">
             <Button
               variant="contained"
-              onClick={() => handleModal()}
+              onClick={() => setShowModal(!showModal)}
               data-testid="edit_trip"
             >
               Edit
@@ -53,7 +46,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
       {showModal && (
         <EditModal
           show={showModal}
-          handleToggle={handleModal}
+          handleToggle={() => setShowModal(!showModal)}
           updateTrip={updateTrip}
           tripLog={tripLog}
         />
