@@ -1,4 +1,4 @@
-export interface ErrorHandle {
+export interface tripErrorHandle {
   hasCheck: boolean;
   hasDistance: boolean;
   hasDescription: boolean;
