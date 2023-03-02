@@ -1,5 +1,5 @@
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { NameVal } from "../../../model";
+import { NameVal } from "../../../Models/tripModels";
 
 interface Props {
   onCheck: (event: React.ChangeEvent<HTMLInputElement>) => void;
