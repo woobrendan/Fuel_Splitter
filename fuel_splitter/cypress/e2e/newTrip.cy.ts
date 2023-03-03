@@ -89,7 +89,7 @@ describe("Error Handling", () => {
     cy.get(".Mui-error").contains("invalidDate");
   });
 
-  it.only("Should show invalid date, then remove error when fixed", () => {
+  it("Should show invalid date, then remove error when fixed", () => {
     cy.get("input:first").clear().type("16-15-1002");
     cy.get('[data-testid="submit_trip"]').click();
     cy.get(".Mui-error").contains("invalidDate");
