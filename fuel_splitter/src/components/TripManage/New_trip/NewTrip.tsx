@@ -101,6 +101,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         error={error.hasCheck}
         tripInfo={tripInfo}
         onCheck={onCheck}
+        comp="newTrip"
       />
       <section className="newTrip__input">
         <InputContainer
