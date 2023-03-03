@@ -9,6 +9,7 @@ import {
   tripErrorHandle,
 } from "../../../Models/errorModels";
 import { initialTripState } from "../../../Models/tripModels";
+import TripCheckList from "./TripCheckList";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -68,7 +69,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     }
   };
 
-  const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const onCheck = (e: React.ChangeEvent<HTMLInputElement>): void => {
     // const target = event.target as HTMLInputElement;
     // // const some = `is${target.value}In`
     // type Person = keyof TripInfo
@@ -80,7 +81,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     // }));
 
     // refactor later to not be brute force
-    const indiv: string = event.target.value;
+    const indiv: string = e.target.value;
     const copy = { ...tripInfo };
 
     if (indiv === "Brendan") copy.isBrendanIn = !copy.isBrendanIn;
@@ -109,7 +110,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       <h1>Add New Trip Info</h1>
       <TripDatePicker getDate={getDate} getErrorState={getErrorState} />
 
-      <h2>Trip Participants</h2>
+      {/* <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
         {getCheckValues(tripInfo).map((name: NameVal, index: number) => (
           <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
@@ -117,7 +118,12 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       </FormGroup>
       {error.hasCheck && (
         <span className="error">At least one box must be checked</span>
-      )}
+      )} */}
+      <TripCheckList
+        error={error.hasCheck}
+        tripInfo={tripInfo}
+        onCheck={onCheck}
+      />
       <section className="newTrip__input">
         <InputContainer
           val={tripInfo.totalKM}
