@@ -14,6 +14,7 @@ import {
   tripErrorHandle,
   tripErorrInitialState,
 } from "../../Models/errorModels";
+import TripCheckList from "../TripManage/New_trip/TripCheckList";
 
 interface Props {
   show: boolean;
@@ -121,15 +122,12 @@ const EditModal: React.FC<Props> = ({
           </div>
         </div>
         <div className="modal__input">
-          <label>Trip Participants:</label>
-          <FormGroup className="modal__checkboxes">
-            {getCheckValues(modalTrip).map((name: NameVal, index: number) => (
-              <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
-            ))}
-          </FormGroup>
-          {error.hasCheck && (
-            <span className="error">At least one box must be checked</span>
-          )}
+          <TripCheckList
+            error={error.hasCheck}
+            tripInfo={modalTrip}
+            onCheck={onCheck}
+            comp="modal"
+          />
         </div>
 
         <Button
