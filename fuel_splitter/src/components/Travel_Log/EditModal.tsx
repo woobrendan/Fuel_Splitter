@@ -9,6 +9,7 @@ import {
   tripErorrInitialState,
 } from "../../Models/errorModels";
 import TripCheckList from "../TripManage/New_trip/TripCheckList";
+import InputContainer from "../TripManage/InputContainer";
 
 interface Props {
   show: boolean;
@@ -91,28 +92,26 @@ const EditModal: React.FC<Props> = ({
         <h2>{convertDateToString(modalTrip.date)}</h2>
         <div className="modal__inputs">
           <div className="modal__input">
-            <label>Total KM:</label>
-            <input
-              value={modalTrip.totalKM}
+            <InputContainer
+              val={modalTrip.totalKM}
+              error={error.hasDistance}
+              onInputChange={handleOnChange}
+              label="Total KM"
               name="totalKM"
               type="input"
-              onChange={(e) => handleOnChange(e)}
+              comp="modal"
             />
-            {error.hasDistance && (
-              <span className="error">Must have total KM's</span>
-            )}
           </div>
           <div className="modal__input">
-            <label>Description:</label>
-            <input
-              value={modalTrip.description}
+            <InputContainer
+              val={modalTrip.description}
+              error={error.hasDescription}
+              onInputChange={handleOnChange}
+              label="Trip Description"
               name="description"
               type="input"
-              onChange={(e) => handleOnChange(e)}
+              comp="modal"
             />
-            {error.hasDescription && (
-              <span className="error">Must have Description</span>
-            )}
           </div>
         </div>
         <TripCheckList
