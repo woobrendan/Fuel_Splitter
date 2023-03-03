@@ -2,13 +2,12 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import { TripInfo } from "../../../Models/tripModels";
 import TripDatePicker from "../TripDatePicker";
-import InputContainer from "../InputContainer";
 import {
   tripErorrInitialState,
   tripErrorHandle,
 } from "../../../Models/errorModels";
 import { initialTripState } from "../../../Models/tripModels";
-import TripCheckList from "./TripCheckList";
+import TripManage from "../TripManage";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -97,32 +96,13 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     >
       <h1>Add New Trip Info</h1>
       <TripDatePicker getDate={getDate} getErrorState={getErrorState} />
-      <TripCheckList
-        error={error.hasCheck}
-        tripInfo={tripInfo}
+      <TripManage
+        trip={tripInfo}
+        onInputChange={onInputChange}
         onCheck={onCheck}
+        error={error}
         comp="newTrip"
       />
-      <section className="newTrip__input">
-        <InputContainer
-          val={tripInfo.totalKM}
-          error={error.hasDistance}
-          onInputChange={onInputChange}
-          label="Total KM"
-          name="totalKM"
-          type="input"
-          comp="newTrip"
-        />
-        <InputContainer
-          val={tripInfo.description}
-          error={error.hasDescription}
-          onInputChange={onInputChange}
-          label="Trip Description"
-          name="description"
-          type="input"
-          comp="newTrip"
-        />
-      </section>
       <Button
         variant="contained"
         color="success"
