@@ -1,13 +1,7 @@
-import { Modal, Box, Button, FormGroup } from "@mui/material";
+import { Modal, Box, Button } from "@mui/material";
 import "../../Styles/modal.scss";
-import {
-  TripInfo,
-  initialTripState,
-  NameVal,
-  getCheckValues,
-} from "../../Models/tripModels";
+import { TripInfo, initialTripState } from "../../Models/tripModels";
 import { useState } from "react";
-import TripCheckbox from "../TripManage/New_trip/TripCheckbox";
 import { convertDateToString } from "../../helperFunc";
 import axios from "axios";
 import {
@@ -121,14 +115,12 @@ const EditModal: React.FC<Props> = ({
             )}
           </div>
         </div>
-        <div className="modal__input">
-          <TripCheckList
-            error={error.hasCheck}
-            tripInfo={modalTrip}
-            onCheck={onCheck}
-            comp="modal"
-          />
-        </div>
+        <TripCheckList
+          error={error.hasCheck}
+          tripInfo={modalTrip}
+          onCheck={onCheck}
+          comp="modal"
+        />
 
         <Button
           variant="contained"
