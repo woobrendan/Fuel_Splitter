@@ -5,7 +5,7 @@ import React from "react";
 
 interface Props {
   tripInfo: TripInfo;
-  onCheck: (e: React.FormEvent) => void;
+  onCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: boolean;
 }
 
@@ -14,13 +14,15 @@ const TripCheckList: React.FC<Props> = ({ tripInfo, onCheck, error }) => {
     <>
       <h2>Trip Participants</h2>
       <FormGroup className="newTrip__checkboxes">
-        {getCheckValues(tripInfo).map((name: NameVal, index: number) => (
-          <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
+        {getCheckValues(tripInfo).map((nameVal: NameVal, index: number) => (
+          <TripCheckbox
+            key={index}
+            nameVal={nameVal}
+            onCheck={(e) => onCheck(e)}
+          />
         ))}
       </FormGroup>
-      {error.hasCheck && (
-        <span className="error">At least one box must be checked</span>
-      )}
+      {error && <span className="error">At least one box must be checked</span>}
     </>
   );
 };
