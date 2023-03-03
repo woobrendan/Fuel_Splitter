@@ -7,13 +7,14 @@ interface Props {
   tripInfo: TripInfo;
   onCheck: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: boolean;
+  comp: string;
 }
 
-const TripCheckList: React.FC<Props> = ({ tripInfo, onCheck, error }) => {
+const TripCheckList: React.FC<Props> = ({ tripInfo, onCheck, error, comp }) => {
   return (
     <>
       <h2>Trip Participants</h2>
-      <FormGroup className="newTrip__checkboxes">
+      <FormGroup className={`${comp}__checkboxes`}>
         {getCheckValues(tripInfo).map((nameVal: NameVal, index: number) => (
           <TripCheckbox
             key={index}
