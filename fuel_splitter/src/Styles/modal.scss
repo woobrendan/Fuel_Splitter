@@ -5,6 +5,7 @@
   transform: translate(-50%, -50%);
   width: 40%;
   height: 200px;
+  min-height: 350px;
   border: 2px solid black;
   box-shadow: 10px 5px 5px black;
   background: rgba(255, 255, 0, 0.85);
@@ -15,8 +16,15 @@
   color: #2ab1eb;
   padding: 2%;
 
+  .error {
+    margin: 2%;
+    color: red;
+    font-size: 15px;
+  }
+
   .modal__checkboxes {
     flex-direction: row;
+    margin-bottom: 1%;
 
     .MuiSvgIcon-root {
       color: #2ab1eb;
@@ -39,4 +47,8 @@
     background-color: #2ab1eb;
     color: yellow;
   }
+}
+
+.modal__checkboxes > label {
+  flex: 45%;
 }
