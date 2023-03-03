@@ -1,7 +1,6 @@
-import { FormGroup, Button } from "@mui/material";
-import TripCheckbox from "./TripCheckbox";
+import { Button } from "@mui/material";
 import { useState } from "react";
-import { TripInfo, getCheckValues, NameVal } from "../../../Models/tripModels";
+import { TripInfo } from "../../../Models/tripModels";
 import TripDatePicker from "../TripDatePicker";
 import InputContainer from "../InputContainer";
 import {
@@ -70,17 +69,6 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   const onCheck = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    // const target = event.target as HTMLInputElement;
-    // // const some = `is${target.value}In`
-    // type Person = keyof TripInfo
-    // const indiv: keyof TripInfo = `is${target.value}In`
-    // // const person: string = `is${event.target.value}In`
-    // setTripInfo((prev: TripInfo) => ({
-    //   ...prev,
-    //   [`is${target.name}In`]: !Boolean(prev[indiv]),
-    // }));
-
-    // refactor later to not be brute force
     const indiv: string = e.target.value;
     const copy = { ...tripInfo };
 
@@ -109,16 +97,6 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     >
       <h1>Add New Trip Info</h1>
       <TripDatePicker getDate={getDate} getErrorState={getErrorState} />
-
-      {/* <h2>Trip Participants</h2>
-      <FormGroup className="newTrip__checkboxes">
-        {getCheckValues(tripInfo).map((name: NameVal, index: number) => (
-          <TripCheckbox key={index} nameVal={name} onCheck={onCheck} />
-        ))}
-      </FormGroup>
-      {error.hasCheck && (
-        <span className="error">At least one box must be checked</span>
-      )} */}
       <TripCheckList
         error={error.hasCheck}
         tripInfo={tripInfo}
