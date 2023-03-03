@@ -10,6 +10,7 @@ import {
 } from "../../Models/errorModels";
 import TripCheckList from "../TripManage/New_trip/TripCheckList";
 import InputContainer from "../TripManage/InputContainer";
+import TripManage from "../TripManage/TripManage";
 
 interface Props {
   show: boolean;
@@ -27,7 +28,7 @@ const EditModal: React.FC<Props> = ({
   const [modalTrip, setModalTrip] = useState<TripInfo>({ ...tripLog });
   const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
 
-  const handleOnChange = (e: React.FormEvent) => {
+  const onInputChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
     const value =
       target.name === "totalKM" ? Number(target.value) : target.value;
@@ -90,7 +91,7 @@ const EditModal: React.FC<Props> = ({
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
         <h2>{convertDateToString(modalTrip.date)}</h2>
-        <div className="modal__inputs">
+        {/* <div className="modal__inputs">
           <div className="modal__input">
             <InputContainer
               val={modalTrip.totalKM}
@@ -118,6 +119,13 @@ const EditModal: React.FC<Props> = ({
           error={error.hasCheck}
           tripInfo={modalTrip}
           onCheck={onCheck}
+          comp="modal"
+        /> */}
+        <TripManage
+          trip={modalTrip}
+          onInputChange={onInputChange}
+          onCheck={onCheck}
+          error={error}
           comp="modal"
         />
 
