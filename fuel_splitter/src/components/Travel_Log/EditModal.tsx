@@ -11,6 +11,7 @@ import {
 import TripManage from "../TripManage/TripManage";
 import { useAppDispatch } from "../../store/hooks";
 import { fuelBillActions } from "../../store/GasTripSlice";
+import { updateTripLog } from "../../tripActions";
 
 interface Props {
   show: boolean;
@@ -30,6 +31,8 @@ const EditModal: React.FC<Props> = ({
   const [toBeDeleted, setToBeDeleted] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
+  const customSetError = (err: tripErrorHandle) => setError(() => err);
+  const customSetTrip = (trip: TripInfo) => setModalTrip(() => trip);
 
   const onInputChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -53,40 +56,17 @@ const EditModal: React.FC<Props> = ({
     setModalTrip(() => copy);
   };
 
-  const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
-    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = trip;
-
-    e.preventDefault();
-
-    const errorCopy: tripErrorHandle = { ...error };
-
-    !isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn
-      ? (errorCopy.hasCheck = true)
-      : (errorCopy.hasCheck = false);
-
-    !trip.totalKM
-      ? (errorCopy.hasDistance = true)
-      : (errorCopy.hasDistance = false);
-
-    !trip.description
-      ? (errorCopy.hasDescription = true)
-      : (errorCopy.hasDescription = false);
-
-    if (
-      errorCopy.hasDistance ||
-      errorCopy.hasDescription ||
-      errorCopy.hasCheck ||
-      errorCopy.hasDate
-    ) {
-      setError(() => ({ ...errorCopy }));
-      return;
-    } else {
-      axios.patch(`http://localhost:1212/trips/update/${trip._id}`, modalTrip);
+  const handleSubmit = (e: React.FormEvent) => {
+    const worked = updateTripLog(
+      e,
+      modalTrip,
+      error,
+      customSetError,
+      customSetTrip,
+    );
+    if (worked) {
       updateTrip(modalTrip);
       handleToggle();
-
-      setError(() => tripErorrInitialState);
-      setModalTrip(() => initialTripState);
     }
   };
 
@@ -119,7 +99,7 @@ const EditModal: React.FC<Props> = ({
         <Button
           variant="contained"
           className="edit_modal_update"
-          onClick={(e) => handleSubmit(e, modalTrip)}
+          onClick={(e) => handleSubmit(e)}
         >
           Update
         </Button>
