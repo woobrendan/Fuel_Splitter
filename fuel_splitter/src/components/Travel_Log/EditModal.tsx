@@ -9,6 +9,8 @@ import {
   tripErorrInitialState,
 } from "../../Models/errorModels";
 import TripManage from "../TripManage/TripManage";
+import { useAppDispatch } from "../../store/hooks";
+import { fuelBillActions } from "../../store/GasTripSlice";
 
 interface Props {
   show: boolean;
@@ -26,6 +28,8 @@ const EditModal: React.FC<Props> = ({
   const [modalTrip, setModalTrip] = useState<TripInfo>({ ...tripLog });
   const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
   const [toBeDeleted, setToBeDeleted] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
 
   const onInputChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -86,6 +90,10 @@ const EditModal: React.FC<Props> = ({
     }
   };
 
+  const handleDelete = (val: TripInfo) => {
+    dispatch(fuelBillActions.removeTripLog(val));
+  };
+
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
@@ -114,7 +122,11 @@ const EditModal: React.FC<Props> = ({
           Update
         </Button>
         {toBeDeleted && (
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => handleDelete(modalTrip)}
+          >
             Confirm Delete
           </Button>
         )}
