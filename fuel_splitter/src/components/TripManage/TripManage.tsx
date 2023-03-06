@@ -26,7 +26,7 @@ const TripManager: React.FC<Props> = ({
         onCheck={onCheck}
         comp={comp}
       />
-      <section className="newTrip__input">
+      <section className={`${comp}__input`}>
         <InputContainer
           val={trip.totalKM}
           error={error.hasDistance}
