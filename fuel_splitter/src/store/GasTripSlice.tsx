@@ -54,6 +54,13 @@ const fuelBill = createSlice({
 
       state.tripLogs = [...newTrips];
     },
+
+    removeTripLog(state, action: PayloadAction<TripInfo>) {
+      const trips = [...state.tripLogs];
+      const filtered = trips.filter((trip) => trip._id !== action.payload._id);
+
+      state.tripLogs = filtered;
+    },
   },
 });
 
