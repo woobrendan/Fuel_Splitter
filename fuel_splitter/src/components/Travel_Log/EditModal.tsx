@@ -11,7 +11,7 @@ import {
 import TripManage from "../TripManage/TripManage";
 import { useAppDispatch } from "../../store/hooks";
 import { fuelBillActions } from "../../store/GasTripSlice";
-import { updateTripLog } from "../../tripActions";
+import { addUpdateTripLog } from "../../tripActions";
 
 interface Props {
   show: boolean;
@@ -57,7 +57,7 @@ const EditModal: React.FC<Props> = ({
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    const worked = updateTripLog(
+    const worked = addUpdateTripLog(
       e,
       modalTrip,
       error,
@@ -67,6 +67,10 @@ const EditModal: React.FC<Props> = ({
     if (worked) {
       updateTrip(modalTrip);
       handleToggle();
+      axios.patch(
+        `http://localhost:1212/trips/update/${modalTrip._id}`,
+        modalTrip,
+      );
     }
   };
 
