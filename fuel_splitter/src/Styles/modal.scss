@@ -14,7 +14,17 @@
   align-items: center;
   justify-content: space-evenly;
   color: #2ab1eb;
-  padding: 2%;
+  padding: 2% 2% 2% 6%;
+
+  h2 {
+    text-decoration: underline;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  h3 {
+    margin: 0;
+  }
 
   .error {
     margin: 2%;
@@ -24,21 +34,19 @@
 
   .modal__checkboxes {
     flex-direction: row;
-    margin-bottom: 1%;
+
+    label {
+      padding-left: 2%;
+    }
 
     .MuiSvgIcon-root {
       color: #2ab1eb;
     }
   }
 
-  .modal__inputs {
+  .modal__input {
     display: flex;
     gap: 5%;
-
-    .modal__input {
-      flex-direction: column;
-      display: flex;
-    }
   }
 
   .MuiButton-root {
