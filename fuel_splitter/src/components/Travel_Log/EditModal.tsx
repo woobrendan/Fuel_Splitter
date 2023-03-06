@@ -25,6 +25,7 @@ const EditModal: React.FC<Props> = ({
 }) => {
   const [modalTrip, setModalTrip] = useState<TripInfo>({ ...tripLog });
   const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
+  const [toBeDeleted, setToBeDeleted] = useState<boolean>(false);
 
   const onInputChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -88,6 +89,9 @@ const EditModal: React.FC<Props> = ({
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
+        <Button variant="outlined" color="error" className="edit_modal_delete">
+          Delete Trip
+        </Button>
         <h3>Date: {convertDateToString(modalTrip.date)}</h3>
         <TripManage
           trip={modalTrip}
@@ -99,11 +103,16 @@ const EditModal: React.FC<Props> = ({
 
         <Button
           variant="contained"
-          color="success"
+          className="edit_modal_update"
           onClick={(e) => handleSubmit(e, modalTrip)}
         >
           Update
         </Button>
+        {toBeDeleted && (
+          <Button variant="contained" color="error">
+            Confirm Delete
+          </Button>
+        )}
       </Box>
     </Modal>
   );
