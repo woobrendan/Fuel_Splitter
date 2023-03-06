@@ -89,8 +89,13 @@ const EditModal: React.FC<Props> = ({
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
-        <Button variant="outlined" color="error" className="edit_modal_delete">
-          Delete Trip
+        <Button
+          variant="outlined"
+          color="error"
+          className="edit_modal_delete"
+          onClick={() => setToBeDeleted(!toBeDeleted)}
+        >
+          {toBeDeleted ? "Cancel" : "Delete Trip"}
         </Button>
         <h3>Date: {convertDateToString(modalTrip.date)}</h3>
         <TripManage
