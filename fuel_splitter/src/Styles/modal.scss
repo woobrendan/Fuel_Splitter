@@ -47,9 +47,16 @@
   .modal__input {
     display: flex;
     gap: 5%;
+    margin-left: 10%;
   }
 
-  .MuiButton-root {
+  .edit_modal_delete {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+
+  .edit_modal_update {
     width: 15%;
     min-width: 90px;
     background-color: #2ab1eb;
