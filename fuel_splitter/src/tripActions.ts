@@ -2,7 +2,7 @@ import { TripInfo, initialTripState } from "./Models/tripModels";
 import { tripErrorHandle, tripErorrInitialState } from "./Models/errorModels";
 import axios from "axios";
 
-const updateTripLog = (
+const addUpdateTripLog = (
   e: React.FormEvent,
   trip: TripInfo,
   error: tripErrorHandle,
@@ -38,11 +38,10 @@ const updateTripLog = (
     setError({ ...errorCopy });
     return false;
   } else {
-    axios.patch(`http://localhost:1212/trips/update/${trip._id}`, trip);
     setError(tripErorrInitialState);
     setTrip(initialTripState);
     return true;
   }
 };
 
-export { updateTripLog };
+export { addUpdateTripLog };
