@@ -8,6 +8,7 @@ import {
 } from "../../../Models/errorModels";
 import { initialTripState } from "../../../Models/tripModels";
 import TripManage from "../TripManage";
+import { addUpdateTripLog } from "../../../tripActions";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -16,6 +17,9 @@ interface Props {
 const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   const [tripInfo, setTripInfo] = useState<TripInfo>(initialTripState);
   const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
+
+  const customSetError = (err: tripErrorHandle) => setError(() => err);
+  const customSetTrip = (trip: TripInfo) => setTripInfo(() => trip);
 
   const getDate = (dateVal: Date | null): void => {
     setTripInfo((prev) => ({
@@ -34,37 +38,15 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
-    const { isBrendanIn, isLoryIn, isDavidIn, isParcoIn } = trip;
+    const worked = addUpdateTripLog(
+      e,
+      tripInfo,
+      error,
+      customSetError,
+      customSetTrip,
+    );
 
-    e.preventDefault();
-
-    const errorCopy: tripErrorHandle = { ...error };
-
-    !isBrendanIn && !isLoryIn && !isDavidIn && !isParcoIn
-      ? (errorCopy.hasCheck = true)
-      : (errorCopy.hasCheck = false);
-
-    !trip.totalKM
-      ? (errorCopy.hasDistance = true)
-      : (errorCopy.hasDistance = false);
-
-    !trip.description
-      ? (errorCopy.hasDescription = true)
-      : (errorCopy.hasDescription = false);
-
-    if (
-      errorCopy.hasDistance ||
-      errorCopy.hasDescription ||
-      errorCopy.hasCheck ||
-      errorCopy.hasDate
-    ) {
-      setError(() => ({ ...errorCopy }));
-      return;
-    } else {
-      setError(() => tripErorrInitialState);
-      handleAdd(e, trip);
-      setTripInfo(() => initialTripState);
-    }
+    if (worked) handleAdd(e, trip);
   };
 
   const onCheck = (e: React.ChangeEvent<HTMLInputElement>): void => {
