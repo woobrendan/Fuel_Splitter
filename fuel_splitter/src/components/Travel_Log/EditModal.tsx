@@ -92,6 +92,8 @@ const EditModal: React.FC<Props> = ({
 
   const handleDelete = (val: TripInfo) => {
     dispatch(fuelBillActions.removeTripLog(val));
+    handleToggle();
+    axios.delete(`http://localhost:1212/trips/delete/${val._id}`);
   };
 
   return (
