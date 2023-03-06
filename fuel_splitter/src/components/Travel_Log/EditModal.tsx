@@ -8,8 +8,6 @@ import {
   tripErrorHandle,
   tripErorrInitialState,
 } from "../../Models/errorModels";
-import TripCheckList from "../TripManage/New_trip/TripCheckList";
-import InputContainer from "../TripManage/InputContainer";
 import TripManage from "../TripManage/TripManage";
 
 interface Props {
@@ -90,37 +88,7 @@ const EditModal: React.FC<Props> = ({
   return (
     <Modal open={show} onClose={handleToggle}>
       <Box id="edit_modal">
-        <h2>{convertDateToString(modalTrip.date)}</h2>
-        {/* <div className="modal__inputs">
-          <div className="modal__input">
-            <InputContainer
-              val={modalTrip.totalKM}
-              error={error.hasDistance}
-              onInputChange={handleOnChange}
-              label="Total KM"
-              name="totalKM"
-              type="input"
-              comp="modal"
-            />
-          </div>
-          <div className="modal__input">
-            <InputContainer
-              val={modalTrip.description}
-              error={error.hasDescription}
-              onInputChange={handleOnChange}
-              label="Trip Description"
-              name="description"
-              type="input"
-              comp="modal"
-            />
-          </div>
-        </div>
-        <TripCheckList
-          error={error.hasCheck}
-          tripInfo={modalTrip}
-          onCheck={onCheck}
-          comp="modal"
-        /> */}
+        <h3>Date: {convertDateToString(modalTrip.date)}</h3>
         <TripManage
           trip={modalTrip}
           onInputChange={onInputChange}
