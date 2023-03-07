@@ -25,7 +25,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
 
   useEffect(() => {
     getTrips();
-  }, []);
+  });
 
   const getTrips = async () => {
     try {
