@@ -8,7 +8,7 @@ import {
 } from "../../../Models/errorModels";
 import { initialTripState } from "../../../Models/tripModels";
 import TripManage from "../TripManage";
-import { addUpdateTripLog, handleCheck } from "../../../tripActions";
+import { checkTripErrors, handleCheck } from "../../../tripActions";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -38,7 +38,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   const handleSubmit = (e: React.FormEvent, trip: TripInfo) => {
-    const worked = addUpdateTripLog(
+    const worked = checkTripErrors(
       e,
       tripInfo,
       error,
@@ -63,7 +63,10 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   return (
-    <form className="newTrip__container">
+    <form
+      className="newTrip__container"
+      onSubmit={(e) => handleSubmit(e, tripInfo)}
+    >
       <h1>Add New Trip Info</h1>
       <TripDatePicker getDate={getDate} getErrorState={getErrorState} />
       <TripManage
@@ -79,7 +82,6 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         type="submit"
         data-testid="submit_trip"
         className="submit_button"
-        onClick={(e) => handleSubmit(e, tripInfo)}
       >
         Submit
       </Button>
