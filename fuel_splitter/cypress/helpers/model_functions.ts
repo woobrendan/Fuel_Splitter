@@ -22,3 +22,25 @@ export const checkEachName = (trip: Trip) => {
         .should("be.checked");
   });
 };
+
+export const addAndAssertTrips = () => {
+  trips.forEach((trip: Trip, index: number) => {
+    checkEachName(trip);
+    cy.get('[data-testid="totalKM"]').type(trip.km);
+    cy.get('[data-testid="description"]').type(trip.description);
+    cy.get('[data-testid="submit_trip"]').click();
+
+    cy.get(
+      `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(2)`,
+    ).contains(trip.km);
+
+    trip.names.forEach((name: string) =>
+      cy
+        .get(`.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(3)`)
+        .contains(name),
+    );
+    cy.get(
+      `.MuiTableBody-root > :nth-child(${index + 1}) > :nth-child(4)`,
+    ).contains(trip.description);
+  });
+};
