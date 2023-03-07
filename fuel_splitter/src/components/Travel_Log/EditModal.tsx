@@ -11,7 +11,7 @@ import {
 import TripManage from "../TripManage/TripManage";
 import { useAppDispatch } from "../../store/hooks";
 import { fuelBillActions } from "../../store/GasTripSlice";
-import { addUpdateTripLog, handleCheck } from "../../tripActions";
+import { checkTripErrors, handleCheck } from "../../tripActions";
 
 interface Props {
   show: boolean;
@@ -49,7 +49,7 @@ const EditModal: React.FC<Props> = ({
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    const worked = addUpdateTripLog(
+    const worked = checkTripErrors(
       e,
       modalTrip,
       error,
