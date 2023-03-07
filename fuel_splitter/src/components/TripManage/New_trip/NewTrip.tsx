@@ -8,7 +8,7 @@ import {
 } from "../../../Models/errorModels";
 import { initialTripState } from "../../../Models/tripModels";
 import TripManage from "../TripManage";
-import { addUpdateTripLog, onCheck } from "../../../tripActions";
+import { addUpdateTripLog, handleCheck } from "../../../tripActions";
 
 interface Props {
   handleAdd: (e: React.FormEvent, trip: TripInfo) => void;
@@ -49,8 +49,8 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
     if (worked) handleAdd(e, trip);
   };
 
-  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setTripInfo(() => onCheck(e, tripInfo));
+  const onCheck = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setTripInfo(() => handleCheck(e, tripInfo));
 
   const onInputChange = (e: React.FormEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -72,7 +72,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
       <TripManage
         trip={tripInfo}
         onInputChange={onInputChange}
-        onCheck={handleCheck}
+        onCheck={onCheck}
         error={error}
         comp="newTrip"
       />
