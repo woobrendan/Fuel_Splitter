@@ -1,5 +1,10 @@
 import history from "../seeds/history";
-import { Trip, trips, checkEachName } from "../helpers/model_functions";
+import {
+  Trip,
+  trips,
+  checkEachName,
+  addAndAssertTrips,
+} from "../helpers/model_functions";
 
 describe("Adding New Trip", () => {
   beforeEach(() => {
@@ -205,4 +210,14 @@ describe("Adding to history", () => {
       cy.request("POST", "http://localhost:1212/history/new", trip);
     });
   });
+});
+
+describe.only("Edit Modal", () => {
+  beforeEach(() => {
+    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.visit("http://localhost:3000/");
+    addAndAssertTrips();
+  });
+
+  it("Should open on click and have matching trip info", () => {});
 });
