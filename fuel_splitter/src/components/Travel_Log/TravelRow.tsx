@@ -8,9 +8,15 @@ interface Props {
   tripLog: TripInfo;
   historyComp: boolean;
   updateTrip: (val: TripInfo) => void;
+  index: number;
 }
 
-const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
+const TravelRow: React.FC<Props> = ({
+  tripLog,
+  historyComp,
+  updateTrip,
+  index,
+}) => {
   const [showModal, setShowModal] = useState(false);
 
   const getNamesInvolved = (log: TripInfo) => {
@@ -36,7 +42,7 @@ const TravelRow: React.FC<Props> = ({ tripLog, historyComp, updateTrip }) => {
             <Button
               variant="contained"
               onClick={() => setShowModal(!showModal)}
-              data-testid="edit_trip"
+              data-testid={`edit_trip_${index}`}
             >
               Edit
             </Button>
