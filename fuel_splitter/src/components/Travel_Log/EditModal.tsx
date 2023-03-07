@@ -11,7 +11,7 @@ import {
 import TripManage from "../TripManage/TripManage";
 import { useAppDispatch } from "../../store/hooks";
 import { fuelBillActions } from "../../store/GasTripSlice";
-import { addUpdateTripLog } from "../../tripActions";
+import { addUpdateTripLog, handleCheck } from "../../tripActions";
 
 interface Props {
   show: boolean;
@@ -45,15 +45,7 @@ const EditModal: React.FC<Props> = ({
   };
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const indiv: string = event.target.value;
-    const copy = { ...modalTrip };
-
-    if (indiv === "Brendan") copy.isBrendanIn = !copy.isBrendanIn;
-    if (indiv === "Lory") copy.isLoryIn = !copy.isLoryIn;
-    if (indiv === "David") copy.isDavidIn = !copy.isDavidIn;
-    if (indiv === "Parco") copy.isParcoIn = !copy.isParcoIn;
-
-    setModalTrip(() => copy);
+    setModalTrip(() => handleCheck(event, modalTrip));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
