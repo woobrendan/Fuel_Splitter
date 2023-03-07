@@ -1,7 +1,7 @@
 import { TripInfo, initialTripState } from "./Models/tripModels";
 import { tripErrorHandle, tripErorrInitialState } from "./Models/errorModels";
 
-const addUpdateTripLog = (
+const checkTripErrors = (
   e: React.FormEvent,
   trip: TripInfo,
   error: tripErrorHandle,
@@ -58,4 +58,4 @@ const handleCheck = (
   return copy;
 };
 
-export { addUpdateTripLog, handleCheck };
+export { checkTripErrors, handleCheck };
