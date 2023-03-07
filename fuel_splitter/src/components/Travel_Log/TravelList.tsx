@@ -24,6 +24,8 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
   const trips = stateTripLogs.filter((trip) => trip._id);
+  console.log("state", stateTripLogs);
+  console.log("filtered", trips);
 
   useEffect(() => {
     getTrips();
@@ -77,6 +79,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
                   key={index}
                   historyComp={historyComp}
                   updateTrip={updateTrip}
+                  index={index}
                 />
               ))}
           </TableBody>
