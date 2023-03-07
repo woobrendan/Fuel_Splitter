@@ -44,4 +44,19 @@ const addUpdateTripLog = (
   }
 };
 
-export { addUpdateTripLog };
+const handleCheck = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  trip: TripInfo,
+): TripInfo => {
+  const indiv: string = event.target.value;
+  const copy: TripInfo = { ...trip };
+
+  if (indiv === "Brendan") copy.isBrendanIn = !copy.isBrendanIn;
+  if (indiv === "Lory") copy.isLoryIn = !copy.isLoryIn;
+  if (indiv === "David") copy.isDavidIn = !copy.isDavidIn;
+  if (indiv === "Parco") copy.isParcoIn = !copy.isParcoIn;
+
+  return copy;
+};
+
+export { addUpdateTripLog, handleCheck };
