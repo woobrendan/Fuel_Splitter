@@ -63,10 +63,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
   };
 
   return (
-    <form
-      className="newTrip__container"
-      onSubmit={(e) => handleSubmit(e, tripInfo)}
-    >
+    <form className="newTrip__container">
       <h1>Add New Trip Info</h1>
       <TripDatePicker getDate={getDate} getErrorState={getErrorState} />
       <TripManage
@@ -82,6 +79,7 @@ const NewTrip: React.FC<Props> = ({ handleAdd }) => {
         type="submit"
         data-testid="submit_trip"
         className="submit_button"
+        onClick={(e) => handleSubmit(e, tripInfo)}
       >
         Submit
       </Button>
