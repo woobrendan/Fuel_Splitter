@@ -1,6 +1,5 @@
 import { TripInfo, initialTripState } from "./Models/tripModels";
 import { tripErrorHandle, tripErorrInitialState } from "./Models/errorModels";
-import axios from "axios";
 
 const addUpdateTripLog = (
   e: React.FormEvent,
