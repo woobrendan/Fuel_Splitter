@@ -28,7 +28,7 @@ const addTrip = (state: FuelBill, trip: TripInfo) => {
   // add trip to trip logs, then sort array to have earliest trip come first
   state.tripLogs = [...state.tripLogs, trip].sort(
     (a: TripInfo, b: TripInfo): any => {
-      return a.date!.getTime() - b.date!.getTime();
+      return new Date(a.date!).getTime() - new Date(b.date!).getTime();
     },
   );
 
