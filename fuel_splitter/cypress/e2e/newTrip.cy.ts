@@ -207,6 +207,7 @@ describe("Adding to history", () => {
 
   after(() => {
     history.forEach((trip) => {
+      cy.request("DELETE", "http://localhost:1212/history/delete/all");
       cy.request("POST", "http://localhost:1212/history/new", trip);
     });
   });
