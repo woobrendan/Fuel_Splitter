@@ -220,6 +220,8 @@ describe.only("Edit Modal", () => {
   });
 
   it("Should open on click and have matching trip info", () => {
+    const newKm = "100";
+    const newDescription = "A long trip";
     cy.get('[data-testid="edit_trip_0"]').click();
     cy.get('.modal__input > :nth-child(1) > [data-testid="totalKM"]').should(
       "have.value",
@@ -231,5 +233,14 @@ describe.only("Edit Modal", () => {
     cy.get(
       `[data-testid="checkbox_${trips[0].names[0]}"] > .PrivateSwitchBase-input`,
     ).should("be.checked");
+
+    cy.get('.modal__input > :nth-child(1) > [data-testid="totalKM"]')
+      .clear()
+      .type(newKm)
+      .should("have.value", newKm);
+    cy.get('.modal__input > :nth-child(2) > [data-testid="description"]')
+      .clear()
+      .type(newDescription)
+      .should("have.value", newDescription);
   });
 });
