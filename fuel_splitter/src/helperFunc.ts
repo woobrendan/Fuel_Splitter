@@ -50,7 +50,8 @@ const addToHistory = (fuelBill: FuelBill) => {
 
 const addTripLog = async (trip: TripInfo) => {
   try {
-    axios.post("http://localhost:1212/trips/create", trip);
+    const result = await axios.post("http://localhost:1212/trips/create", trip);
+    return result.data.trip;
   } catch (error) {
     console.log("Error posting trip:", error);
   }
