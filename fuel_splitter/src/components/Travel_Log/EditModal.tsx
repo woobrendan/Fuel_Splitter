@@ -79,6 +79,7 @@ const EditModal: React.FC<Props> = ({
           variant="outlined"
           color="error"
           className="edit_modal_delete"
+          data-testid="modal_delete"
           onClick={() => setToBeDeleted(!toBeDeleted)}
         >
           {toBeDeleted ? "Cancel" : "Delete Trip"}
@@ -103,6 +104,7 @@ const EditModal: React.FC<Props> = ({
           <Button
             variant="contained"
             color="error"
+            data-testid="modal_delete_confirm"
             onClick={() => handleDelete(modalTrip)}
           >
             Confirm Delete
