@@ -21,15 +21,15 @@ const SingleTripInfo: React.FC = () => {
     dispatch(fuelBillActions.addNewTrip(mongoTrip));
   };
 
-  const finalSubmit = (gasBill: GasBill) => {
+  const finalSubmit = async (gasBill: GasBill) => {
     const copy: FuelBill = {
       ...oneBill,
       totalPrice: gasBill.gasCost,
       costPerLitre: gasBill.costPerL,
     };
 
-    dispatch(historyActions.addToHistory(copy));
-    addToHistory(copy);
+    const mongoHistory = await addToHistory(copy);
+    dispatch(historyActions.addToHistory(mongoHistory));
 
     //** reset trip Logs */
     dispatch(fuelBillActions.resetGasTrip());
