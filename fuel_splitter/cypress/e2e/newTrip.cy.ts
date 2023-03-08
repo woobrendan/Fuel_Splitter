@@ -255,4 +255,8 @@ describe.only("Edit Modal", () => {
       trips[0].km,
     );
   });
+
+  after(() => {
+    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+  });
 });
