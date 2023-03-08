@@ -23,10 +23,6 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const dispatch = useAppDispatch();
   const stateTripLogs = useAppSelector((state) => state.fuelBill.tripLogs);
 
-  const trips = stateTripLogs.filter((trip) => trip._id);
-  console.log("state", stateTripLogs);
-  console.log("filtered", trips);
-
   useEffect(() => {
     getTrips();
   });
@@ -50,7 +46,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
   const getArr = () => {
     if (historyComp) return tripLogs;
     else {
-      return stateTripLogs.length > 0 ? trips : null;
+      return stateTripLogs.length > 0 ? stateTripLogs : null;
     }
   };
 
