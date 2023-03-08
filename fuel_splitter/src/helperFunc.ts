@@ -1,6 +1,5 @@
 import axios from "axios";
 import { FuelBill } from "./model";
-import { TripInfo } from "./Models/tripModels";
 
 const getToday = (): string => {
   let today: Date = new Date();
@@ -32,14 +31,6 @@ const dateToString = (date: string): string => {
   return `${monthName} ${day}, ${Number(dateArr[0])}`;
 };
 
-const resetTripLog = async () => {
-  try {
-    axios.delete("http://localhost:1212/trips/delete/all");
-  } catch (error) {
-    console.log("Error deleting all trips:", error);
-  }
-};
-
 const addToHistory = async (fuelBill: FuelBill) => {
   try {
     const result = await axios.post(
@@ -49,15 +40,6 @@ const addToHistory = async (fuelBill: FuelBill) => {
     return result.data.history;
   } catch (error) {
     console.log("Error adding to History:", error);
-  }
-};
-
-const addTripLog = async (trip: TripInfo) => {
-  try {
-    const result = await axios.post("http://localhost:1212/trips/create", trip);
-    return result.data.trip;
-  } catch (error) {
-    console.log("Error posting trip:", error);
   }
 };
 
@@ -84,12 +66,4 @@ const getNames = (nameArr: string[]) => {
   return names;
 };
 
-export {
-  getToday,
-  dateToString,
-  resetTripLog,
-  addToHistory,
-  addTripLog,
-  convertDateToString,
-  getNames,
-};
+export { getToday, dateToString, addToHistory, convertDateToString, getNames };
