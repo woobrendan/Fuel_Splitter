@@ -219,5 +219,17 @@ describe.only("Edit Modal", () => {
     addAndAssertTrips();
   });
 
-  it("Should open on click and have matching trip info", () => {});
+  it("Should open on click and have matching trip info", () => {
+    cy.get('[data-testid="edit_trip_0"]').click();
+    cy.get('.modal__input > :nth-child(1) > [data-testid="totalKM"]').should(
+      "have.value",
+      trips[0].km,
+    );
+    cy.get(
+      '.modal__input > :nth-child(2) > [data-testid="description"]',
+    ).should("have.value", trips[0].description);
+    cy.get(
+      `[data-testid="checkbox_${trips[0].names[0]}"] > .PrivateSwitchBase-input`,
+    ).should("be.checked");
+  });
 });
