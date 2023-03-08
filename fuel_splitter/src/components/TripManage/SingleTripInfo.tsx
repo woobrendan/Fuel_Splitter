@@ -17,8 +17,8 @@ const SingleTripInfo: React.FC = () => {
 
   const handleAdd = async (e: React.FormEvent, trip: TripInfo) => {
     e.preventDefault();
-    dispatch(fuelBillActions.addNewTrip(trip));
-    addTripLog(trip);
+    const mongoTrip = await addTripLog(trip);
+    dispatch(fuelBillActions.addNewTrip(mongoTrip));
   };
 
   const finalSubmit = (gasBill: GasBill) => {
