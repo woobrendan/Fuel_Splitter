@@ -243,4 +243,16 @@ describe.only("Edit Modal", () => {
       .type(newDescription)
       .should("have.value", newDescription);
   });
+
+  it.only("Should be able to delete trip", () => {
+    cy.get('[data-testid="edit_trip_0"]').click();
+    cy.get('[data-testid="modal_delete_confirm"]').should("not.exist");
+    cy.get('[data-testid="modal_delete"]').click();
+    cy.get('[data-testid="modal_delete_confirm"]').click();
+
+    cy.get(`.MuiTableBody-root > :nth-child(1) > :nth-child(2)`).should(
+      "not.contain",
+      trips[0].km,
+    );
+  });
 });
