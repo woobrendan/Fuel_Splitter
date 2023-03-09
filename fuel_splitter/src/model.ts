@@ -7,6 +7,7 @@ export interface IndividualInfo {
   billPortion: number;
 }
 
+//for history of all fuel bills
 export interface FuelBill {
   totalPrice: number;
   totalKM: number;
@@ -18,14 +19,8 @@ export interface FuelBill {
   tripLogs: TripInfo[];
 }
 
+// Gas Pay component of SingleTrip
 export interface GasBill {
   gasCost: number;
   costPerL: number;
-}
-
-export interface TripDetails {
-  date: string;
-  totalKM: number;
-  involved: string;
-  description: string;
 }
