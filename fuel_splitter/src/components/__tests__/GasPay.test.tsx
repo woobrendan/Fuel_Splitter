@@ -1,6 +1,5 @@
 import GasPay from "../TripManage/GasPay";
-import { render, fireEvent, screen } from "@testing-library/react";
-import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 import { GasBill, FuelBill } from "../../model";
 import { Provider } from "react-redux";
 import { createStore } from "../../store/store";
@@ -42,14 +41,6 @@ const testSubmit = (gasBill: GasBill) => {
   };
 
   return copy;
-  // dispatch(historyActions.addToHistory(copy));
-  // addToHistory(copy);
-
-  // //** reset trip Logs */
-  // dispatch(fuelBillActions.resetGasTrip());
-  // resetTripLog();
-
-  // navigate("/history");
 };
 
 const comp = (
