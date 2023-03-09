@@ -25,6 +25,17 @@ const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
         {toBeDeleted ? "Cancel" : "Delete Trip"}
       </Button>
       <h2>Trip Summary #{tripNum}</h2>
+      {toBeDeleted && (
+        <Button
+          variant="contained"
+          color="error"
+          className="history_delete_confirm"
+          data-testid="history_delete_confirm"
+          onClick={() => {}}
+        >
+          Confirm Delete
+        </Button>
+      )}
       <div className="history__single__summary">
         <div className="history__single__breakdown">
           <IndivBreakDown bill={bill} />
