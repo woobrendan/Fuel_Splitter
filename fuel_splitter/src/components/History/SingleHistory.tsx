@@ -19,7 +19,8 @@ const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
 
   const handleDelete = (val: FuelBill) => {
     dispatch(historyActions.removeFromHistory(val));
-    axios.delete(`http://localhost:1212/trips/history/${val._id}`);
+    axios.delete(`http://localhost:1212/history/delete/${val._id}`);
+    setToBeDeleted(false);
   };
 
   return (
@@ -40,7 +41,7 @@ const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
           color="error"
           className="history_delete_confirm"
           data-testid="history_delete_confirm"
-          onClick={() => {}}
+          onClick={() => handleDelete(bill)}
         >
           Confirm Delete
         </Button>
