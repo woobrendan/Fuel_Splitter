@@ -1,5 +1,6 @@
 import { TripInfo, initialTripState } from "./Models/tripModels";
 import { tripErrorHandle, tripErorrInitialState } from "./Models/errorModels";
+import axios from "axios";
 
 const checkTripErrors = (
   e: React.FormEvent,
@@ -58,4 +59,21 @@ const handleCheck = (
   return copy;
 };
 
-export { checkTripErrors, handleCheck };
+const resetTripLog = async () => {
+  try {
+    axios.delete("http://localhost:1212/trips/delete/all");
+  } catch (error) {
+    console.log("Error deleting all trips:", error);
+  }
+};
+
+const addTripLog = async (trip: TripInfo) => {
+  try {
+    const result = await axios.post("http://localhost:1212/trips/create", trip);
+    return result.data.trip;
+  } catch (error) {
+    console.log("Error posting trip:", error);
+  }
+};
+
+export { checkTripErrors, handleCheck, resetTripLog, addTripLog };
