@@ -8,7 +8,8 @@ import TravelList from "../Travel_Log/TravelList";
 import GasPay from "./GasPay";
 import { historyActions } from "../../store/historySlice";
 import { useNavigate } from "react-router";
-import { addToHistory, addTripLog, resetTripLog } from "../../helperFunc";
+import { addToHistory } from "../../helperFunc";
+import { resetTripLog, addTripLog } from "../../tripActions";
 
 const SingleTripInfo: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +35,6 @@ const SingleTripInfo: React.FC = () => {
     //** reset trip Logs */
     dispatch(fuelBillActions.resetGasTrip());
     resetTripLog();
-
     navigate("/history");
   };
 
