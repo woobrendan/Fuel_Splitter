@@ -17,6 +17,7 @@ export interface FuelBill {
   david: IndividualInfo;
   parco: IndividualInfo;
   tripLogs: TripInfo[];
+  _id?: string;
 }
 
 // Gas Pay component of SingleTrip
