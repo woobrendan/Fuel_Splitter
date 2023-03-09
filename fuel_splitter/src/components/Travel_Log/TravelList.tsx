@@ -12,7 +12,7 @@ import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import TravelRow from "./TravelRow";
 import { TripInfo } from "../../Models/tripModels";
 import axios from "axios";
-import { fuelBillActions } from "../../store/GasTripSlice";
+import { fuelBillActions } from "../../store/tripSlice";
 
 interface Props {
   tripLogs?: TripInfo[];

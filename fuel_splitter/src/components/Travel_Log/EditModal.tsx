@@ -10,7 +10,7 @@ import {
 } from "../../Models/errorModels";
 import TripManage from "../TripManage/TripManage";
 import { useAppDispatch } from "../../store/hooks";
-import { fuelBillActions } from "../../store/GasTripSlice";
+import { fuelBillActions } from "../../store/tripSlice";
 import { checkTripErrors, handleCheck } from "../../tripActions";
 
 interface Props {
