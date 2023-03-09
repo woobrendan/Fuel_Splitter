@@ -4,6 +4,9 @@ import TotalBreakdown from "./TotalBreakdown";
 import IndivBreakDown from "./IndivBreakDown";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import { useAppDispatch } from "../../store/hooks";
+import { historyActions } from "../../store/historySlice";
+import axios from "axios";
 
 interface Props {
   bill: FuelBill;
@@ -12,6 +15,12 @@ interface Props {
 
 const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
   const [toBeDeleted, setToBeDeleted] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const handleDelete = (val: FuelBill) => {
+    dispatch(historyActions.removeFromHistory(val));
+    axios.delete(`http://localhost:1212/trips/history/${val._id}`);
+  };
 
   return (
     <section className="history__single">
