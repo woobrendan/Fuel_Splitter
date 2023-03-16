@@ -50,10 +50,6 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
     }
   };
 
-  const updateTrip = (val: TripInfo) => {
-    dispatch(fuelBillActions.updateTripLog(val));
-  };
-
   return (
     <div id="travelList__container">
       <TableContainer component={Paper}>
@@ -74,7 +70,6 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
                   tripLog={log}
                   key={index}
                   historyComp={historyComp}
-                  updateTrip={updateTrip}
                   index={index}
                 />
               ))}
