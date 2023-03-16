@@ -7,16 +7,10 @@ import EditModal from "../Travel_Log/EditModal";
 interface Props {
   tripLog: TripInfo;
   historyComp: boolean;
-  updateTrip: (val: TripInfo) => void;
   index: number;
 }
 
-const TravelRow: React.FC<Props> = ({
-  tripLog,
-  historyComp,
-  updateTrip,
-  index,
-}) => {
+const TravelRow: React.FC<Props> = ({ tripLog, historyComp, index }) => {
   const [showModal, setShowModal] = useState(false);
 
   const getNamesInvolved = (log: TripInfo) => {
@@ -53,7 +47,6 @@ const TravelRow: React.FC<Props> = ({
         <EditModal
           show={showModal}
           handleToggle={() => setShowModal(!showModal)}
-          updateTrip={updateTrip}
           tripLog={tripLog}
         />
       )}
