@@ -1,6 +1,6 @@
 import { Modal, Box, Button } from "@mui/material";
 import "../../Styles/modal.scss";
-import { TripInfo, initialTripState } from "../../Models/tripModels";
+import { TripInfo } from "../../Models/tripModels";
 import { useState } from "react";
 import { convertDateToString } from "../../helperFunc";
 import axios from "axios";
@@ -16,16 +16,10 @@ import { checkTripErrors, handleCheck } from "../../tripActions";
 interface Props {
   show: boolean;
   handleToggle: () => void;
-  updateTrip: (val: TripInfo) => void;
   tripLog: TripInfo;
 }
 
-const EditModal: React.FC<Props> = ({
-  show,
-  handleToggle,
-  updateTrip,
-  tripLog,
-}) => {
+const EditModal: React.FC<Props> = ({ show, handleToggle, tripLog }) => {
   const [modalTrip, setModalTrip] = useState<TripInfo>({ ...tripLog });
   const [error, setError] = useState<tripErrorHandle>(tripErorrInitialState);
   const [toBeDeleted, setToBeDeleted] = useState<boolean>(false);
@@ -57,7 +51,7 @@ const EditModal: React.FC<Props> = ({
       customSetTrip,
     );
     if (worked) {
-      updateTrip(modalTrip);
+      dispatch(fuelBillActions.updateTripLog(modalTrip));
       handleToggle();
       axios.patch(
         `http://localhost:1212/trips/update/${modalTrip._id}`,
