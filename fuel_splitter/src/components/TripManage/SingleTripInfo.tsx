@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import "../../Styles/tripinfo.scss";
 import { GasBill, FuelBill } from "../../model";
 import { TripInfo } from "../../Models/tripModels";
-import { fuelBillActions } from "../../store/GasTripSlice";
+import { fuelBillActions } from "../../store/tripSlice";
 import TravelList from "../Travel_Log/TravelList";
 import GasPay from "./GasPay";
 import { historyActions } from "../../store/historySlice";
