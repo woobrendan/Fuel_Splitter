@@ -53,17 +53,14 @@ const EditModal: React.FC<Props> = ({ show, handleToggle, tripLog }) => {
     if (worked) {
       dispatch(fuelBillActions.updateTripLog(modalTrip));
       handleToggle();
-      axios.patch(
-        `http://localhost:1212/trips/update/${modalTrip._id}`,
-        modalTrip,
-      );
+      axios.patch(`http://localhost:1212/trips/${modalTrip._id}`, modalTrip);
     }
   };
 
   const handleDelete = (val: TripInfo) => {
     dispatch(fuelBillActions.removeTripLog(val));
     handleToggle();
-    axios.delete(`http://localhost:1212/trips/delete/${val._id}`);
+    axios.delete(`http://localhost:1212/trips/${val._id}`);
   };
 
   return (
