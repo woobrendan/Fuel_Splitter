@@ -19,7 +19,7 @@ const SingleHistory: React.FC<Props> = ({ bill, tripNum }) => {
 
   const handleDelete = (val: FuelBill) => {
     dispatch(historyActions.removeFromHistory(val));
-    axios.delete(`http://localhost:1212/history/delete/${val._id}`);
+    axios.delete(`http://localhost:1212/history/${val._id}`);
     setToBeDeleted(false);
   };
 
