@@ -33,10 +33,7 @@ const dateToString = (date: string): string => {
 
 const addToHistory = async (fuelBill: FuelBill) => {
   try {
-    const result = await axios.post(
-      "http://localhost:1212/history/new",
-      fuelBill,
-    );
+    const result = await axios.post("http://localhost:1212/history/", fuelBill);
     return result.data.history;
   } catch (error) {
     console.log("Error adding to History:", error);
