@@ -4,7 +4,7 @@ import { Trip, trips, checkEachName } from "../helpers/model_functions";
 
 describe("Final Gas Totals", () => {
   beforeEach(() => {
-    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.request("DELETE", "http://localhost:1212/trips/all");
     cy.visit("http://localhost:3000/");
   });
 
