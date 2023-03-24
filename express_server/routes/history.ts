@@ -9,7 +9,7 @@ router.post("/", controller.createHistory);
 router.get("/:historyId", controller.readHistory);
 router.get("/", controller.readAll);
 router.patch("/:historyId", controller.updateHistory);
-router.delete("/:historyId", controller.deleteHistory);
 router.delete("/all", controller.deleteAll);
+router.delete("/:historyId", controller.deleteHistory);
 
 export = router;
