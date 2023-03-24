@@ -61,7 +61,7 @@ const handleCheck = (
 
 const resetTripLog = async () => {
   try {
-    axios.delete("http://localhost:1212/trips/delete/all");
+    axios.delete("http://localhost:1212/trips/all");
   } catch (error) {
     console.log("Error deleting all trips:", error);
   }
@@ -69,7 +69,7 @@ const resetTripLog = async () => {
 
 const addTripLog = async (trip: TripInfo) => {
   try {
-    const result = await axios.post("http://localhost:1212/trips/create", trip);
+    const result = await axios.post("http://localhost:1212/trips/", trip);
     return result.data.trip;
   } catch (error) {
     console.log("Error posting trip:", error);
