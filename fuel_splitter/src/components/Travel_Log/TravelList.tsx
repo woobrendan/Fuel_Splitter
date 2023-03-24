@@ -29,7 +29,7 @@ const TravelList: React.FC<Props> = ({ tripLogs, historyComp }) => {
 
   const getTrips = async () => {
     try {
-      const trips = await axios.get("http://localhost:1212/trips/get");
+      const trips = await axios.get("http://localhost:1212/trips");
       const tripData = trips.data.tripLogs.map((trip: any) => {
         const dateString: string = trip.date;
         return {
