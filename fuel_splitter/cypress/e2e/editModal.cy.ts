@@ -2,7 +2,7 @@ import { trips, addAndAssertTrips } from "../helpers/model_functions";
 
 describe.only("Edit Modal", () => {
   beforeEach(() => {
-    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.request("DELETE", "http://localhost:1212/trips/all");
     cy.visit("http://localhost:3000/");
     addAndAssertTrips();
   });
