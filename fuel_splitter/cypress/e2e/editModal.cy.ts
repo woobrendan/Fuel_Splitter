@@ -45,6 +45,6 @@ describe.only("Edit Modal", () => {
   });
 
   after(() => {
-    cy.request("DELETE", "http://localhost:1212/trips/delete/all");
+    cy.request("DELETE", "http://localhost:1212/trips/all");
   });
 });
