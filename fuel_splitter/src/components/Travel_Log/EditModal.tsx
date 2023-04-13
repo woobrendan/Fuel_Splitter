@@ -42,7 +42,7 @@ const EditModal: React.FC<Props> = ({ show, handleToggle, tripLog }) => {
     setModalTrip(() => handleCheck(event, modalTrip));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     const worked = checkTripErrors(
       e,
       modalTrip,
@@ -53,7 +53,11 @@ const EditModal: React.FC<Props> = ({ show, handleToggle, tripLog }) => {
     if (worked) {
       dispatch(fuelBillActions.updateTripLog(modalTrip));
       handleToggle();
-      axios.patch(`http://localhost:1212/trips/${modalTrip._id}`, modalTrip);
+      try {
+        await axios.patch(`http://localhost:1212/trips/${modalTrip._id}`, modalTrip);
+      } catch (error) {
+        console.log("Error patching  trip:", error)
+      }
     }
   };
 
