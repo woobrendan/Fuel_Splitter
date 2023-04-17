@@ -8,4 +8,4 @@ This app uses Typescript as the primary language, and uses React for the front e
 
 ## Tracking a Single Tank of Gas
 
-![Single Trip](https://github.com/woobrendan/Fuel_Splitter/tree/main/fuel_splitter/public/single_trip.gif?raw=true)
+![Single Trip](https://github.com/woobrendan/Fuel_Splitter/blob/main/fuel_splitter/public/single_trip.gif?raw=true)
